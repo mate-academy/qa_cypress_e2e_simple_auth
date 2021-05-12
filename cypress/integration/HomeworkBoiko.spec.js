@@ -6,6 +6,7 @@ it('User can login with valid creds (tomsmith/SuperSecretPassword!)', () => {
     cy.get('#username').type('tomsmith').should('have.value', 'tomsmith');
     cy.get('#password').type('SuperSecretPassword!').should('have.value', 'SuperSecretPassword!');
     cy.get('.fa').click();
+    cy.get('#flash').should('contain', 'You logged into a secure area!');
 });
 
 it('User can\'t login with invalid creds, error message must appear', () => {
@@ -16,7 +17,7 @@ it('User can\'t login with invalid creds, error message must appear', () => {
     cy.get('#flash').should('contain', 'is invalid');
 });
 
-it('Logout from app and assert you successfully logged out', () => {
+it('User can logout from the app', () => {
     cy.visit('https://the-internet.herokuapp.com/login');
     cy.get('#username').type('tomsmith').should('have.value', 'tomsmith');
     cy.get('#password').type('SuperSecretPassword!').should('have.value', 'SuperSecretPassword!');
