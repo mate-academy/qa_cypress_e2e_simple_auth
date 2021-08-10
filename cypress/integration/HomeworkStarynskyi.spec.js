@@ -18,4 +18,5 @@ describe('Check logging with valid and invalid credentials', () => {
       cy.get('.radius').click();
       cy.get('.error').contains('Your username is invalid!').should('exist');
     });
-  })
+  });
+  
