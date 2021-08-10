@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 describe('Cypress-2 Homework',() => {
 
-    before('Visit website',() => {
+    beforeEach('Visit website',() => {
 cy.visit('https://the-internet.herokuapp.com/login');
 
 });
@@ -13,21 +13,13 @@ it('Succesfull Log In', () => {
     cy.get('[class="flash success"]').should('contain','You logged into a secure area!');
 });
 
-before('Visit website',() => {
-    cy.visit('https://the-internet.herokuapp.com/login');
-    
-    });
 it('Unsuccesfull Log In', () => {
     cy.get('[name="username"]').type('taasdada');
     cy.get('[name="password"]').type('asdasdadadsa');
     cy.get('[class="fa fa-2x fa-sign-in"]').click();
     cy.get('[class="flash error"]').should('exist');
 });
-
-before('Visit website',() => {
-    cy.visit('https://the-internet.herokuapp.com/login');
     
-    });
 it('Succesfull Log Log Out', () => {
     cy.get('[name="username"]').type('tomsmith');
     cy.get('[name="password"]').type('SuperSecretPassword!');
