@@ -29,3 +29,4 @@ describe('Test valid creds', () => {
             cy.get('.flash.success').contains('You logged out of the secure area!').should('exist');
         });
     });
+    
