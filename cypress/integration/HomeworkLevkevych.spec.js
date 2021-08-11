@@ -3,8 +3,8 @@
 const username = 'tomsmith'
 const password = 'SuperSecretPassword!'
 
-describe('', () => {
-    it('', () => {
+describe('Login test', () => {
+    it('Go to lofin page', () => {
         cy.visit('https://the-internet.herokuapp.com/login');
     });
 
@@ -12,7 +12,7 @@ describe('', () => {
         cy.get('#username').type(username);
         cy.get('#password').type(password);
         cy.get('.fa-sign-in').click();
-        cy.contains('Welcome to the Secure Area.');
+        cy.contains('Welcome to the Secure Area.').should('exist');
     
     });
 
@@ -26,14 +26,14 @@ describe('', () => {
         cy.get('#username').type(username);
         cy.get('#password').type('wrong-pw');
         cy.get('.fa-sign-in').click();
-        cy.contains('Your password is Invalid!');
+        cy.get('#flash').should('contain', 'Your password is invalid')
     });
 
     it('Login with invalid creds', () => {
         cy.get('#username').type('wrong-name');
         cy.get('#password').type(password);
         cy.get('.fa-sign-in').click();
-        cy.contains('Your password is Invalid!');
+        cy.get('#flash').should('contain', 'Your username is invalid');
     });
 
 });
