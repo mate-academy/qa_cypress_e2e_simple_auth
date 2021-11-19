@@ -1,4 +1,14 @@
-Go to https://the-internet.herokuapp.com/login
+Go to https://the-intern
+ Support
+ Docs
+ Log In
+Tests
+Runs
+Settings
+￼
+￼ Chrome 95
+Toggle Dropdown
+et.herokuapp.com/login
 
 Please automate next test cases:
 
