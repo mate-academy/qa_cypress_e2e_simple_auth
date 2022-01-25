@@ -1,0 +1,22 @@
+{
+  "name": "cypress_second_hw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oleh-Tsvietkov/cypress_second_hw.git"
+  },
+  "author": "Oleh Tsvietkov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Oleh-Tsvietkov/cypress_second_hw/issues"
+  },
+  "homepage": "https://github.com/Oleh-Tsvietkov/cypress_second_hw#readme",
+  "dependencies": {
+    "cypress": "^9.0.0"
+  }
+}
