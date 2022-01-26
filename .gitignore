@@ -1,0 +1,6 @@
+/cypress/downloads
+/cypress/fixtures
+/cypress/integration/1-getting-started
+/cypress/integration/2-advanced-examles
+/cypress/plugins
+/cypress/support
