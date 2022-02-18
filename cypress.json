@@ -1,4 +1,5 @@
 {
+    "baseUrl": "https://the-internet.herokuapp.com",
     "viewportWidth": 900,
     "viewportHeight": 500
 }

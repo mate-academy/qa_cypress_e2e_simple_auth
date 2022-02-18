@@ -2,71 +2,37 @@
 
 describe('Test for login with valid creds and assert you successfully logged in.', () => {
     beforeEach(() => {
-        cy.visit('https://the-internet.herokuapp.com/login')
+        cy.visit('/login')
     });
 
-    it('Login and logout with valid credits', () => {
+    it('Successfuly Login and logout with valid credits', () => {
             
-        cy.get('[id="username"]')
-          .type('tomsmith');
+        cy.get('#username').type('tomsmith');
             
-        cy.get('[id="password"]')
-          .type('SuperSecretPassword!');
+        cy.get('#password').type('SuperSecretPassword!');
     
-        cy.get('.fa')
-          .click();
+        cy.get('[class="fa fa-2x fa-sign-in"]').click();
     
-        cy.get('h2')
-          .should('contain.text', 'Secure Area');
- 
+        cy.get('div#flash.flash.success').should('contain.text', 'You logged into a secure area!');
+          
+        cy.get('[class="icon-2x icon-signout"]').click();
+
+        cy.get('div#flash.flash.success').should('contain.text', 'You logged out of the secure area!');
+       
            
     });
   
     it('Login with invalid credits, checking validation error', () => {
    
-        cy.get('[id="username"]')
-          .type('unknownuser');
-            
-        cy.get('[id="password"]')
-          .type('invalidpassword');
+        cy.get('#username').type('unknownuser');
+        cy.get('#password').type('invalidpassword');
+        cy.get('[class="fa fa-2x fa-sign-in"]').click();
+        cy.get('#flash').should('contain.text', 'Your username is invalid!');
 
-        cy.get('.fa')
-          .click();
+        cy.get('#username').type('tomsmith');
+        cy.get('#password').type('invalidpassword');
+        cy.get('[class="fa fa-2x fa-sign-in"]').click();
+        cy.get('#flash').should('contain.text', 'Your password is invalid!');  
 
-        cy.get('[id="flash"]')
-          .should('contain.text', 'Your username is invalid!');
-
-        cy.get('[id="username"]')
-        .type('tomsmith');
-          
-        cy.get('[id="password"]')
-          .type('invalidpassword');
-
-        cy.get('.fa')
-          .click();
-
-        cy.get('[id="flash"]')
-          .should('contain.text', 'Your password is invalid!');  
-  });
-
-    it('Logout with valid credits and assert you successfully logged out.', () => {
-            
-        cy.get('[id="username"]')
-          .type('tomsmith');
-            
-        cy.get('[id="password"]')
-          .type('SuperSecretPassword!');
-
-        cy.get('.fa')
-          .click();
-
-        cy.get('h2')
-          .should('contain.text', 'Secure Area');
-
-        cy.get('.button')
-          .click();
-        
-        cy.get('h2')
-          .should('contain.text', 'Login Page'); 
     });
 });
