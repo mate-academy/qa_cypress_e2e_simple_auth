@@ -24,7 +24,7 @@ describe ('Login page', () => {
         cy.get('[id="flash"]').should('contain', 'Your username is invalid!');
     });
 
-    it.only ('should assert successfully logged in', () => {
+    it.only ('should assert successfully logged out', () => {
         
         cy.visit('https://the-internet.herokuapp.com/login');
 
