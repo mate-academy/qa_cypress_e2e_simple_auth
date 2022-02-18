@@ -4,7 +4,7 @@ describe("Sign in page", () => {
   
   beforeEach(() => {
     cy.visit('/login')
-  })
+  });
 
 
   it("Login with valid creds", () => {
