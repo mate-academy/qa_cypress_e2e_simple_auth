@@ -1,16 +1,16 @@
 /// <reference types="cypress" />
 
-describe('Login', () => {
+describe('Login page', () => {
   beforeEach(() => {
     cy.visit('/login')
   });
 
-  it('contain a correct header', () => {
+  it('should contain a correct header', () => {
     cy.get('h2')
       .should('contain.text', 'Login Page')
   });
 
-  it.only('login with valid creds', () => {
+  it.only('should login with valid creds', () => {
     cy.get('#username')
       .type('tomsmith');
     
@@ -24,7 +24,7 @@ describe('Login', () => {
       .should('contain.text', 'You logged into a secure area!')
   });
 
-  it('login with invalid username', () => {
+  it('should login with invalid username', () => {
     cy.get('#username')
       .type('qwer' + '{enter}');
     
@@ -32,7 +32,7 @@ describe('Login', () => {
       .should('contain.text', 'Your username is invalid!')
   });
 
-  it('login with invalid password', () => {
+  it('should login with invalid password', () => {
     cy.get('#username')
       .type('tomsmith');
 
@@ -43,7 +43,7 @@ describe('Login', () => {
       .should('contain.text', 'Your password is invalid!')
   });
 
-  it.only('logout from the app', () => {
+  it('should logout from the app', () => {
     cy.get('#username')
       .type('tomsmith');
     
