@@ -14,8 +14,7 @@ describe('Login page',() =>{
         cy.url()
           .should('include', '/secure');
          
-        cy.get('#flash')
-          .should('contain','You logged into a secure area!'); 
+        cy.flashInfo('You logged into a secure area!'); 
     });
 
     it('shouldnt allow login with invalid data', () => {
@@ -27,13 +26,12 @@ describe('Login page',() =>{
 
         cy.url()
           .should('include', '/login');
-         
-        cy.get('#flash')
-          .should('contain','Your password is invalid!'); 
+        
+        cy.flashInfo('Your password is invalid!');
 
     });
 
-    it.only('should allow successfully logout', () => {
+    it('should allow successfully logout', () => {
         cy.get('#username')
           .type('tomsmith');
 
@@ -53,7 +51,6 @@ describe('Login page',() =>{
         cy.url()
         .should('include', '/login');
 
-        cy.get('#flash')
-          .should('contain','You logged out of the secure area!'); 
+        cy.flashInfo('You logged out of the secure area!'); 
     });
 });
