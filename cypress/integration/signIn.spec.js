@@ -10,7 +10,7 @@ describe('Login page', () => {
       .should('contain.text', 'Login Page')
   });
 
-  it.only('should login with valid creds', () => {
+  it('should login with valid creds', () => {
     cy.get('#username')
       .type('tomsmith');
     
