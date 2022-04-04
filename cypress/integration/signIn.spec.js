@@ -14,7 +14,7 @@ describe('Login page',() =>{
         cy.url()
           .should('include', '/secure');
          
-        cy.flashInfo('You logged into a secure area!'); 
+        cy.validaion('You logged into a secure area!'); 
     });
 
     it('shouldnt allow login with invalid data', () => {
@@ -27,7 +27,7 @@ describe('Login page',() =>{
         cy.url()
           .should('include', '/login');
         
-        cy.flashInfo('Your password is invalid!');
+        cy.validaion('Your password is invalid!');
 
     });
 
@@ -51,6 +51,6 @@ describe('Login page',() =>{
         cy.url()
         .should('include', '/login');
 
-        cy.flashInfo('You logged out of the secure area!'); 
+        cy.validaion('You logged out of the secure area!'); 
     });
 });

@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('flashInfo', (text) => {
+Cypress.Commands.add('validaion', (text) => {
     cy.get('#flash')
       .should('contain', text); 
 })
