@@ -57,7 +57,7 @@ describe('Login form', () => {
       
     })  
 
-    it.only('should allow to logout', () => {
+    it('should allow to logout', () => {
         
         cy.get('#username')
             .type('tomsmith')
