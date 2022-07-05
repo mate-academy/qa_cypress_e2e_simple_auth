@@ -21,24 +21,24 @@ describe ('User', () =>{
 
   it ('Can\'t login with invalid username', () =>{
     cy.get('#username')
-    .type(`Qwertyh`);
-  cy.get('#password')
-    .type('qwerty123!');
-  cy.contains('button', 'Login')
-    .click();
+      .type(`Qwertyh`);
+    cy.get('#password')
+      .type('qwerty123!');
+    cy.contains('button', 'Login')
+      .click();
     cy.get('div#flash.flash.error')
-    .should('contain','Your username is invalid!' );
+      .should('contain','Your username is invalid!' );
   })
 
   it ('Can\'t login with invalid password', () =>{
     cy.get('#username')
-    .type(`tomsmith`);
-  cy.get('#password')
-    .type('qwerty123!');
-  cy.contains('button', 'Login')
-    .click();
+      .type(`tomsmith`);
+    cy.get('#password')
+      .type('qwerty123!');
+    cy.contains('button', 'Login')
+      .click();
     cy.get('div#flash.flash.error')
-    .should('contain','Your password is invalid!' );
+      .should('contain','Your password is invalid!' );
   })
 });
 
