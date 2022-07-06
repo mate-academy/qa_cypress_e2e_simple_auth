@@ -23,3 +23,45 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('loginUser', () => {
+  const username = 'tomsmith'
+  const password = 'SuperSecretPassword!'
+  cy.visit('/login')
+  cy.get('#username')
+    .type(username)
+
+    cy.get('#password')
+    .type(password)
+
+    cy.contains('button', 'Login')
+    .click();
+ })
+ Cypress.Commands.add('assertPageUrl', (url) => {
+  cy.url().should('equal', Cypress.config().baseUrl + url)
+ })
+ Cypress.Commands.add('loginUserInvalidName', () => {
+  const usernameNotValid = 'tomsmith11'
+  const password = 'SuperSecretPassword!'
+  cy.visit('/login')
+  cy.get('#username')
+    .type(usernameNotValid)
+
+    cy.get('#password')
+    .type(password)
+
+    cy.contains('button', 'Login')
+    .click();
+ })
+ Cypress.Commands.add('loginUserInvalidPassword', () => {
+  const username = 'tomsmith'
+  const password = 'SuperSecretPassword'
+  cy.visit('/login')
+  cy.get('#username')
+    .type(username)
+
+    cy.get('#password')
+    .type(password)
+
+    cy.contains('button', 'Login')
+    .click();
+ })
