@@ -3,6 +3,7 @@
 describe('User should', () => {
 
     const username = 'tomsmith';
+    
     const password = 'SuperSecretPassword!';
 
     it('login with valid creds', () => {
