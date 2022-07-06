@@ -1,20 +1,22 @@
 /// <reference types="cypress" />
 
 describe('User should', () => {
+    beforeEach(() => {
+      cy.visit('https://the-internet.herokuapp.com/login');
+    });
     it('be able to succes log in with valid data ', () => {
-        cy.visit('https://the-internet.herokuapp.com/login');
         cy.get('#username')
           .type('tomsmith');
         cy.get('#password')
           .type('SuperSecretPassword!');
         cy.contains('button', 'Login')
           .click();
-        cy.contains('Welcome to the Secure Area. When you are done click logout below.');
+        cy.get('div#flash.flash.success')
+            .should('contain', 'You logged into a secure area!');
         cy.get('.button')
           .click();
     });
     it('not be able to succes log in with invalid username', () => {
-        cy.visit('https://the-internet.herokuapp.com/login');
         cy.get('#username')
           .type('invalid');
         cy.get('#password')
@@ -26,7 +28,6 @@ describe('User should', () => {
     });
 
     it('not be able to succes log in with invalid password', () => {
-        cy.visit('https://the-internet.herokuapp.com/login');
         cy.get('#username')
           .type('tomsmith');
         cy.get('#password')
