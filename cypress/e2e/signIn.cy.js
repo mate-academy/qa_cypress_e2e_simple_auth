@@ -1,60 +1,75 @@
 /// <reference types="cypress" />
 
+beforeEach(() => {
+    cy.visit('/login');
+  })  
+
 describe('User should', () => {
 
     const username = 'tomsmith';
-    
     const password = 'SuperSecretPassword!';
 
     it('login with valid creds', () => {
-
-    cy.visit('/login');
     
     cy.get('#username')
-        .type(username);
+    .type(username);
 
     cy.get('#password')
-        .type(password);
+    .type(password);
     
     cy.get('.fa')
-        .click();
+    .click();
 
-    cy.contains('[class="flash success"]', 'You logged into a secure area!');
+    cy.get('[class="flash success"]')
+    .should('contain.text', 'You logged into a secure area!');
     
     });
 
     it('login with invalid creds and check validation error', () => {
+        
+    cy.get('#username')
+    .type(username + 'invalid');
+    
+    cy.get('#password')
+    .type(password + 'invalid');
+        
+    cy.get('.fa')
+    .click();
 
-        cy.visit('/login');
+    cy.get('[class="flash error"]')
+    .should('contain.text', 'Your username is invalid!');
+    });
+
+    it('login with valid username and invalid password and check validation error', () => {
         
-        cy.get('#username')
-            .type(username + 'invalid');
-    
-        cy.get('#password')
-            .type(password + 'invalid');
+    cy.get('#username')
+    .type(username);
         
-        cy.get('.fa')
-            .click();
+    cy.get('#password')
+    .type(password + 'invalid');
+            
+    cy.get('.fa')
+    .click();
     
-        cy.contains('[class="flash error"]', 'Your username is invalid!');
-        });
+    cy.get('[class="flash error"]')
+    .should('contain.text', 'Your password is invalid!');
+    });
   
-        it('logout from the app and assert you successfully logged out.', () => {
-
-        cy.visit('/login');
+    it('logout from the app and assert you successfully logged out.', () => {
             
-        cy.get('#username')
-            .type(username);
+    cy.get('#username')
+    .type(username);
         
-        cy.get('#password')
-            .type(password);
+    cy.get('#password')
+    .type(password);
             
-        cy.get('.fa')
-            .click();
+    cy.get('.fa')
+    .click();
         
-        cy.get('[class="button secondary radius"]')
-            .click();
+    cy.get('[class="button secondary radius"]')
+    .click();
 
-        cy.contains('[class="flash success"]', 'You logged out of the secure area!');    
+    cy.get('[class="flash success"]')
+    .should('contain.text', 'You logged out of the secure area!');
     });
 });
