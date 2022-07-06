@@ -1,8 +1,11 @@
 /// <reference types="cypress" />
 
 describe('User should be able', () => {
+    beforeEach(() => {
+      cy.visit(`https://the-internet.herokuapp.com/login`)  
+    });
+
     it('to login with valid creds', () => {
-       cy.visit(`https://the-internet.herokuapp.com/login`) 
       
        cy.get('#username')
          .type(`tomsmith`);
@@ -12,10 +15,16 @@ describe('User should be able', () => {
         
        cy.contains('button', 'Login')
          .click();
+
+       cy.get('#flash')
+         .should('contain', 'You logged into a secure area!');
+ 
+       cy.get('.button')
+         .should('contain', 'Logout')
+            
     });
 
     it('not to log in with invalid creds', () => {
-        cy.visit(`https://the-internet.herokuapp.com/login`) 
       
        cy.get('#username')
          .type(`tomsmith1`);
@@ -31,8 +40,23 @@ describe('User should be able', () => {
         
     });
 
+    it('not to log in with invalid password', () => {
+      
+      cy.get('#username')
+        .type(`tomsmith`);
+
+      cy.get('#password')
+         .type(`SuperSecretPassword`);
+       
+      cy.contains('button', 'Login')
+        .click();
+
+      cy.get('#flash')
+        .should('contain', 'Your password is invalid!');
+       
+   });
+
     it('to logout from the app', () => {
-        cy.visit(`https://the-internet.herokuapp.com/login`) 
        
         cy.get('#username')
           .type(`tomsmith`);
