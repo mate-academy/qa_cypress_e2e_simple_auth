@@ -1,7 +1,7 @@
 Workflow:
 1. Fork the repo.
 1. Clone **your** forked repository.
-1. Create a new branch `git checkout -b develop`.
+1. Create a new branch ``.
 1. Resolve tasks in the `cypress`/`integration`/`signIn.spec.js`.
 1. Create a pull request.
 
