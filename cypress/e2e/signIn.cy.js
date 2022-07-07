@@ -1,8 +1,6 @@
 /// <reference types="cypress" />
 
 describe('Login with valid creds', () => {
-  beforeEach(()=>{ 
-  });
   it('User should log in with valid data', () => {
   const username = 'tomsmith'
   const password = 'SuperSecretPassword!'
