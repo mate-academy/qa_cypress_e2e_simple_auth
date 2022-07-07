@@ -9,7 +9,7 @@ describe('Login with valid creds', () => {
   cy.visit('/login')
   cy.get('#username')
     .type(username)
-    cy.get('#password')
+  cy.get('#password')
     .type(password)
 
     cy.contains('button', 'Login')
