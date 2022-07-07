@@ -3,7 +3,7 @@
 describe('Login with valid creds', () => {
   beforeEach(()=>{ 
   });
-  it('User should log in with data have registrate before ', () => {
+  it('User should log in with valid data', () => {
   const username = 'tomsmith'
   const password = 'SuperSecretPassword!'
   cy.visit('/login')
