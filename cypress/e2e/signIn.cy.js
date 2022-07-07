@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 describe('Login with valid creds', () => {
-  it('User should log in with valid data', () => {
+  it('User should log in with valid data and see a message "You logged into a secure area!"', () => {
   const username = 'tomsmith'
   const password = 'SuperSecretPassword!'
   cy.visit('/login')
@@ -10,15 +10,11 @@ describe('Login with valid creds', () => {
   cy.get('#password')
     .type(password)
 
-    cy.contains('button', 'Login')
-    .click();
+   cy.contains('button', 'Login')
+   .click();
+   cy.get('#flash').should('contain.text', 'You logged into a secure area!')
   });
   
-  it('User should see a message You logged into a secure area! ', () => {
-    cy.loginUser()
-    cy.get('#flash').should('contain.text', 'You logged into a secure area!')
-
-  });
   it('User should be secure page', () => {
     cy.loginUser()
    cy.assertPageUrl('/secure')
@@ -33,8 +29,6 @@ describe('Login with valid creds', () => {
 });
 
 describe('Login with invalid creds and check validation error', () => {
-  beforeEach(()=>{ 
-  });
   it('User should see message Your username is invalid!, when login with invalid username', () => {
     cy.loginUserInvalidName()
     cy.get('#flash').should('contain.text', 'Your username is invalid!')
