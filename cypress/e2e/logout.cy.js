@@ -31,5 +31,4 @@ describe('Logout', () => {
       .should('include','https://the-internet.herokuapp.com/login');
     });
   });
-   
   
