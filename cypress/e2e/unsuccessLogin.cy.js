@@ -6,10 +6,10 @@ describe('Unsuccessful Sign In', () => {
       cy.visit('https://the-internet.herokuapp.com/login');
   
       cy.get('[name="username"]')
-      .type('tomsmith');
+      .type('tom');
   
       cy.get('[name="password"]')
-      .type('Password!');
+      .type('SuperSecretPassword!');
   
       cy.get('button.radius')
       .click();
@@ -17,9 +17,9 @@ describe('Unsuccessful Sign In', () => {
       cy.url()
       .should('include','https://the-internet.herokuapp.com/login');
 
-      cy.contains('div#flash.flash.error','Your password is invalid!')
+      cy.contains('div#flash.flash.error','Your username is invalid!')
       .should('exist');
     });
   });
   
-  
+ 
