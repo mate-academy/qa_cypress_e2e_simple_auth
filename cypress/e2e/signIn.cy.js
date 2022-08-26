@@ -17,13 +17,20 @@ describe('Sign in:', () => {
       .should('contain.text', 'You logged into a secure area!')
   })
 
-  it('2. Sign in with invalid creds', () => {
+  it('2. Sign in with invalid username', () => {
     cy.login('thomassmith', password)
     cy.get('#flash')
       .should('contain.text', 'Your username is invalid!')
   })
 
-  it('3. Logout and confirm', () => {
+  it('3. Sign in with invalid password', () => {
+    cy.login(username, 'qqbyThomassmith')
+    cy.get('#flash')
+      .should('contain.text', 'Your password is invalid!')
+  })
+
+
+  it('4. Logout and confirm', () => {
     cy.login(username, password)
     cy.get('.button').click()
     cy.get('#flash')
