@@ -71,7 +71,7 @@ describe('Login page', () => {
      .should('be.visible');
   });
 
-  it.only('should allow to logout', () => {
+  it('should allow to logout', () => {
     cy.get('#username')
      .type(username);
 
