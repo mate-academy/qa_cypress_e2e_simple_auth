@@ -13,11 +13,18 @@ describe('Sign in page', () => {
         cy.contains('You logged into a secure area!');
     });
 
-    it('Login with invalid creds', () => {
+    it('Login with invalid creds (username)', () => {
         cy.get('[name="username"]').type('notExist');
         cy.get('[name="password"]').type('badPassword!');
         cy.get('.fa.fa-2x.fa-sign-in').click();
         cy.contains('Your username is invalid!');
+    });
+
+    it('Login with invalid creds (password)', () => {
+        cy.get('[name="username"]').type('tomsmith');
+        cy.get('[name="password"]').type('badPassword!');
+        cy.get('.fa.fa-2x.fa-sign-in').click();
+        cy.contains('Your password is invalid!');
     });
 
     it('Logout from the app', () => {
