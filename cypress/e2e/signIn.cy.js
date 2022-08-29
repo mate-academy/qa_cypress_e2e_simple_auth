@@ -17,7 +17,7 @@ describe('login page', () => {
       .should('contain', ' You logged into a secure area!');
   });
 
-  it('should not Login with invalid creds', () => {
+  it('should not Login with invalid username', () => {
     cy.visit('https://the-internet.herokuapp.com/login');
 
     cy.get('[id="username"]')
@@ -31,6 +31,22 @@ describe('login page', () => {
 
     cy.get('[class="flash error"]')
       .should('contain', ' Your username is invalid!');
+  });
+
+  it('should not Login with invalid password', () => {
+    cy.visit('https://the-internet.herokuapp.com/login');
+
+    cy.get('[id="username"]')
+      .type('tomsmith');
+
+    cy.get('[id="password"]')
+      .type('12345');
+
+    cy.get('[class="fa fa-2x fa-sign-in"]')
+      .click();
+
+    cy.get('[class="flash error"]')
+      .should('contain', ' Your password is invalid!');
   });
 
   it('should Login with valid creds', () => {
