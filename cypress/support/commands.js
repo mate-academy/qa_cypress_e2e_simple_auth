@@ -29,9 +29,19 @@ Cypress.Commands.add('inputByAttribute', (attribute, attributeValue) => {
     cy.get(`[${attribute} = ${attributeValue}]`)
 });
 
-Cypress.Commands.add('assertPageUrl', (url) => {
-    cy.hash()
-        .should('equal', url);
-})
+Cypress.Commands.add('loginWithValidData', () => {
+    const username = 'tomsmith';
+    const password = 'SuperSecretPassword!';
 
+    cy.visit('/login');
+
+    cy.inputByAttribute('name', 'username')
+        .type(username);
+
+    cy.inputByAttribute('name', 'password')
+        .type(password);
+           
+    cy.inputByAttribute('type', 'submit')
+        .click();
+});
 
