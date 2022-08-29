@@ -8,52 +8,65 @@ describe('Sign In page', () => {
         cy.visit('https://the-internet.herokuapp.com/login')
     });
     
-    it('user should log in with valid creds and log out after', () => {
-        cy.get('input#username')
+    it('user should log in with valid creds', () => {
+        cy.get('[name="username"]')
         .type(username);
 
-        cy.get('input#password')
+        cy.get('[name="password"]')
         .type(password);
 
-        cy.get('button.radius').should('contain.text', 'Login')
+        cy.get('.fa.fa-2x.fa-sign-in').should('contain.text', 'Login')
         .click();
 
-        cy.get('div#flash.flash.success')
+        cy.get('.flash.success')
         .should('contain.text', 'You logged into a secure area!');
 
         cy.url().should('equal', 'https://the-internet.herokuapp.com/secure')
-
-        cy.get('a.button.secondary.radius').should('contain.text', 'Logout')
-        .click();
-
-        cy.url().should('equal', 'https://the-internet.herokuapp.com/login');
     });
     
     it('user should not log in with invalid username', () => {
-        cy.get('input#username')
+        cy.get('[name="username"]')
         .type(username + '!');
 
-        cy.get('input#password')
+        cy.get('[name="password"]')
         .type(password);
 
-        cy.get('button.radius').should('contain.text', 'Login')
+        cy.get('.fa.fa-2x.fa-sign-in').should('contain.text', 'Login')
         .click();
 
-        cy.get('div#flash.flash.error')
+        cy.get('.flash.error')
         .should('contain.text', 'Your username is invalid!');
     });
 
     it('user should not log in with invalid password', () => {
-        cy.get('input#username')
+        cy.get('[name="username"]')
         .type(username);
 
-        cy.get('input#password')
+        cy.get('[name="password"]')
         .type(password + '000');
 
-        cy.get('button.radius').should('contain.text', 'Login')
+        cy.get('.fa.fa-2x.fa-sign-in').should('contain.text', 'Login')
         .click();
 
-        cy.get('div#flash.flash.error')
+        cy.get('.flash.error')
         .should('contain.text', 'Your password is invalid!');
+    });
+    
+    it('user can log out from the app', () => {
+        cy.get('[name="username"]')
+        .type(username);
+
+        cy.get('[name="password"]')
+        .type(password);
+
+        cy.get('.fa.fa-2x.fa-sign-in').should('contain.text', 'Login')
+        .click();
+
+        cy.get('.icon-2x.icon-signout').should('contain.text', 'Logout')
+        .click();
+
+        cy.get('.flash.success').should('contain.text', 'You logged out of the secure area!');
+
+        cy.url().should('equal', 'https://the-internet.herokuapp.com/login');
     });
 });
