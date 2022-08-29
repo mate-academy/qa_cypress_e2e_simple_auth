@@ -23,3 +23,20 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+
+Cypress.Commands.add('login', (email, password) => {
+  cy.visit('https://react-redux.realworld.io/#')
+
+  cy.contains('Sign in')
+      .click()
+
+  cy.get('[placeholder="Email"]')
+        .type(`${email}`);
+
+  cy.get('[placeholder="Password"]')
+        .type(`${password}`);
+
+  cy.get('[class="btn btn-lg btn-primary pull-xs-right"]')
+        .click();
+});
