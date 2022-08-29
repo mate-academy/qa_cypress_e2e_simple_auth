@@ -1,0 +1,23 @@
+{
+  "name": "cypress_second_hw",
+  "version": "1.0.0",
+  "description": "Workflow: 1. Fork the repo. 1. Clone **your** forked repository. 1. Create a new branch `git checkout -b develop`. 1. Resolve tasks in the `cypress`/`integration`/`signIn.spec.js`. 1. Create a pull request.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arina-Lex-2012/cypress_second_hw.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arina-Lex-2012/cypress_second_hw/issues"
+  },
+  "homepage": "https://github.com/Arina-Lex-2012/cypress_second_hw#readme",
+  "dependencies": {
+    "cypress": "^10.6.0"
+  }
+}

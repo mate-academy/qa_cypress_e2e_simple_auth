@@ -23,3 +23,25 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+
+Cypress.Commands.add('inputByAttribute', (attribute, attributeValue) => {
+    cy.get(`[${attribute} = ${attributeValue}]`)
+});
+
+Cypress.Commands.add('loginWithValidData', () => {
+    const username = 'tomsmith';
+    const password = 'SuperSecretPassword!';
+
+    cy.visit('/login');
+
+    cy.inputByAttribute('name', 'username')
+        .type(username);
+
+    cy.inputByAttribute('name', 'password')
+        .type(password);
+           
+    cy.inputByAttribute('type', 'submit')
+        .click();
+});
+
