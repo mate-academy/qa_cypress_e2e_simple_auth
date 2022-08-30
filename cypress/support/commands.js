@@ -23,3 +23,18 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('loginSuccess', () => {
+
+    cy.get('[name="username"]')
+        .type('tomsmith');
+
+        cy.get('[name="password"]')
+        .type('SuperSecretPassword!');
+
+        cy.contains('.fa', 'Login')
+        .click();
+
+        cy.get('#flash')
+        .should('contain.text', 'You logged into a secure area!')
+});
