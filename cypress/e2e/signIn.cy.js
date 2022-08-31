@@ -26,12 +26,26 @@ describe('Sign in page', () => {
         .should('exist')
     })
     
-    it('should sign in user with invalid data', () => {
+    it('should sign in user with invalid username', () => {
       cy.get('[name="username"]')
         .type(username+username)
 
       cy.get('[name="password"]')
         .type(password)
+
+      cy.contains('.fa', 'Login')
+        .click()
+
+      cy.contains('#flash', 'invalid')
+        .should('exist')
+    })
+
+    it('should sign in user with invalid password', () => {
+      cy.get('[name="username"]')
+        .type(username)
+
+      cy.get('[name="password"]')
+        .type(password+password)
 
       cy.contains('.fa', 'Login')
         .click()
