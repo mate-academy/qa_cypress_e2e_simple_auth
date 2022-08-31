@@ -23,3 +23,25 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('assertPageUrl', (url) => {
+    cy.url()
+    .should('equal', Cypress.config().baseUrl + url)
+});
+
+Cypress.Commands.add('SuccessfulLogin', () => {
+    const username = 'tomsmith';
+    const password = 'SuperSecretPassword!';
+
+    cy.get('#username')
+    .type(username);
+
+    cy.get('#password')
+    .type (password);
+
+    cy.get('.fa')
+    .click();
+
+    cy.contains('.flash', 'You logged into a secure area!')
+    .should('exist')
+});
