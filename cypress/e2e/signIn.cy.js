@@ -1,15 +1,19 @@
 /// <reference types="cypress" />
 
 describe('Login, Login with invalid data, Logout', () => {
-    beforeEach(() => {
-        cy.visit('https://the-internet.herokuapp.com/login#');
+    const user = 'tomsmith';
+    const password = 'SuperSecretPassword!';
+
+  beforeEach(() => {
+        cy.visit('/');
     })
+
     it('Should check: login successful', () => {
         cy.get('[name="username"]')
-          .type('tomsmith');
+          .type(user);
 
         cy.get('[name="password"]')
-          .type('SuperSecretPassword!');
+          .type(password);
 
         cy.get('[class="fa fa-2x fa-sign-in"]')
           .click();
@@ -18,12 +22,12 @@ describe('Login, Login with invalid data, Logout', () => {
           .contains('You logged into a secure area!');
     });
 
-    it('Should check: not login with invalid data', () => {
+    it('Should check: not login with invalid username', () => {
         cy.get('[name="username"]')
-          .type('tom');
+          .type('invalid username');
 
         cy.get('[name="password"]')
-          .type('Password');
+          .type(password);
 
         cy.get('[class="fa fa-2x fa-sign-in"]')
           .click();
@@ -32,12 +36,26 @@ describe('Login, Login with invalid data, Logout', () => {
           .contains('Your username is invalid!');
     });
 
+    it('Should check: not login with invalid password', () => {
+      cy.get('[name="username"]')
+        .type(user);
+
+      cy.get('[name="password"]')
+        .type('invalid password');
+
+      cy.get('[class="fa fa-2x fa-sign-in"]')
+        .click();
+
+      cy.get('[id="flash"]')
+        .contains('Your password is invalid!');
+  });
+
     it('Should check: logout successful', () => {
         cy.get('[name="username"]')
-          .type('tomsmith');
+          .type(user);
 
         cy.get('[name="password"]')
-          .type('SuperSecretPassword!');
+          .type(password);
 
         cy.get('[class="fa fa-2x fa-sign-in"]')
           .click();
