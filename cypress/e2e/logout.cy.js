@@ -1,9 +1,9 @@
-describe("Sign in with valid data", () => {
+describe("User should be able", () => {
   beforeEach(() => {
     cy.visit("/login");
   });
    
-  it("should allow to sign in with valid data", () => {
+  it("to log out", () => {
 
     cy.get('input#username').type('tomsmith');
 
