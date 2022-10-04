@@ -55,7 +55,7 @@ describe('Sign in', () => {
 
     cy.get('.fa-sign-in').click();
 
-    cy.get('.button').click();
+    cy.contains('.button', 'Logout').click();
 
     cy.get('[id="flash"]').should('contain.text', 'You logged out of the secure area!');
   });
