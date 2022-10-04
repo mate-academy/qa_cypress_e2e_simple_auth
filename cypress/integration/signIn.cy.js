@@ -9,43 +9,43 @@ describe('User should', () => {
       password : 'SuperSecretPassword!'
    };
   it('be able to Login with valid creds', () => {
-    cy.get('#username')
+    cy.get('[id="username"]')
       .type(validData.username);
-    cy.get('#password')
+    cy.get('[id="password"]')
       .type(validData.password);
-    cy.get('.radius')
+    cy.get('.fa-sign-in')
       .click();
-    cy.get('#flash')
+    cy.get('[id="flash"]')
       .should('contain', 'You logged into a secure area!')
   });
   it('not be able to Login with invalid Username', () => {
-    cy.get('#username')
+    cy.get('[id="username"]')
       .type(validData.username+'invalid');
-    cy.get('#password')
+    cy.get('[id="password"]')
       .type(validData.password);
-    cy.get('.radius')
+    cy.get('.fa-sign-in')
       .click();
-    cy.get('#flash')
+    cy.get('[id="flash"]')
       .should('contain', 'Your username is invalid!')
   });
   it('not be able to Login with invalid Password', () => {
-    cy.get('#username')
+    cy.get('[id="username"]')
       .type(validData.username);
-    cy.get('#password')
+    cy.get('[id="password"]')
       .type(validData.password+'invalid');
-    cy.get('.radius')
+    cy.get('.fa-sign-in')
       .click();
-    cy.get('#flash')
+    cy.get('[id="flash"]')
       .should('contain', 'Your password is invalid!')
   });
   it('be able to Logout from the app', () => {
-    cy.get('#username')
+    cy.get('[id="username"]')
       .type(validData.username);
-    cy.get('#password')
+    cy.get('[id="password"]')
       .type(validData.password);
-    cy.get('.radius')
+    cy.get('.fa-sign-in')
       .click();
-    cy.get('#flash')
+    cy.get('[id="flash"]')
       .should('contain', 'You logged into a secure area!')
     cy.get('.button')
       .should('contain', 'Logout')
