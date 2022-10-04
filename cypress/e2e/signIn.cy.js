@@ -27,5 +27,7 @@ describe('Successful and not login', () => {
       .type('NotSuperSecretPassword!');
     cy.get('.radius')
       .click();
+      cy.get(`[id="flash"]`)
+      .should('contain.text', 'Your username is invalid!');
   });
 });
