@@ -20,3 +20,15 @@ module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 }
+
+import { faker } from '@faker-js/faker';
+
+function randomUser() {
+
+  const username = faker.internet.userName();
+  const password = faker.internet.password();
+
+  return {username, password}
+}
+
+module.exports = {randomUser};
