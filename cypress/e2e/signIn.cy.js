@@ -10,50 +10,50 @@ describe('Heroku Sign in Page', () => {
   };
 
   it('Successful Sign in with valid credentials', () => {
-    cy.get('#username')
+    cy.get('[id="username"]')
       .type(`${userData.username}`);
-    cy.get('#password')
+    cy.get('[id="password"]')
       .type(`${userData.password}`);
     cy.get('.radius')
       .click();
-    cy.get('#flash')
+    cy.get('[id="flash"]')
       .should('contains.text', 'You logged into a secure area!');
    });
 
   it('Sign in with invalid username', () => {
-    cy.get('#username')
+    cy.get('[id="username"]')
       .type(`${userData.username}` + '1');
-    cy.get('#password')
+    cy.get('[id="password"]')
       .type(`${userData.password}`);
     cy.get('.radius')
       .click();
-    cy.get('#flash')
+    cy.get('[id="flash"]')
       .should('contains.text', 'Your username is invalid!');
   });
 
   it('Sign in with invalid password', () => {
-    cy.get('#username')
+    cy.get('[id="username"]')
       .type(`${userData.username}`);
-    cy.get('#password')
+    cy.get('[id="password"]')
       .type(`${userData.password}` + '123');
     cy.get('.radius')
       .click();
-    cy.get('#flash')
+    cy.get('[id="flash"]')
       .should('contains.text', 'Your password is invalid!');
   });
 
   it('Successful logout', () => {
-    cy.get('#username')
+    cy.get('[id="username"]')
       .type(`${userData.username}`);
-    cy.get('#password')
+    cy.get('[id="password"]')
       .type(`${userData.password}`);
     cy.get('.radius')
       .click();
-    cy.get('#flash')
+    cy.get('[id="flash"]')
       .should('contains.text', 'You logged into a secure area!');
       cy.get('.button')
       .click();
-      cy.get('#flash')
+      cy.get('[id="flash"]')
       .should('contains.text', 'You logged out of the secure area!');
   });
 
