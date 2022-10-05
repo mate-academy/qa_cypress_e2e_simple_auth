@@ -8,10 +8,10 @@ before('is opened', () => {
 });
 
 it('allows to login with valid data', () => {
-  cy.get('#username')
+  cy.get('[id=username]')
   .type('tomsmith'),
 
-  cy.get('#password')
+  cy.get('[id=password]')
   .type('SuperSecretPassword!'),
 
   cy.get('.fa')
@@ -31,10 +31,10 @@ before('is opened', () => {
 it('does not allow to login with invalid data', () => {
 const {username, password} = randomUser();
 
-cy.get('#username')
+cy.get('[id=username]')
 .type(username)
 
-cy.get('#password')
+cy.get('[id=password]')
 .type(password)
 
 cy.get('.fa')
