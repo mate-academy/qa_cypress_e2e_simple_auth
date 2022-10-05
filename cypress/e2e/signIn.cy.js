@@ -1,16 +1,29 @@
 /// <reference types="cypress" />
 
-describe('Login', () => {
+//const cypressConfig = require("../../cypress.config");
+
+describe('User should be able to', () => {
   beforeEach(() => {
-    cy.visit('https://the-internet.herokuapp.com/login')
+    cy.visit('/login')
   });
+
+  //const randomNumber = Math.random().toString().slice(2, 6);
+  //const username = 'test_user-${randomNumber}';
+  //const email = `${username}@mail.com`;
+  //password = 'Test1234';
+
+  //cy.request('POST', '/login', {
+  //  emil,
+  //  username,
+  //  password
+  //});
 
   const validData = {
     username : 'tomsmith',
     password : 'SuperSecretPassword!'
  };
 
- it('Login with valid data', () => {
+ it('Log in with valid data', () => {
   cy.get('[id="username"]')
     .type(validData.username);
   cy.get('[id="password"]')
@@ -21,42 +34,44 @@ describe('Login', () => {
     .should('contain', 'You logged into a secure area!');
 });
 
-it('Login with invalid Username', () => {
-  cy.get('#username')
+it('not Log in with an invalid Username', () => {
+  cy.get('[id="username"]')
     .type(validData.username + '1');
-  cy.get('#password')
+  cy.get('[id="password"]')
     .type(validData.password);
-  cy.get('.radius')
+  cy.get('[class=radius]')
     .click();
-  cy.get('#flash')
+  cy.get('[id="flash"]')
     .should('contain', 'Your username is invalid!')
 });
 
-it('Login with invalid Password', () => {
-  cy.get('#username')
+it('not Log in with an invalid Password', () => {
+  cy.get('[id="username"]')
     .type(validData.username);
-  cy.get('#password')
+  cy.get('[id="password"]')
     .type(validData.password + '1');
-  cy.get('.radius')
+  cy.get('[class=radius]')
     .click();
-  cy.get('#flash')
+  cy.get('[id="flash"]')
     .should('contain', 'Your password is invalid!')
 });
 
 it('Logout from the app', () => {
-  cy.get('#username')
+  cy.get('[id="username"]')
     .type(validData.username);
-  cy.get('#password')
+  cy.get('[id="password"]')
     .type(validData.password);
-  cy.get('.radius')
+  cy.get('[class=radius]')
     .click();
   cy.get('#flash')
     .should('contain', 'You logged into a secure area!');
-  cy.get('.button')
+  cy.get('[href="/logout"]')
     .should('contain', 'Logout')
     .click();
-    cy.get('.radius')
+  cy.get('[class=radius]')
     .should('contain', 'Login');
+  cy.url()
+    .should('equal', Cypress.config().baseUrl + '/login');
 });
 
 });
