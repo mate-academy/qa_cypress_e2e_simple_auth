@@ -7,52 +7,52 @@ describe('User shoul be able', () => {
   
   
     it('Sign In with valid data', () => {
-        cy.get('#username')
+        cy.get(id="username")
         .type('tomsmith');
 
-        cy.get('#password')
+        cy.get(id="password")
         .type('SuperSecretPassword!');
 
         cy.get('.fa')
         .click();
 
-        cy.get('#flash')
+        cy.get(id="flash")
         .should('contain.text', 'You logged into a secure area!');
     });
 
     it('Sign In with invalid username', () => {
-        cy.get('#username')
+        cy.get(id="username")
         .type('tomsmit');
 
-        cy.get('#password')
+        cy.get(id="password")
         .type('SuperSecretPassword!');
 
         cy.get('.fa')
         .click();
 
-        cy.get('#flash')
+        cy.get(id="flash")
         .should('contain.text', 'Your username is invalid!');
     });
 
     it('Sign In with invalid password', () => {
-        cy.get('#username')
+        cy.get(id="username")
         .type('tomsmith');
 
-        cy.get('#password')
+        cy.get(id="password")
         .type('SuperSecretPassword');
 
         cy.get('.fa')
         .click();
 
-        cy.get('#flash')
+        cy.get(id="flash")
         .should('contain.text', 'Your password is invalid!');
     });
 
     it('Sign In & Logout', () => {
-        cy.get('#username')
+        cy.get(id="username")
         .type('tomsmith');
 
-        cy.get('#password')
+        cy.get(id="password")
         .type('SuperSecretPassword!');
 
         cy.get('.fa')
@@ -61,7 +61,7 @@ describe('User shoul be able', () => {
         cy.get('.icon-2x')
         .click();
 
-        cy.get('#flash')
+        cy.get(id="flash")
         .should('contain.text', 'You logged out of the secure area!');
     });
   });
