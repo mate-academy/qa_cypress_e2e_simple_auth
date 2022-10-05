@@ -1,61 +1,60 @@
 /// <reference types="cypress" />
 
-describe('Automate the next test case', () => {
-    const url = 'https://the-internet.herokuapp.com/login';
+describe('Login page', () => {
+    beforeEach(() => { 
+      cy.visit('https://the-internet.herokuapp.com/login') 
+    });
+  
     const user = {
     userName: "tomsmith",
     password: "SuperSecretPassword!"
     };
 
-    it('Login with valid creds and assert you successfully logged in.', () => {
-      cy.visit(url);
-      cy.get('#username')
+    it('should provide credentials for successful login', () => {
+      cy.get('[id="username"]')
         .type(user.userName);
-      cy.get('#password')
+      cy.get('[id="password"]')
         .type(user.password);
-      cy.get('.fa')
+      cy.get('[class="fa fa-2x fa-sign-in"]')
         .click();
-      cy.get('#flash')
+      cy.get('[id="flash"]')
         .should('contain.text', 'You logged into a secure area!');
     });
 
-    it('Login with invalid username and check validation error.', () => {
-      cy.visit(url);
-      cy.get('#username')
+    it('should provide validation error for login with invalid username', () => {
+      cy.get('[id="username"]')
         .type(user.userName + '123');
-      cy.get('#password')
+      cy.get('[id="password"]')
         .type(user.password);
-      cy.get('.fa')
+      cy.get('[class="fa fa-2x fa-sign-in"]')
         .click();
-      cy.get('#flash')
-      .should('contain.text', 'Your username is invalid!');
+      cy.get('[id="flash"]')
+        .should('contain.text', 'Your username is invalid!');
     });
 
-    it('Login with invalid password and check validation error.', () => {
-      cy.visit(url);
-      cy.get('#username')
+    it('should provide validation error for login with invalid password', () => {
+      cy.get('[id="username"]')
         .type(user.userName);
-      cy.get('#password')
+      cy.get('[id="password"]')
         .type(user.password + '123');
-      cy.get('.fa')
+      cy.get('[class="fa fa-2x fa-sign-in"]')
         .click();
-      cy.get('#flash')
+      cy.get('[id="flash"]')
       .should('contain.text', 'Your password is invalid!');
     });
 
-    it('Logout from the app and assert you successfully logged out.', () => {
-      cy.visit(url);
-      cy.get('#username')
+    it('should provide successful logging out', () => {
+      cy.get('[id="username"]')
         .type(user.userName);
-      cy.get('#password')
+      cy.get('[id="password"]')
         .type(user.password);
-      cy.get('.fa')
+      cy.get('[class="fa fa-2x fa-sign-in"]')
         .click();
-      cy.get('#flash')
+      cy.get('[id="flash"]')
         .should('contain.text', 'You logged into a secure area!');
-      cy.get('.button')
+      cy.get('[href="/logout"]')
         .click();
-      cy.get('#flash')
+      cy.get('[id="flash"]')
         .should('contain.text', 'You logged out of the secure area!')
     });
   });
