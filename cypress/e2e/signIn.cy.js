@@ -1,16 +1,16 @@
 /// <reference types="cypress" />
 
-describe('My second test', () => {
+describe('Login page', () => {
     beforeEach(() => {
     // it('shold visit site, why not use describe mf?', () => {
         cy.visit('https://the-internet.herokuapp.com/login')
     })
     
-    it('Should type logit text, password and logged in', () => {
-        cy.get('#username')
+    it('User should loged in with correctly data', () => {
+        cy.get('[id="username"]')
             .type('tomsmith');
 
-        cy.get('#password')
+        cy.get('[id="password"]')
             .type('SuperSecretPassword!');
         
         cy.get('.fa')
@@ -20,11 +20,11 @@ describe('My second test', () => {
             .contains('You logged into a secure area!')
     })
 
-    it('Should type invalid logit text, or password and logged in and have error massage', () => {
-        cy.get('#username')
+    it('User should have error massage when type invalid logit text, or password', () => {
+        cy.get('[id="username"]')
             .type('tomsmit');
 
-        cy.get('#password')
+        cy.get('[id="password"]')
             .type('SuperSecretPassword!');
         
         cy.get('.fa')
@@ -35,10 +35,10 @@ describe('My second test', () => {
     })
 
     it('Checked what user Logout from the app', () => {
-        cy.get('#username')
+        cy.get('[id="username"]')
             .type('tomsmith');
 
-        cy.get('#password')
+        cy.get('[id="password"]')
             .type('SuperSecretPassword!');
         
         cy.get('.fa')
