@@ -13,64 +13,62 @@ describe('cypress second hw Nataliia Solotva', () => {
   };
    
     it('login with valide credentials', () => {
-      cy.findFieldByName('username')
+      cy.findFieldById('username')
         .type(user.username);
-      cy.findFieldByName('password')
+      cy.findFieldById('password')
         .type(user.password);
-      cy.get('.fa')
+      cy.get('.fa-sign-in')
         .click();
-      cy.get('.success')
-        .should('contains.text', 'You logged into a secure area!');
-      cy.get('.subheader')
-        .should('contains.text', 'Welcome to the Secure Area. When you are done click logout below');
-      cy.get('.radius')
+      cy.get('[id="flash"]')
+        .should('contain.text', 'You logged into a secure area!');
+      cy.get('[id="content"]')
+        .should('contain.text', ' Secure Area');
+      cy.get('[href="/logout"]')
         .click();
     });
 
     it('login with invalide username', () => {
-        cy.findFieldByName('username')
+        cy.findFieldById('username')
           .type(`${user.username}g`);
-        cy.findFieldByName('password')
+        cy.findFieldById('password')
           .type(user.password);
-        cy.get('.fa')
+        cy.get('.fa-sign-in')
           .click();
-        cy.get('.error')
-          .should('contains.text', 'Your username is invalid!');
-        cy.get('.example')
-          .should('contains.text', 'Login Page');
+        cy.get('[id="flash"]')
+          .should('contain.text', 'Your username is invalid!');
+        cy.get('[id="content"]')
+          .should('contain.text', 'Login Page');
       });
 
       it('login with invalide password', () => {
-        cy.findFieldByName('username')
+        cy.findFieldById('username')
           .type(user.username);
-        cy.findFieldByName('password')
+        cy.findFieldById('password')
           .type(user.password + '1');
-        cy.get('.fa')
+        cy.get('.fa-sign-in')
           .click();
-        cy.get('.error')
-          .should('contains.text', 'Your password is invalid!');
-        cy.get('.example')
-          .should('contains.text', 'Login Page');
+        cy.get('[id="flash"]')
+          .should('contain.text', 'Your password is invalid!');
+        cy.get('[id="content"]')
+          .should('contain.text', 'Login Page');
       });
 
       it('Successful logout', () => {
-        cy.findFieldByName('username')
+        cy.findFieldById('username')
           .type(user.username);
-        cy.findFieldByName('password')
+        cy.findFieldById('password')
           .type(user.password);
-        cy.get('.fa')
+        cy.get('.fa-sign-in')
           .click();
-        cy.get('.success')
-          .should('contains.text', 'You logged into a secure area!');
-        cy.get('.subheader')
-          .should('contains.text', 'Welcome to the Secure Area. When you are done click logout below');
-        cy.get('.radius')
-          .click()
-          cy.get('.success')
-          .should('contains.text', 'You logged out of the secure area!');
-          cy.get('.example')
-          .should('contains.text', 'Login Page')
-      });
-
-
+        cy.get('[id="flash"]')
+          .should('contain.text', 'You logged into a secure area!');
+        cy.get('[id="content"]')
+          .should('contain.text', ' Secure Area');
+        cy.get('[href="/logout"]')
+          .click();
+        cy.get('[id="flash"]')
+          .should('contain.text', 'You logged out of the secure area!');
+        cy.get('[id="content"]')
+          .should('contain.text', 'Login Page');
+    });
   });
