@@ -2,7 +2,7 @@
 
 const { exists } = require("fs");
 
-describe('cypress second hw Nataliia Solotva', () => {
+describe('Login page', () => {
       beforeEach (() => {
     cy.visit('https://the-internet.herokuapp.com/login');
   });
@@ -12,7 +12,7 @@ describe('cypress second hw Nataliia Solotva', () => {
    password: 'SuperSecretPassword!'
   };
    
-    it('login with valide credentials', () => {
+    it('should login user with valid credentials', () => {
       cy.findFieldById('username')
         .type(user.username);
       cy.findFieldById('password')
@@ -27,7 +27,7 @@ describe('cypress second hw Nataliia Solotva', () => {
         .click();
     });
 
-    it('login with invalide username', () => {
+    it('should throw an error if the username is invalide', () => {
         cy.findFieldById('username')
           .type(`${user.username}g`);
         cy.findFieldById('password')
@@ -40,7 +40,7 @@ describe('cypress second hw Nataliia Solotva', () => {
           .should('contain.text', 'Login Page');
       });
 
-      it('login with invalide password', () => {
+      it('should throw an error if the password is invalide', () => {
         cy.findFieldById('username')
           .type(user.username);
         cy.findFieldById('password')
@@ -53,7 +53,7 @@ describe('cypress second hw Nataliia Solotva', () => {
           .should('contain.text', 'Login Page');
       });
 
-      it('Successful logout', () => {
+      it('should logout user', () => {
         cy.findFieldById('username')
           .type(user.username);
         cy.findFieldById('password')
