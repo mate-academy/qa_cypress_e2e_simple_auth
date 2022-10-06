@@ -1,19 +1,20 @@
 /// <reference types="cypress" />
 
-describe('User should be able', () => {
+describe('Login page', () => {
     before(() => {
       cy.visit('https://the-internet.herokuapp.com/login');
     });
   
-    it('Should login with valid creds', () => {
-      cy.get('#username')
+    it('should provide successful login with valid creds', () => {
+      cy.get('[id="username"]')
         .type('tomsmith');
-      cy.get('#password')
+      cy.get('[id="password"]')
         .type('SuperSecretPassword!');
-      cy.get('.fa')
+      //cy.get('.fa')
+      cy.get('.radius')
         .click();
 
-      cy.get('#flash')
+      cy.get('[id="flash"]')
         .contains('You logged');
       cy.get('.button')
         .contains('Logout');

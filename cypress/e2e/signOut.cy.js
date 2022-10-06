@@ -1,21 +1,22 @@
 /// <reference types="cypress" />
 
-describe('User should be able', () => {
+describe('Secure Area page', () => {
     before(() => {
       cy.visit('https://the-internet.herokuapp.com/login');
     });
   
-    it('Logout', () => {
+    it('should provide successful logout', () => {
       //Logging in
-      cy.get('#username')
+      cy.get('[id="username"]')
         .type('tomsmith');
-      cy.get('#password')
+      cy.get('[id="password"]')
         .type('SuperSecretPassword!');
-      cy.get('.fa')
+      //cy.get('.fa')
+      cy.get('.radius')
         .click();
 
       //Checking if logged in
-      cy.get('#flash')
+      cy.get('[id="flash"]')
         .contains('You logged');
 
       //Logging out
@@ -24,10 +25,11 @@ describe('User should be able', () => {
         .click();
 
       // Checking if logged out
-      cy.get('#flash')
+      cy.get('[id="flash"]')
         .contains('You logged out');
-      cy.get('#username');
-      cy.get('#password');
-      cy.get('.fa');
+      cy.get('[id="username"]');
+      cy.get('[id="password"]');
+      //cy.get('.fa');
+      cy.get('.radius');
     });
   });
