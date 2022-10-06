@@ -9,9 +9,9 @@ describe ('login with Login with valid creds', () => {
     cy.visit('/login');
   })
   it('log in', () => {
-    cy.get('#username')
+    cy.get('[id="username"]')
       .type(username)
-      .get('#password')
+      .get('[id="password"]')
       .type(password)
       .get('.fa').click();
   });

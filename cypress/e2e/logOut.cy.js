@@ -7,9 +7,9 @@ describe ('login with Login with valid creds', () => {
     cy.visit('/login');
   })
   it('login', () => {
-    cy.get('#username')
+    cy.get('[id="username"]')
       .type(user.username)
-      .get('#password')
+      .get('[id="password"]')
       .type(user.password)
       .get('.fa').click();;
   });
@@ -18,7 +18,7 @@ describe ('login with Login with valid creds', () => {
       .click();
   });
   it('logout assertance', () => {
-    cy.get('#flash')
+    cy.get('[id="flash"]')
       .should('contain.text', 'You logged out of the secure area!');
     
   });
