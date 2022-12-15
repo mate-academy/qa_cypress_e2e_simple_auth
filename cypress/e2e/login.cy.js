@@ -5,7 +5,7 @@ describe('Login page', () => {
     
   })
 
-
+  
   it('should provide an ability to log in', () => {
     cy.visit('/login')
     cy.get('#username').type('tomsmith')
