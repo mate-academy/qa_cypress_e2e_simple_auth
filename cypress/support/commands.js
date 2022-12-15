@@ -23,3 +23,30 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('successLogin', () => {
+  cy.get('[name=username]')
+    .type('tomsmith');
+  cy.get('[name=password]')
+    .type('SuperSecretPassword!');
+  cy.contains('[type=submit]', 'Login')
+    .click();
+});
+
+Cypress.Commands.add('urlLogin', () => {
+  cy.url().should('contain', '/login');
+});
+
+Cypress.Commands.add('errorMessageUsername', () => {
+  cy.get('[class="flash error"]')
+    .should('contain', 'Your username is invalid!');
+});
+
+Cypress.Commands.add('errorMessagePassword', () => {
+  cy.get('[class="flash error"]')
+    .should('contain', 'Your password is invalid!');
+});
+
+Cypress.Commands.add('clickLoginButton', () => {
+  cy.contains('[type=submit]', 'Login')
+    .click();
+});
