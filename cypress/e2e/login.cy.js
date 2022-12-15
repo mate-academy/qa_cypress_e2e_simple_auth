@@ -27,6 +27,7 @@ describe('Login page', () => {
     cy.get('[name="username"]').click().type('tomsmith');
     cy.get('[name="password"]').click().type('SuperSecretPassword!');
     cy.get('.fa').click();
-    cy.contains('.icon-2x', 'Logout');
+    cy.contains('.icon-2x', 'Logout').click();
+    cy.get('.flash').should('contain','You logged out of the secure area!')
   });
 });
