@@ -32,7 +32,7 @@ describe('Login page', () => {
     cy.get('[id="flash"]').should('contain.text', 'Your username is invalid')
   })
   /*Login with invalid creds: password*/
-  it('should reject login with invalid email', () => {
+  it('should reject login with invalid password', () => {
     cy.get('[id="username"]').type('tomsmith')
     cy.get('[id="password"]').type('SuperSecretPassword!123')
     cy.get('[type="submit"]').click()
