@@ -21,6 +21,14 @@ describe('Login page', () => {
     cy.get('.flash').should('contain','Your username is invalid!')
     });
 
+    it('should not login user with invalid credentials', () => {
+
+      cy.get('[name="username"]').click().type('tomsmith');
+      cy.get('[name="password"]').click().type('Password!');
+      cy.get('.fa').click();
+      cy.get('.flash').should('contain','Your password is invalid!')
+      });
+
     it('user should be able to log out', () => {
       cy.get('[name="username"]').click().type('tomsmith');
       cy.get('[name="password"]').click().type('SuperSecretPassword!');
