@@ -18,9 +18,9 @@ describe('Login page', () => {
     cy.get('[name="username"]').click().type('petrosmith');
     cy.get('[name="password"]').click().type('SuperPassword!');
     cy.get('.fa').click();
-  
     cy.get('.flash').should('contain','Your username is invalid!')
     });
+
     it('user should be able to log out', () => {
       cy.get('[name="username"]').click().type('tomsmith');
       cy.get('[name="password"]').click().type('SuperSecretPassword!');
@@ -29,3 +29,4 @@ describe('Login page', () => {
       cy.get ('#flash').should('contain', 'You logged out of the secure area!')
     });
   });
+  
