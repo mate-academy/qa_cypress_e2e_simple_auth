@@ -21,7 +21,7 @@ describe("Login page", () => {
   });
 });
 
-it("Unable to login with invalid creds", () => {
+it("Unable to login with invalid login", () => {
   cy.visit("https://the-internet.herokuapp.com/login");
 
   cy.get('[name="username"]').type("emmasmith");
