@@ -1,18 +1,21 @@
 /// <reference types="cypress" />
 
+const { generateUser } = require("../support/generate");
+
 describe('Login page', () => {
   beforeEach(() => {
     cy.visit('https://the-internet.herokuapp.com/login')
   });
 
   it('should login user with registered credentials', () => {
-    
+    const { username, password } = generateUser();
+
     //fill in the fields
     cy.get('[id="username"]')
-      .type('tomsmith');
+      .type(username);
 
     cy.get('[id="password"]')
-      .type('SuperSecretPassword!');
+      .type(password);
 
     //click on the button
     cy.get('.radius')
@@ -27,13 +30,14 @@ describe('Login page', () => {
   });
 
   it(`shouldn't login user with unregistered username`, () => {
-    
+    const { username, password } = generateUser();
+
     //fill in the fields
     cy.get('[id="username"]')
-      .type('tomsmith1');
+      .type(username + '098');
 
     cy.get('[id="password"]')
-      .type('SuperSecretPassword!');
+      .type(password);
 
     //click on the button
     cy.get('.radius')
@@ -46,13 +50,14 @@ describe('Login page', () => {
   });
 
   it(`shouldn't login user with unregistered password`, () => {
-    
+    const { username, password } = generateUser();
+
     //fill in the fields
     cy.get('[id="username"]')
-      .type('tomsmith');
+      .type(username);
 
     cy.get('[id="password"]')
-      .type('SuperSecretPassword!1');
+      .type(password + '098');
 
     //click on the button
     cy.get('.radius')
@@ -65,13 +70,14 @@ describe('Login page', () => {
   });
 
   it('should login user with registered credentials and log out', () => {
-    
+    const { username, password } = generateUser();
+
     //fill in the fields
     cy.get('[id="username"]')
-      .type('tomsmith');
+      .type(username);
 
     cy.get('[id="password"]')
-      .type('SuperSecretPassword!');
+      .type(password);
 
     //click on the button
     cy.get('.radius')
