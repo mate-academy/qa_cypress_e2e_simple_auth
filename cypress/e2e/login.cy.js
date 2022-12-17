@@ -2,7 +2,7 @@
 
 describe('Login page', () => {
   beforeEach(() => {
-    cy.visit('https://the-internet.herokuapp.com/login');
+    cy.visit('login');
   });
 
   it('Login with valid creds (tomsmith/SuperSecretPassword!)', () => {
@@ -16,7 +16,7 @@ describe('Login page', () => {
         .should('contain', 'You logged into a secure area!');
 });
 
-  it('Login with invalid creds (invalid Username)', () => {
+  it('Login with invalid Username', () => {
     cy.get('[id="username"]')
         .type('invalidUsername');
     cy.get('[type="submit"]')
@@ -26,7 +26,7 @@ describe('Login page', () => {
   });
 
   
-  it('Login with invalid creds (invalid Password)', () => {
+  it('Login with invalid Password', () => {
     cy.get('[id="username"]')
         .type('tomsmith');
     cy.get('[id="password"]')
