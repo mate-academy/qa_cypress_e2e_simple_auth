@@ -7,7 +7,7 @@ describe('Login page', () => {
 
   it('The user should be able to login with valid creds', () => {
     
-    //To check that we are on the Sign In page
+    //To check that we are on the Login page
     cy.get('h2')
       .should("contain.text", "Login Page")
 
@@ -28,14 +28,36 @@ describe('Login page', () => {
     .should("contain.text", "You logged into a secure area!")
   });
   
-  it('The user should not be able to login with invalid creds', () => {
+  it('The user should not be able to login with invalid username', () => {
     
-    //to check that we are on the Sign In page
+    //To check that we are on the Login page
     cy.get('h2')
       .should("contain.text", "Login Page")
 
     cy.get('#username')
       .type("Samara")
+
+    cy.get('#password')
+      .type("SuperSecretPassword!")
+
+    cy.contains('.radius', 'Login')
+      .click()
+
+    cy.url()
+      .should("include", "/login")
+
+    cy.get('#flash')
+    .should("contain.text", "Your username is invalid!")
+  });
+  
+  it('The user should not be able to login with invalid password', () => {
+    
+    //To check that we are on the Login page
+    cy.get('h2')
+      .should("contain.text", "Login Page")
+
+    cy.get('#username')
+      .type("tomsmith")
 
     cy.get('#password')
       .type("NotSuperSecretPassword!")
@@ -47,6 +69,6 @@ describe('Login page', () => {
       .should("include", "/login")
 
     cy.get('#flash')
-    .should("contain.text", "Your username is invalid!")
+    .should("contain.text", "Your password is invalid!")
   });
 });
