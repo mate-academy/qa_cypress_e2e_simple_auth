@@ -35,7 +35,5 @@ describe('Login page', () => {
       cy.get('.fa').click();
       cy.contains('.icon-2x', 'Logout').click();
       cy.get ('#flash').should('contain', 'You logged out of the secure area!')
-    });
-   
+    });   
   });
-  
