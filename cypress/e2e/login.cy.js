@@ -26,15 +26,26 @@ describe('Login page', () => {
      cy.url().should('include', 'secure')
    });
  
-   it('shouldn\'t login with invalid creds ', () => {      
+   it('shouldn\'t login with invalid username ', () => {      
           
      cy.get('#username').type('jonnywickjr');
-     cy.get('#password').type('NotSuperSecretPassword!');
+     cy.get('#password').type('SuperSecretPassword!');
  
      cy.get('.fa').click();
      
      cy.get('#flash').should('contain', 'Your username is invalid!')
  });
+
+it('shouldn\'t login with invalid password', () => {      
+          
+     cy.get('#username').type('tomsmith');
+     cy.get('#password').type('NotSuperSecretPassword!');
+ 
+     cy.get('.fa').click();
+     
+     cy.get('#flash').should('contain', 'Your password is invalid!')
+ });
+
  it('should log out from the app ', () => {    
  
    cy.get('#username').type('tomsmith');
