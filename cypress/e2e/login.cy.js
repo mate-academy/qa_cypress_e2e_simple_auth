@@ -47,8 +47,25 @@ describe('Login page', () => {
 
   });
 
-  it('Logout check', () => {
+  //it('Logout check', () => {
+
+   // cy.url().should('include', '/login');
+  //});
+
+  it('Logged out', () => {
+
+    cy.get('#username').type(`tomsmith`, { delay: 100 });
+
+    cy.get('#password').type(`SuperSecretPassword!`, { delay: 100 });
+    
+    cy.get('.fa').click();
+
+    cy.get('#flash').should('contain.text', 'You logged into a secure area!');
+
+    cy.get('.icon-2x').click();
+
+    cy.get('#flash').should('contain.text', 'You logged out of the secure area!')
 
     cy.url().should('include', '/login');
-  });
 });
+})
