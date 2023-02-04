@@ -19,9 +19,23 @@ describe('Login page', () => {
       .should('contain', 'You logged into a secure area!');
   });
 
-  it('should login with invalid creds', () => {
+  it('should login with invalid username', () => {
     cy.get('#username')
       .type('invalid Username');
+    
+    cy.get('#password')
+      .type('SuperSecretPassword!');
+    
+    cy.get('.fa')
+      .click();
+    
+    cy.get('#flash')
+      .should('contain', 'Your username is invalid!');
+  });
+
+  it('should login with invalid password', () => {
+    cy.get('#username')
+      .type('tomsmith');
     
     cy.get('#password')
       .type('invalid Password');
@@ -30,7 +44,7 @@ describe('Login page', () => {
       .click();
     
     cy.get('#flash')
-      .should('contain', 'Your username is invalid!');
+      .should('contain', 'Your password is invalid!');
   });
 
   it('should logout from the app', () => {
