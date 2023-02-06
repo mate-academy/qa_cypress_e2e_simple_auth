@@ -6,7 +6,7 @@ describe('Login page', () => {
   });
 
   it('The login page should be reachable', () => {
-    cy.url().should('include', 'https://the-internet.herokuapp.com/login');
+    cy.url().should('eq', 'https://the-internet.herokuapp.com/login');
   })
 
   it('The user should be able to log in with valid creds', () => {
