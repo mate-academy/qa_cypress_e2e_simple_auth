@@ -5,6 +5,9 @@ describe('Login page', () => {
     cy.visit(`https://the-internet.herokuapp.com/login`)
   });
 
+  it('The login page should be up and running', () => {
+    cy.url().should('eq', 'https://the-internet.herokuapp.com/login');
+  })
 
   it('should provide an ability to log in with the valid creds and show validation message "You logged into a secure area!"', () => {
     cy.get('input#username')
