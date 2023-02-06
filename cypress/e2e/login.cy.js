@@ -18,10 +18,10 @@ describe('Login page', () => {
 
     cy.get('#flash')
       .should('be.visible')
-      .should('contain', 'You logged into a secure area!');
+      .should('contain.text', 'You logged into a secure area!');
   });
   
-  it('The validation message should appear when username is not valid', () => {
+  it('The validation message "Your username is invalid!" should appear when username is not valid', () => {
     cy.get("#username").type('tomsmit');
 
     cy.get('#password').type('SuperSecretPassword!');
@@ -30,10 +30,10 @@ describe('Login page', () => {
 
     cy.get('#flash')
       .should('be.visible')
-      .should('contain', 'Your username is invalid!');
+      .should('contain.text', 'Your username is invalid!');
   })
 
-  it('The validation message should appear when password is not valid', () => {
+  it('The validation message "Your password is invalid!" should appear when password is not valid', () => {
     cy.get("#username").type('tomsmith');
 
     cy.get('#password').type('SuperSecretPassword');
@@ -42,7 +42,7 @@ describe('Login page', () => {
 
     cy.get('#flash')
       .should('be.visible')
-      .should('contain', 'Your password is invalid!');
+      .should('contain.text', 'Your password is invalid!');
   })
 
   it('User should be able to log out', () => {
@@ -56,6 +56,6 @@ describe('Login page', () => {
 
     cy.get('#flash')
       .should('be.visible')
-      .should('contain', 'You logged out of the secure area!')
+      .should('contain.text', 'You logged out of the secure area!')
   })
 });
