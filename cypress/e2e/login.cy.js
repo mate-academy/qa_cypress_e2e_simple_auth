@@ -61,7 +61,7 @@ describe('Login page', () => {
     cy.get('.fa')
       .click()
 
-    cy.get('i.icon-2x.icon-signout')
+    cy.get('.icon-2x')
       .click()
     
     cy.get('[id=flash]')
