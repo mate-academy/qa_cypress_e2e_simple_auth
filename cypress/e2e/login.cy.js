@@ -7,7 +7,7 @@ describe('Login page', () => {
   const username = 'tomsmith';
   const password = 'SuperSecretPassword!';
 
-  it('Login with valid creds ', () => {
+  it('Login with valid creds', () => {
 
     cy.get('h2')
       .should('contain.text', 'Login Page');
