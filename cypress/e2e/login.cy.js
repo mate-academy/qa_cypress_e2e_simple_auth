@@ -12,10 +12,10 @@ describe('Login page', () => {
     cy.get('#password')
       .type('SuperSecretPassword!');
     
-    cy.get('.fa.fa-2x.fa-sign-in')
+    cy.get('[type="submit"]')
       .click();
     
-    cy.get('.flash.success')
+    cy.get('#flash')
       .should('contain', 'You logged into a secure area!');
   });
 
@@ -26,13 +26,13 @@ describe('Login page', () => {
     cy.get('#password')
       .type('SuperSecretPassword!');
     
-    cy.get('.fa.fa-2x.fa-sign-in')
+    cy.get('[type="submit"]')
       .click();
     
-    cy.get('.icon-2x.icon-signout')
+    cy.get('.icon-signout')
       .click();
     
-    cy.get('.flash.success')
+    cy.get('#flash')
       .should('contain', 'You logged out of the secure area!');
   });
 
@@ -43,11 +43,11 @@ describe('Login page', () => {
     cy.get('#password')
       .type('SuperSecretPassword!');
     
-    cy.get('.fa.fa-2x.fa-sign-in')
+    cy.get('[type="submit"]')
       .click();
     
-    cy.get('.flash.error')
-      .should('contain', 'Your username is invalid!')
+    cy.get('#flash')
+      .should('contain', 'Your username is invalid!');
   });
 
   it('Should fail login with invalid Password', () => {
@@ -57,10 +57,10 @@ describe('Login page', () => {
     cy.get('#password')
       .type('1q2w3e4R!');
     
-    cy.get('.fa.fa-2x.fa-sign-in')
+    cy.get('[type="submit"]')
       .click();
     
-    cy.get('.flash.error')
-      .should('contain', 'Your password is invalid!')
+    cy.get('#flash')
+      .should('contain', 'Your password is invalid!');
   });
 });
