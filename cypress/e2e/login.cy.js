@@ -14,9 +14,12 @@ describe('Login page', () => {
 
     cy.contains('.fa', 'Login')
       .click();
+    
+    cy.get('#flash')
+      .should('contain.text','You logged into a secure area!');
   });
 
-  it('logout', () => {
+  it('should be able to logout', () => {
     cy.get('#username')
       .type('tomsmith');
 
@@ -41,7 +44,7 @@ describe('Login page', () => {
       .click();
 
     cy.get('#flash')
-      .should('contain','Your username is invalid!');
+      .should('contain.text','Your username is invalid!');
   });
 
   it('login with invalid password', () => {
@@ -55,20 +58,6 @@ describe('Login page', () => {
       .click();
 
     cy.get('#flash')
-      .should('contain','Your password is invalid!');
-  });
-
-  it('login with invalid creds', () => {
-    cy.get('#username')
-      .type('tester333');
-
-    cy.get('#password')
-      .type('invalidpassword');
-
-    cy.contains('.fa', 'Login')
-      .click();
-
-    cy.get('#flash')
-      .should('contain','Your username is invalid!');
+      .should('contain.text','Your password is invalid!');
   });
 });
