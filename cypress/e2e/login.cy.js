@@ -1,56 +1,70 @@
+
+
 describe('Login page', () => {
   beforeEach(() => {
-    cy.visit('https://the-internet.herokuapp.com/login');
+
+    cy.visit('https://the-internet.herokuapp.com/login')
   });
 
-  it('Successful Login', () => {
+  it('', () => {
+
+  it('Should Login with valid creds', () => {
     cy.get('#username')
-      .type('tomsmith');
+    .type('tomsmith');
 
     cy.get('#password')
-      .type('SuperSecretPassword!');
+    .type('SuperSecretPassword!');
 
-    cy.get('.radius')
-      .should('contain.text', 'Login')
-      .click();
+    cy.get('.radius') // log in
+    .click();
 
     cy.get('#flash')
-      .should('contain.text', 'You logged into a secure area!')
+    .should('contain.text', 'You logged into a secure area!');
   });
 
-  it('Wrong Login', () => {
+  it('Should Log out after login', () => {
     cy.get('#username')
-      .type('tomsmith1');
+    .type('tomsmith');
+
+    cy.get('#password')
+    .type('SuperSecretPassword!');
+
+    cy.get('.radius') // log in
+    .click();
+
+    cy.get('.radius') // log out
+    .click();
+
+    cy.url()
+      .should('include', '/login');
+  });
+
+  it('Should not Login with invalid password', () => {
+    cy.get('#username')
+      .type('tomsmith');
 
     cy.get('#password')
       .type('SuperSecretPassword!1');
 
-    cy.get('.radius')
-      .should('contain.text', 'Login')
+      cy.get('.radius') // log in
+      .click();
+
+    cy.get('#flash')
+      .should('contain.text', 'Your password is invalid!');
+  });
+
+  it('Should not Login with invalid username', () => {
+    cy.get('#username')
+      .type('tomsmith11');
+
+    cy.get('#password')
+      .type('SuperSecretPassword!');
+
+      cy.get('.radius') // log in
       .click();
 
     cy.get('#flash')
       .should('contain.text', 'Your username is invalid!');
-  });
-
-  it('', () => {
-    it('Successful Logout', () => {
-      cy.get('#username')
-      .type('tomsmith');
-
-      cy.get('#password')
-        .type('SuperSecretPassword!');
-
-      cy.get('.radius')
-        .should('contain.text', 'Login')
-        .click();
-
-      cy.get('.radius')
-        .should('contain.text', 'Logout')
-        .click();
-
-      cy.get('#flash')
-        .should('contain.text', 'You logged out of the secure area!');
     });
   });
 });
