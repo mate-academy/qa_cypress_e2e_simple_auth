@@ -64,3 +64,4 @@ describe('Login page', () => {
       .should('contain', 'You logged out of the secure area!')
   });
 });
+
