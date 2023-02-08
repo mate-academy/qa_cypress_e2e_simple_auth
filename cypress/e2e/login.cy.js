@@ -24,6 +24,6 @@ describe('Login page', () => {
     cy.get('#password').type('SuperSecretPassword!');
     cy.get('.fa').click();
     cy.get('.button').click();
-    cy.get('#flash').should('contain','You logged out of the secure area!');
+    cy.get('#flash').should('contain','You logged out of the secure areav!');
   });
 });
