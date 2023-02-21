@@ -35,6 +35,21 @@ describe('Login page', () => {
       .should('contain.text', 'You logged into a secure area!');
   });
 
+  it(`shouldn't allow to login with empty fiels`, () => {
+    cy.findById('username')
+      .should('exist');
+
+    cy.findById('password')
+      .should('exist');
+
+    cy.contains('button', 'Login')
+      .should('exist')
+      .click();
+
+    cy.findById('flash')
+      .should('contain.text', 'Your username is invalid!');
+  });
+
   it(`shouldn't allow to login with invalid creds`, () => {
     const invalidUsername = faker.internet.userName();
     const invalidPassword = faker.internet.password();
@@ -43,6 +58,46 @@ describe('Login page', () => {
 
     cy.findById('password')
       .type(invalidPassword);
+
+    cy.contains('button', 'Login')
+      .should('exist')
+      .click();
+
+    cy.findById('flash')
+      .should('contain.text', 'Your username is invalid!');
+  });
+
+  it(`shouldn't allow to login with valid username
+    and invalid password`, () => {
+    const validUsername = 'tomsmith';
+    const validPassword = 'SuperSecretPassword!'
+    const invalidUsername = faker.internet.userName();
+    const invalidPassword = faker.internet.password();
+    cy.findById('username')
+      .type(validUsername);
+
+    cy.findById('password')
+      .type(invalidPassword);
+
+    cy.contains('button', 'Login')
+      .should('exist')
+      .click();
+
+    cy.findById('flash')
+      .should('contain.text', 'Your password is invalid!');
+  });
+
+  it(`shouldn't allow to login with valid password
+    and invalid username`, () => {
+    const validUsername = 'tomsmith';
+    const validPassword = 'SuperSecretPassword!'
+    const invalidUsername = faker.internet.userName();
+    const invalidPassword = faker.internet.password();
+    cy.findById('username')
+      .type(invalidUsername);
+
+    cy.findById('password')
+      .type(validPassword);
 
     cy.contains('button', 'Login')
       .should('exist')
