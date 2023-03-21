@@ -10,19 +10,25 @@ describe('Login Test', () => {
     cy.get('button[type="submit"]').click();
 
     // Assert successful login
-    cy.contains('h2', 'Secure Area').should('be.visible');
-  });
+    cy.url().should('include', '/secure')
+    cy.get('.flash.success').should('contain', 'You logged into a secure area!')
+  })
 
   it('should show validation errors with invalid credentials', () => {
-    cy.visit('https://the-internet.herokuapp.com/login');
+    cy.visit('https://the-internet.herokuapp.com/login')
 
-    // Login with invalid creds
-    cy.get('input[name="username"]').type('invalidUsername');
-    cy.get('input[name="password"]').type('invalidPassword');
-    cy.get('button[type="submit"]').click();
+    // Enter invalid username 
+    cy.get('#username').type('invalid')
+    cy.get('#password').type('SuperSecretPassword!')
+    cy.get('button[type="submit"]').click()
 
     // Assert validation errors
     cy.contains('Your username is invalid!').should('be.visible');
+    
+    // Enter invalid password
+    cy.get('#username').type('tomsmith')
+    cy.get('#password').type('credentials')
+    cy.get('button[type="submit"]').click()
     cy.contains('Your password is invalid!').should('be.visible');
   });
 
