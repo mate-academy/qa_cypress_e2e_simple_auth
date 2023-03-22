@@ -2,7 +2,7 @@
 
 ## Workflow
 
-1. Fork the repo.
+1. Fork the repo1.
 1. Clone **your** forked repository.
 1. Create a new branch `git checkout -b testing`.
 1. Resolve tasks in the `cypress`/`e2e`/`signIn.cy.js`.
