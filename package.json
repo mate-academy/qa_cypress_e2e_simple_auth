@@ -1,0 +1,22 @@
+{
+  "name": "qa_cypress_e2e_simple_auth",
+  "version": "1.0.0",
+  "description": "## Workflow",
+  "main": "cypress.config.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxxnikiforov/qa_cypress_e2e_simple_auth.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxxnikiforov/qa_cypress_e2e_simple_auth/issues"
+  },
+  "homepage": "https://github.com/maxxnikiforov/qa_cypress_e2e_simple_auth#readme"
+}

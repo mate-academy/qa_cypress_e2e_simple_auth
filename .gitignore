@@ -1,0 +1,6 @@
+# Mac OS DS_Store files.
+.DS_Store
+.favorites.json
+
+# Ignore node_modules
+node_modules
