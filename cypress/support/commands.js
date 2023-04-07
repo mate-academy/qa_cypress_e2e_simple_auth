@@ -1,3 +1,5 @@
+import Login from "../../../qa_cypress_e2e_simple_auth/cypress/e2e/PageObjects/loginPage";
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -23,3 +25,12 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("login", () => {
+  const login = new Login();
+  cy.fixture("creds").then((data) => {
+    login.typeUsername(data.username);
+    login.typePswd(data.password);
+    login.clickSubmit();
+  });
+});
