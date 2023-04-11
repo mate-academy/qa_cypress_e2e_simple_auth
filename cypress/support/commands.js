@@ -23,3 +23,9 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', (username, password) => {
+    cy.get('#username').type('tomsmith')
+    cy.get('#password').type('SuperSecretPassword!')
+    cy.get('.fa.fa-2x.fa-sign-in').click()
+})
