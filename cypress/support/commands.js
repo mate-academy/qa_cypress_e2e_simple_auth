@@ -23,3 +23,16 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// Cypress.Commands.overwrite('visit', (originalFn, url, options) => {
+//     originalFn('/#' + url, options);
+// });
+
+Cypress.Commands.add('findById', (ID) => {
+    cy.get(`[id="${ID}"]`)
+});
+
+Cypress.Commands.add('assertPageUrl', (url) => {
+    cy.url()
+        .should('include', Cypress.config().baseUrl + url)
+});
