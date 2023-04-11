@@ -2,7 +2,7 @@
 
 describe('Login page', () => {
   beforeEach(() => {
-    cy.visit('https://the-internet.herokuapp.com/login')
+    cy.visit('https://the-internet.herokuapp.com/login');
   });
 
   it('login with valid data', () => {
