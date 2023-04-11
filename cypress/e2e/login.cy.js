@@ -21,7 +21,7 @@ describe('Login page', () => {
     cy.get('.flash.error').should('contain.text', 'Your username is invalid!');
   });
 
-  it.only('Logg out', () => {
+  it('Logg out', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type(password);
     cy.get('.fa.fa-2x.fa-sign-in').click();
