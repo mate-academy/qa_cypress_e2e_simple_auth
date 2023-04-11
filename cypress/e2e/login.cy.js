@@ -1,4 +1,5 @@
 describe('Login page', () => {
+  
   beforeEach(() => {
     cy.visit("https://the-internet.herokuapp.com/login")
   });
