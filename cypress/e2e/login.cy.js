@@ -16,7 +16,7 @@ describe('Login page', () => {
     cy.get(".button").click();
     cy.get("#flash").should("include.text", " You logged out of the secure area!");
   });
-  it('login with invalid username', () => {
+  it('not allow to login with invalid username', () => {
     cy.get("#username").type("tomsmith23");
     cy.get("#password").type("SuperSecretPassword!");
     cy.get(".fa").click();
