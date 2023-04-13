@@ -12,7 +12,7 @@ describe('Login page', () => {
     cy.contains('You logged into a secure area!').should('be.visible');
   });
 
-  it('logs in with invalid credentials validation errors', () => {
+  it('should not allow to logs in with invalid credentials', () => {
     cy.get('#username').type(`tomsmith22`);
     cy.get('#password').type(`SuperSecretPassword!22`);
     cy.get('.radius').click();
