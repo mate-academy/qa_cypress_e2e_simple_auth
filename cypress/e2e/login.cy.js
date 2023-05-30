@@ -1,49 +1,43 @@
-/// <reference types= image.png"cypress" />
-
 describe('Login page', () => {
   beforeEach(() => {
 
+    cy.visit('https://the-internet.herokuapp.com/login')
   });
 
   it('', () => {
 
+  it('should login with valid creds', () => {
+    cy.get('#username')
+      .type('tomsmith')
+    cy.get('#password')
+      .type('SuperSecretPassword!')
+    cy.contains('.fa', 'Login')
+      .click()
+    cy.get('#flash')
+      .should('contain', 'You logged into a secure area!')
   });
-const username = 'tomsmith';
-const password = 'SuperSecretPassword!';
 
-describe('Sign in:', () => {
-  beforeEach(() =>{
-    cy.visit('https://the-internet.herokuapp.com/login')
-    cy.get ('h2')
-      .should('contain.text', 'Login Page')
-  })
-
-  it('1. Sign in with valid creds', () => {
-    cy.login(username, password)
-
+  it('should not login with invalid creds', () => {
+    cy.get('#username')
+      .type('wrongUser')
+    cy.get('#password')
+      .type('WrongPassword!')
+    cy.contains('.fa', 'Login')
+      .click()
     cy.get('#flash')
-      .should('contain.text', 'You logged into a secure area!')
-  })
+      .should('contain', 'Your username is invalid!')
+  });
 
-  it('2. Sign in with invalid username', () => {
-    cy.login('thomassmith', password)
-    cy.get('#flash')
-      .should('contain.text', 'Your username is invalid!')
-  })
-
-  it('3. Sign in with invalid password', () => {
-    cy.login(username, 'Thomassmith123')
-    cy.get('#flash')
-      .should('contain.text', 'Your password is invalid!')
-  })
-
-
-  it('4. Logout and confirm', () => {
-    cy.login(username, password)
-    cy.get('.button').click()
-    cy.get('#flash')
-      .should('contain.text', 'You logged out of the secure area!')
-  })
-});
-
+  it('should logout from the app', () => {
+    cy.get('#username')
+      .type('tomsmith')
+    cy.get('#password')
+      .type('SuperSecretPassword!')
+    cy.contains('.fa', 'Login')
+      .click()
+    cy.contains('.icon-2x', 'Logout')
+      .click()
+      cy.get('#flash')
+      .should('contain', 'You logged out of the secure area!')
+  });
 });
