@@ -44,9 +44,23 @@ describe('Login page', () => {
     .should('contain', ' You logged out of the secure area!')
   })
 
-  it('user is not able to log in with invalid creds', () => {
+  it('user is not able to log in with invalid username', () => {
     cy.get('#username')
     .type(invalidUsername)
+
+    cy.get('#password')
+    .type(validPassword)
+
+    cy.get('.fa')
+    .click()
+
+    cy.get('#flash')
+    .should('contain', 'Your username is invalid!')
+  })
+
+  it('user is not able to log in with invalid password', () => {
+    cy.get('#username')
+    .type(validUsername)
 
     cy.get('#password')
     .type(invalidPassword)
@@ -55,6 +69,6 @@ describe('Login page', () => {
     .click()
 
     cy.get('#flash')
-    .should('contain', 'Your username is invalid!')
+    .should('contain', 'Your password is invalid!')
   })
 });
