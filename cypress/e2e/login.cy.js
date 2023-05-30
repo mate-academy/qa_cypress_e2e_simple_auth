@@ -25,12 +25,12 @@ describe('Login page', () => {
     .should('contain.text', 'You logged into a secure area!');
   });
 
-  it('should not allow to login with invalid creds', () => {
+  it('should not allow to login with invalid username', () => {
   cy.get('#username')
     .type('tomsmith2');
 
   cy.get('#password')
-    .type('SecretPassword!');
+    .type('SuperSecretPassword!');
 
   cy.get('.fa')
     .click();
@@ -38,6 +38,20 @@ describe('Login page', () => {
   cy.get('#flash.error')
     .should('contain.text', 'Your username is invalid!');
   });
+
+  it('should not allow to login with invalid password', () => {
+    cy.get('#username')
+      .type('tomsmith');
+  
+    cy.get('#password')
+      .type('SecretPassword!');
+  
+    cy.get('.fa')
+      .click();
+  
+    cy.get('#flash.error')
+      .should('contain.text', 'Your password is invalid!');
+    });
 
   it('should allow to logout from the app', () => {
   cy.get('#username')
