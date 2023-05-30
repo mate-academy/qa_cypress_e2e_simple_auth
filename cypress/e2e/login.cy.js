@@ -5,7 +5,7 @@ describe('Login page', () => {
     cy.visit('https://the-internet.herokuapp.com/login')
     });
   
-    it('should provide an ability to login with valid creds', () => {
+    it('Login with valid creds and assert you successfully logged in', () => {
     cy.get('[name="username"]')
     .type('tomsmith');
   
@@ -19,7 +19,7 @@ describe('Login page', () => {
     .should('contain', 'You logged into a secure area!');
   });
   
-    it('should not allow to login with invalid creds', () => {
+    it('Login with invalid creds and assert validation errors', () => {
     cy.get('[name="username"]')
     .type('invalidUsername');
   
@@ -34,7 +34,7 @@ describe('Login page', () => {
   
   });
   
-    it('should provide an ability to logout', () => {
+    it('Logout from the app and assert you successfully logged out', () => {
   
     cy.get('[name="username"]')
     .type('tomsmith');
