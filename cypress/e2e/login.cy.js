@@ -51,20 +51,20 @@ describe('Login page', () => {
   });
 
   it('user is able to logout from app', () => {
-  cy.get('#username')
-    .type('tomsmith')
+    cy.get('#username')
+      .type('tomsmith')
 
-  cy.get('#password')
-    .type('SuperSecretPassword!')
+    cy.get('#password')
+      .type('SuperSecretPassword!')
 
-  cy.contains('.fa', 'Login')
-    .click()
+    cy.contains('.fa', 'Login')
+      .click()
 
-  cy.contains('.button', 'Logout')
-    .click()
+    cy.contains('.button', 'Logout')
+      .click()
 
-  cy.get('#flash')
-    .contains('You logged out of the secure area!')
+    cy.get('#flash')
+      .contains('You logged out of the secure area!')
   });
 
 });
