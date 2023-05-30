@@ -17,7 +17,7 @@ describe('Login page', () => {
     .type(username);
 
     cy.get('#password')
-    .clear
+    .clear()
     .type(password);
 
     cy.get('[type = submit]')
@@ -28,6 +28,17 @@ describe('Login page', () => {
   });
 
   it('Should be able to logout', () => {
+    cy.get('#username')
+    .clear()
+    .type(username);
+
+    cy.get('#password')
+    .clear()
+    .type(password);
+
+    cy.get('[type = submit]')
+    .click();
+
     cy.get('.button')
     .click();
 
@@ -41,7 +52,7 @@ describe('Login page', () => {
     .type(invalidUsername);
 
     cy.get('#password')
-    .clear
+    .clear()
     .type(password);
 
     cy.get('[type = submit]')
@@ -57,7 +68,7 @@ describe('Login page', () => {
     .type(username);
 
     cy.get('#password')
-    .clear
+    .clear()
     .type(invalidPassword);
 
     cy.get('[type = submit]')
