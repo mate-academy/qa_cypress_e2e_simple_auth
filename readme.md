@@ -15,7 +15,6 @@ App for testing: `https://the-internet.herokuapp.com/login`
 
 **Your task** is to automate the next flow:
 
-1. Visit "Login Page".
 1. Login with valid creds (`tomsmith`/`SuperSecretPassword!`):
    - assert you successfully logged in.
 1. Login with invalid creds (invalid Username, invalid Password):
