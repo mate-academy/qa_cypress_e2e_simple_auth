@@ -38,11 +38,26 @@ describe('Login page', () => {
       .should('contain.text', 'You logged into a secure area!')
 
     cy.contains('.button', ' Logout')
+      .click();
   });
 
-  it('should not allow user to log in with invalid credentials', () => {
+  it('should not allow user to log in with invalid username', () => {
     cy.get('[name="username"]')
     .type(fakeUsername)
+
+    cy.get('[name="password"]')
+      .type(password)
+
+    cy.contains('[type="submit"]', ' Login')
+      .click()
+
+    cy.get('[class="flash error"]')
+      .should('contain.text', ' Your username is invalid!')
+  });
+
+  it('should not allow user to log in with invalid password', () => {
+    cy.get('[name="username"]')
+    .type(username)
 
     cy.get('[name="password"]')
       .type(fakePassword)
@@ -50,6 +65,7 @@ describe('Login page', () => {
     cy.contains('[type="submit"]', ' Login')
       .click()
 
-    cy.contains('[class="flash error"]', ' Your username is invalid!')
+    cy.get('[class="flash error"]')
+      .should('contain.text', '\n            Your password is invalid!\n            ×\n          ') // This error message text was taken from cypress error message
   });
 });
