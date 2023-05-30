@@ -18,15 +18,26 @@ describe('Login page', () => {
       .click();
   });
 
-  it('Login with invalid creds', () => {
+  it('Login with invalid username', () => {
     cy.get('#username')
       .type('tttttt')
+    cy.get('#password')
+      .type('SuperSecretPassword!')
+    cy.get('button[type="submit"]')
+      .click()
+    cy.get('#flash')
+      .should('contain', 'Your username is invalid!')
+  });
+
+  it('Login with invalid password', () => {
+    cy.get('#username')
+      .type('tomsmith')
     cy.get('#password')
       .type('ttttttttttttttttt')
     cy.get('button[type="submit"]')
       .click()
     cy.get('#flash')
-      .should('contain', 'Your username is invalid!')
+      .should('contain', 'Your password is invalid!')
   });
 
   it('Logout from the app', () => {
