@@ -21,9 +21,23 @@ describe('Login page', () => {
       .should('be.visible')
   });
 
-  it('shouldn\'t login with invalid creds', () => {
+  it('shouldn\'t login with invalid login', () => {
     cy.get('#username')
       .type(username + 'one')
+  
+    cy.get('#password')
+      .type(password)
+
+    cy.contains('.fa-sign-in', 'Login')
+      .click()
+    
+    cy.get('#flash')
+      .should('contain', 'Your username is invalid!')
+  });
+
+  it('shouldn\'t login with invalid password', () => {
+    cy.get('#username')
+      .type(username)
   
     cy.get('#password')
       .type(password + 'one')
@@ -32,7 +46,7 @@ describe('Login page', () => {
       .click()
     
     cy.get('#flash')
-      .should('contain', 'Your username is invalid!')
+      .should('contain', 'Your password is invalid!')
   });
 
   it('should logout from the app', () => {
