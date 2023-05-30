@@ -14,10 +14,10 @@ describe('Login page', () => {
       .type('SuperSecretPassword!');
 
     cy.contains('.fa','Login')
-    .click();
+      .click();
 
     cy.get('#flash')
-    .should('contain', 'You logged into a secure area!');
+      .should('contain', 'You logged into a secure area!');
 });
   
   it('should not allow to login with invalid creds', () => {
@@ -28,32 +28,32 @@ describe('Login page', () => {
       .type('invalidPassword');
 
     cy.contains('.fa','Login')
-    .click();
+      .click();
 
     cy.get('#flash')
-    .should('contain', 'Your username is invalid!');
+      .should('contain', 'Your username is invalid!');
 
 });
 
   it('should provide an ability to logout', () => {
   
     cy.get('[name="username"]')
-    .type('tomsmith');
+      .type('tomsmith');
   
     cy.get ('[name="password"]')
-    .type('SuperSecretPassword!');
+      .type('SuperSecretPassword!');
     
     cy.contains('.fa','Login')
-    .click();
+      .click();
    
     cy.get('#flash')
-    .should('contain', 'You logged into a secure area!')
+      .should('contain', 'You logged into a secure area!');
 
     cy.contains('.button','Logout')
-  .click();
+      .click();
 
     cy.get('#flash')
-  .should('contain', 'You logged out of the secure area!');
+      .should('contain', 'You logged out of the secure area!');
 
   });
 });
