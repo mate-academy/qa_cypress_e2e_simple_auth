@@ -1,10 +1,13 @@
 /// <reference types="cypress" />
 
 describe('Login page', () => {
-  it('Should login with valid credentials', () => {
+
+  beforeEach(() => {
     // Visit the login page
     cy.visit('https://the-internet.herokuapp.com/login');
+  });
 
+  it('Should login with valid credentials', () => {
     // Fill in the username and password fields
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!');
@@ -18,9 +21,6 @@ describe('Login page', () => {
   });
 
   it('Should show validation errors with invalid Username', () => {
-    // Visit the login page
-    cy.visit('https://the-internet.herokuapp.com/login');
-
     // Fill in invalid username and password
     cy.get('#username').type('tommasmith');
     cy.get('#password').type('SuperSecretPassword!');
@@ -33,9 +33,6 @@ describe('Login page', () => {
   });
 
   it('Should show validation errors with invalid password', () => {
-    // Visit the login page
-    cy.visit('https://the-internet.herokuapp.com/login');
-
     // Fill in invalid username and password
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword?');
@@ -48,8 +45,6 @@ describe('Login page', () => {
   });
 
   it('Should logout successfully', () => {
-    // Login with valid credentials
-    cy.visit('https://the-internet.herokuapp.com/login');
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!');
     cy.get('button[type="submit"]').click();
