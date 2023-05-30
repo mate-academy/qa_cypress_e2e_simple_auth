@@ -16,7 +16,7 @@ describe('Login page', () => {
     .should('contain.text', ' You logged into a secure area!')
   });
   
-it('should provide inability to successfull login with unregistered user data', () => {
+it('should provide inability to successfull login with invalid username', () => {
     cy.get('#username')
     .type('tomsmith1');
     cy.get('#password')
@@ -25,6 +25,17 @@ it('should provide inability to successfull login with unregistered user data', 
     .click();
     cy.get('#flash')
     .should('contain.text', 'Your username is invalid!')
+  });
+
+  it('should provide inability to successfull login with invalid password', () => {
+    cy.get('#username')
+    .type('tomsmith');
+    cy.get('#password')
+    .type('SuperSecretPassword!$');
+    cy.get('.fa')
+    .click();
+    cy.get('#flash')
+    .should('contain.text', 'Your password is invalid!')
   });
 
 it('should provide an ability to successfull logout for registered user', () => {
