@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Login page with invalid and valid cred', () => {
+describe('Login page with invalid and valid credentions', () => {
   beforeEach(() => {
     cy.visit('https://the-internet.herokuapp.com/login')
   });
