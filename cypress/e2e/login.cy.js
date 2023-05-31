@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
-
+const username = 'tomsmith';
+const password = 'SuperSecretPassword!';
 describe('Login page', () => {
   beforeEach(() => {
     cy.visit('https://the-internet.herokuapp.com/login');
@@ -7,10 +8,10 @@ describe('Login page', () => {
  
   it('should login with valid creds', () => {
     cy.get('[name="username"]')
-      .type('tomsmith');
+      .type(username);
 
     cy.get('#password')
-      .type('SuperSecretPassword!');
+      .type(password);
 
     cy.contains('.fa', 'Login')
       .click();
@@ -19,12 +20,12 @@ describe('Login page', () => {
       .should('contain', 'You logged into a secure area!');
   });
 
-  it('should fail login with invalid creds', () => {
+  it('should fail login with invalid username', () => {
     cy.get('#username')
-      .type('InvalidUsername');
+      .type(`invalid${username}`);
 
     cy.get('#password')
-      .type('InvalidPassword');
+      .type(password);
 
     cy.contains('.fa', 'Login')
       .click();
@@ -33,12 +34,26 @@ describe('Login page', () => {
       .should('contain', 'Your username is invalid!');
   });
 
-  it('should logout', () => {
+  it('should fail login with invalid password', () => {
     cy.get('#username')
-      .type('tomsmith');
+      .type(username);
 
     cy.get('#password')
-      .type('SuperSecretPassword!');
+      .type(`invalid${password}`);
+
+    cy.contains('.fa', 'Login')
+      .click();
+
+    cy.get('#flash')
+      .should('contain', 'Your password is invalid!');
+  });
+
+  it('should logout', () => {
+    cy.get('#username')
+      .type(username);
+
+    cy.get('#password')
+      .type(password);
 
     cy.contains('.fa', 'Login')
       .click();
