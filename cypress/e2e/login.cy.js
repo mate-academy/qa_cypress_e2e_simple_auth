@@ -9,14 +9,24 @@ describe('Login and Logout Flow', () => {
     cy.contains('You logged into a secure area!') // Перевірка успішного входу
   })
 
-  it('should display validation errors with invalid credentials', () => {
+  it('should display validation error with invalid username', () => {
     cy.visit('https://the-internet.herokuapp.com/login')
 
     cy.get('input#username').type('invalidUsername')
+    cy.get('input#password').type('SuperSecretPassword!') // Ви можете використовувати дійсний пароль для цього тесту
+    cy.get('button[type="submit"]').click()
+
+    cy.contains('Your username is invalid!') // Перевірка валідаційного повідомлення про недійсне ім'я користувача
+  })
+
+  it('should display validation error with invalid password', () => {
+    cy.visit('https://the-internet.herokuapp.com/login')
+
+    cy.get('input#username').type('tomsmith') // Ви можете використовувати дійсне ім'я користувача для цього тесту
     cy.get('input#password').type('invalidPassword')
     cy.get('button[type="submit"]').click()
 
-    cy.contains('Your username is invalid!') // Перевірка валідаційних повідомлень про невірні дані
+    cy.contains('Your password is invalid!') // Перевірка валідаційного повідомлення про недійсний пароль
   })
 
   it('should logout from the app', () => {
