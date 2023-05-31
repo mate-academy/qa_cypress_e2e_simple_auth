@@ -1,5 +1,4 @@
 /// <reference types="cypress" />
-
 const { generateCredentials } = require("../support/generateCredentials");
 
 describe('Login page', () => {
@@ -39,11 +38,14 @@ describe('Login page', () => {
 
     cy.contains('.button', ' Logout')
       .click();
+
+      cy.get('#flash')
+      .should('contain.text', '\n            You logged out of the secure area!\n            ×\n          ')
   });
 
   it('should not allow user to log in with invalid username', () => {
     cy.get('[name="username"]')
-    .type(fakeUsername)
+      .type(fakeUsername)
 
     cy.get('[name="password"]')
       .type(password)
@@ -57,7 +59,7 @@ describe('Login page', () => {
 
   it('should not allow user to log in with invalid password', () => {
     cy.get('[name="username"]')
-    .type(username)
+      .type(username)
 
     cy.get('[name="password"]')
       .type(fakePassword)
