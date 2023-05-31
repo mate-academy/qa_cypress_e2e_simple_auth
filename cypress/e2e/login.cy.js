@@ -3,12 +3,12 @@
 describe('Login page', () => {
   beforeEach(() => {
     cy.visit("https://the-internet.herokuapp.com/login");
-  });
+  })
+
+  const username = "tomsmith";
+  const password = "SuperSecretPassword!";
 
   it('Should login with valid creds', () => {
-    const username = 'tomsmith';
-    const password = "SuperSecretPassword!";
-
     cy.get('#username')
       .type(username);
 
@@ -25,12 +25,11 @@ describe('Login page', () => {
       .should('contain.text', 'Secure Area');
   });
 
-  it("Should not login with invalid creds", () => {
-    const username = "tomsmith2";
-    const password = "SuperSecretP@ssword!";
+  it("Should not login with invalid username", () => {
+    const InvalidUsername = username + 2;
 
     cy.get("#username")
-      .type(username);
+      .type(InvalidUsername);
 
     cy.get("#password")
       .type(password);
@@ -42,10 +41,23 @@ describe('Login page', () => {
       .should('contain.text', 'Your username is invalid!');
   });
 
-  it('Should logout from the app', () => {
-    const username = 'tomsmith';
-    const password = 'SuperSecretPassword!';
+  it('Should not login with invalid password', () => {
+    const InvalidPassword = password + 22;
 
+    cy.get('#username')
+      .type(username);
+
+    cy.get("#password")
+      .type(InvalidPassword);
+
+    cy.contains('.fa', 'Login')
+      .click();
+
+    cy.get('#flash')
+      .should('contain.text', 'Your password is invalid!');
+  });
+
+  it('Should logout from the app', () => {
     cy.get('#username')
       .type(username);
 
