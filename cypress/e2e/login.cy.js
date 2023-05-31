@@ -34,31 +34,31 @@ describe('Login page', () => {
       .click(); 
     cy.get('#flash')
       .should('contain', 'Your password is invalid!');
- });
+  });
 
- it('should not let login with invalid username', () => {
-  let user = wrongUsername(); 
+  it('should not let login with invalid username', () => {
+    let user = wrongUsername(); 
   
-  cy.get('#username')
-    .type(user.username);
-  cy.get('#password')
-    .type(user.password); 
-  cy.get('.fa')
-    .click(); 
-  cy.get('#flash')
-    .should('contain', 'Your username is invalid!');
-});
+    cy.get('#username')
+      .type(user.username);
+    cy.get('#password')
+      .type(user.password); 
+    cy.get('.fa')
+      .click(); 
+    cy.get('#flash')
+      .should('contain', 'Your username is invalid!');
+  });
    
-   it('should let logout', () => {
-     cy.get('#username')
+  it('should let logout', () => {
+    cy.get('#username')
       .type('tomsmith'); 
-     cy.get('#password')
+    cy.get('#password')
       .type('SuperSecretPassword!');
-     cy.get('.fa')
+    cy.get('.fa')
       .click(); 
     cy.get('.button')
       .click();
-     cy.get('#flash')
-       .contains('You logged out of the secure area!');
-   });
+    cy.get('#flash')
+      .contains('You logged out of the secure area!');
+  });
 });
