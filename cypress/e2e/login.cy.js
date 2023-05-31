@@ -31,10 +31,25 @@ describe('Login page', () => {
     .should('contain.text', 'You logged out of the secure area!');
   });
 
-  it('shouldn`t allow to login with invalid data',() => {
+  it('shouldn`t allow to login with invalid email',() => {
 
     cy.findById('username')
     .type(invalidUser);
+
+    cy.findById('password')
+    .type(password);
+
+    cy.get('button.radius > .fa')
+    .click();
+
+    cy.findById('flash')
+    .should('contain.text', 'Your username is invalid!');
+  })
+
+  it('shouldn`t allow to login with invalid password',() => {
+
+    cy.findById('username')
+    .type(username);
 
     cy.findById('password')
     .type(invalidPassword);
@@ -43,6 +58,6 @@ describe('Login page', () => {
     .click();
 
     cy.findById('flash')
-    .should('contain.text', 'Your username is invalid!');
+    .should('contain.text', 'Your password is invalid!');
   })
 });
