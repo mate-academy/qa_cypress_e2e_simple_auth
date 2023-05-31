@@ -27,4 +27,3 @@ describe('Login page', () => {
     cy.contains('You logged out of the secure area!').should('be.visible')
   });
 });
-
