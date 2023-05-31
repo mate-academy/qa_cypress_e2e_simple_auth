@@ -13,6 +13,14 @@ describe('Login page', () => {
       .should('contain.text','Login Page')
   });
 
+  afterEach(() => {
+    cy.visit('/login');
+    cy.url()
+      .should('include', '/login');
+    cy.get('h2')
+      .should('contain.text','Login Page')
+  });
+
   it('should provide an ability to log in with valid data', () => {
 
     cy.get('#username')
@@ -24,7 +32,8 @@ describe('Login page', () => {
     cy.get('.fa')
       .click();
 
-    cy.url('/secure');
+    cy.url()
+      .should('include', '/secure')
 
     cy.get('#flash')
       .should('contain.text', 'You logged into a secure area!');
@@ -71,7 +80,8 @@ describe('Login page', () => {
     cy.get('.fa')
       .click();
 
-    cy.url('/secure');
+    cy.url()
+      .should('include', '/secure');
 
     cy.get('#flash')
       .should('contain.text', 'You logged into a secure area!');
@@ -79,7 +89,8 @@ describe('Login page', () => {
     cy.get('.icon-signout')
       .click();
 
-    cy.url('/login');
+    cy.url()
+      .should('include', '/login')
 
     cy.get('#flash')
       .should('contain.text', ' You logged out of the secure area!');
