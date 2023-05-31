@@ -22,7 +22,7 @@ describe('Login page', () => {
     .should('contain', '/secure')
   });
 
-  it('Should provide an ability not to log in with the no valid credentials', () => {
+  it('Should provide an ability not to log in with the no valid username', () => {
     cy.get('#username')
     .type('NotValidUsername')
 
@@ -34,6 +34,20 @@ describe('Login page', () => {
 
     cy.get('#flash')
     .should('contain', 'Your username is invalid!')
+  });
+
+    it('Should provide an ability not to log in with the no valid password', () => {
+    cy.get('#username')
+    .type('tomsmith')
+
+    cy.get('#password')
+    .type('NotPassword')
+
+    cy.contains('.fa', 'Login')
+    .click()
+
+    cy.get('#flash')
+    .should('contain', 'Your password is invalid!')
   });
 
   it('Should provide an ability to logged out', () => {
@@ -55,5 +69,4 @@ describe('Login page', () => {
     cy.get('#flash')
     .should('contain', 'You logged out of the secure area!')
   });
-
 });
