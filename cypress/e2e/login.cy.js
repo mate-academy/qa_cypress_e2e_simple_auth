@@ -12,12 +12,12 @@ describe('Login page', () => {
     cy.get('#password')
     .type('SuperSecretPassword!')
 
-    cy.contains('.fa.fa-2x', 'Login')
+    cy.contains('[type="submit"]', 'Login')
     .click();
 
     cy.get('#flash').should('contain.text', 'You logged into a secure area!')
 
-    cy.contains('.icon-2x.icon-signout', 'Logout')
+    cy.contains('[href="/logout"]', 'Logout')
     .click();
   });
 
@@ -28,20 +28,20 @@ describe('Login page', () => {
     cy.get('#password')
     .type('SuperSecretPassword!')
 
-    cy.contains('.fa.fa-2x', 'Login')
+    cy.contains('[type="submit"]', 'Login')
     .click();
 
     cy.get('#flash').should('contain.text', 'Your username is invalid!')
   });
 
-  it('Login with invalid Username', () => {
+  it('Login with invalid ', () => {
     cy.get('#username')
     .type('tomsmith')
 
     cy.get('#password')
     .type('SuperSecretPassword1')
 
-    cy.contains('.fa.fa-2x', 'Login')
+    cy.contains('[type="submit"]', 'Login')
     .click();
 
     cy.get('#flash').should('contain.text', 'Your password is invalid!')
