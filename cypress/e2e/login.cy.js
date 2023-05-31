@@ -19,6 +19,13 @@ describe('Login page with invalid and valid cred', () => {
     cy.contains('Your username is invalid!').should('be.visible')
   });
 
+  it('Login with invalid password', () => {
+    cy.get('#username').type('tomsmith')
+    cy.get('#password').type('incorrectPassword')
+    cy.get('.fa-sign-in').click()
+    cy.contains('Your password is invalid!').should('be.visible')
+  });
+
   it('Logout from the app', () => {
     cy.get('#username').type('tomsmith')
     cy.get('#password').type('SuperSecretPassword!')
