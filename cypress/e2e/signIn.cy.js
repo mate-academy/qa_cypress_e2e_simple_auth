@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Login page', () => {
+describe('Sign In page', () => {
   beforeEach(() => {
     
   });
