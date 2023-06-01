@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-const {rightCreds} = require('../support/generate');
+const { rightCreds } = require('../support/generate');
 const { wrongPassword } = require('../support/generate');
 const { wrongUsername } = require('../support/generate');
 
