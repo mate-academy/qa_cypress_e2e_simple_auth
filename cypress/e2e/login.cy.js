@@ -1,49 +1,44 @@
 /// <reference types="cypress" />
 
-describe('Login page', () => {
+describe("Login page", () => {
   beforeEach(() => {
-    cy.visit('https://the-internet.herokuapp.com/login');
+    cy.visit("https://the-internet.herokuapp.com/login");
   });
 
-  it('Login with valid creds', () => {
-    cy.get('#username')
-    .type('tomsmith')
+  it("Login with valid creds", () => {
+    cy.get("#username").type("tomsmith");
 
-    cy.get('#password')
-    .type('SuperSecretPassword!')
+    cy.get("#password").type("SuperSecretPassword!");
 
-    cy.contains('[type="submit"]', 'Login')
-    .click();
+    cy.contains('[type="submit"]', "Login").click();
 
-    cy.get('#flash').should('contain.text', 'You logged into a secure area!')
+    cy.get("#flash").should("contain.text", "You logged into a secure area!");
 
-    cy.contains('[href="/logout"]', 'Logout')
-    .click();
+    cy.contains('[href="/logout"]', "Logout").click();
+
+    cy.get("#flash").should(
+      "contain.text",
+      "You logged out of the secure area!"
+    );
   });
 
-  it('Login with invalid Username', () => {
-    cy.get('#username')
-    .type('tomsmis')
+  it("Login with invalid Username", () => {
+    cy.get("#username").type("tomsmis");
 
-    cy.get('#password')
-    .type('SuperSecretPassword!')
+    cy.get("#password").type("SuperSecretPassword!");
 
-    cy.contains('[type="submit"]', 'Login')
-    .click();
+    cy.contains('[type="submit"]', "Login").click();
 
-    cy.get('#flash').should('contain.text', 'Your username is invalid!')
+    cy.get("#flash").should("contain.text", "Your username is invalid!");
   });
 
-  it('Login with invalid ', () => {
-    cy.get('#username')
-    .type('tomsmith')
+  it("Login with invalid ", () => {
+    cy.get("#username").type("tomsmith");
 
-    cy.get('#password')
-    .type('SuperSecretPassword1')
+    cy.get("#password").type("SuperSecretPassword1");
 
-    cy.contains('[type="submit"]', 'Login')
-    .click();
+    cy.contains('[type="submit"]', "Login").click();
 
-    cy.get('#flash').should('contain.text', 'Your password is invalid!')
+    cy.get("#flash").should("contain.text", "Your password is invalid!");
   });
 });
