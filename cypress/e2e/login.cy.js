@@ -12,11 +12,19 @@ describe('Login page', () => {
     cy.contains('Welcome to the Secure Area').should('be.visible')
   });
 
-  it('Login with invalid creds', () => {
+  it('Login with invalid username', () => {
     cy.get('#username').type('invalidUsername')
     cy.get('#password').type('invalidPassword')
     cy.get('.fa-sign-in').click()
     cy.contains('Your username is invalid!').should('be.visible')
+  });
+
+    it('Login with invalid password', () => {
+    cy.get('#username').type('tomsmith')
+    cy.get('#password').type('invalidPassword')
+    cy.get('.fa-sign-in').click()
+    cy.contains('Your password is invalid!').should('be.visible')
+
   });
 
   it('Logout from the app', () => {
