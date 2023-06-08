@@ -25,7 +25,7 @@ describe('Login page', () => {
       .should('contain', 'You logged into a secure area!')
   });
 
-  it('Login with invalid username', () => {
+  it('Login with invalid creds', () => {
     cy.get('#username')
       .type(invalidUsername);
 
@@ -39,12 +39,26 @@ describe('Login page', () => {
       .should('contain', 'Your username is invalid!')
   });
 
-  it('Login with invalid password', () => {
+  it('Login with valid username and invalid password', () => {
+    cy.get('#username')
+      .type(validUsername);
+
+    cy.get('#password')
+      .type(invalidPassword);
+
+    cy.get('.fa')
+      .click
+
+      cy.get('#flash')
+      .should('contain', 'Your username is invalid!')
+  });
+
+  it('Login with invalid username and valid password', () => {
     cy.get('#username')
       .type(invalidUsername);
 
     cy.get('#password')
-      .type(invalidPassword);
+      .type(validPassword);
 
     cy.get('.fa')
       .click
