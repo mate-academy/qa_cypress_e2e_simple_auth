@@ -41,4 +41,20 @@ describe("Login page", () => {
 
     cy.get("#flash").should("contain.text", "Your password is invalid!");
   });
+
+  it('user is able to logout from app', () => {
+    cy.get("#username").type("tomsmith");
+
+    cy.get("#password").type("SuperSecretPassword!");
+
+    cy.contains('[type="submit"]', "Login").click();
+
+    cy.get("#flash").should("contain.text", "You logged into a secure area!");
+
+    cy.contains('[href="/logout"]', "Logout").click();
+
+    cy.get("#flash").should(
+      "contain.text",
+      "You logged out of the secure area!")
+  });
 });
