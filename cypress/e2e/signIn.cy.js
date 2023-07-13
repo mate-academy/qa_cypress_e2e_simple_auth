@@ -11,7 +11,6 @@ describe('Sign In page', () => {
 
   it('should provide an ability to log in with valid credentials', () => { 
     
-
     cy.contains('Login Page')
       .click();
 
@@ -35,12 +34,11 @@ describe('Sign In page', () => {
 
   });
 
-   it('should not log in with invalid credentials', () => { 
+   it('should not log in with invalid user name', () => { 
   
      const userName = Math.random().toString().slice(2);
-     const password = Math.random().toString().slice(2);
      
-     cy.contains('Login Page')
+    cy.contains('Login Page')
       .click();
 
     cy.get('h2')
@@ -54,12 +52,18 @@ describe('Sign In page', () => {
 
     cy.get('.fa')
        .click();
-    
-    cy.get('[id="flash"]')
+      
+       cy.get('[id="flash"]')
       .should('contain.text', 'Your username is invalid!');
-     
+   });
+   
+      
+   it('should not log in with invalid password', () => {  
+         
+    const password = Math.random().toString().slice(2);
+    
     cy.get('[id="username"]')
-       .type('tomsmith');
+       .type(userName);
 
     cy.get('[id="password"]')
        .type(password);
