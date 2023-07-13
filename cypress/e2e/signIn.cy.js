@@ -53,8 +53,9 @@ describe('Sign In page', () => {
     cy.get('.fa')
        .click();
       
-       cy.get('[id="flash"]')
-      .should('contain.text', 'Your username is invalid!');
+    cy.get('[id="flash"]')
+          .should('contain.text', 'Your username is invalid!');
+      
    });
    
       
