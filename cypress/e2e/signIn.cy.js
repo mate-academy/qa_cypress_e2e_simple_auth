@@ -3,12 +3,13 @@
 describe('Sign In page', () => {
   const username = 'tomsmith';
   const password = 'SuperSecretPassword!';
+
   beforeEach(() => {
     cy.visit('/login');
     cy.url().should('include', '/login');
   });
 
-  it('should be able to login with valid creds', () => {
+  it('should allow to login with valid creds', () => {
     cy.get('#username').type(username);
     cy.get('#password').type(password);
     cy.get('.radius').click();
@@ -17,7 +18,7 @@ describe('Sign In page', () => {
     cy.url().should('include', '/secure');
   });
 
-  it('should not be able to login with invalid username', () => {
+  it('should not allow to login with invalid username', () => {
     cy.get('#username').type(`${username}a`);
     cy.get('#password').type(password);
     cy.get('.radius').click();
@@ -25,7 +26,7 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain', 'Your username is invalid!');
   });
 
-  it('should not be able to login with invalid password', () => {
+  it('should not allow to login with invalid password', () => {
     cy.get('#username').type(username);
     cy.get('#password').type(`${password}1`);
     cy.get('.radius').click();
@@ -33,7 +34,7 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain', 'Your password is invalid!');
   });
 
-  it('should be able to logout from the site', () => {
+  it('should allow to logout from the site', () => {
     cy.get('#username').type(username);
     cy.get('#password').type(password);
     cy.get('.radius').click();
