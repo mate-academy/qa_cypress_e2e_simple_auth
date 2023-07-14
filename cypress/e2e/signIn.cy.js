@@ -8,6 +8,11 @@ describe('Sign In page', () => {
   
     const userName = 'tomsmith';
     const password = 'SuperSecretPassword!';
+    const text = {
+    loginPage: 'Login Page',
+    area: 'Secure Area'
+  }
+
 
   it('should provide an ability to log in with valid credentials', () => { 
     
@@ -15,7 +20,7 @@ describe('Sign In page', () => {
       .click();
 
     cy.get('h2')
-       .should('contain.text', 'Login Page');
+       .should('contain.text', text.loginPage);
 
     cy.get('[id="username"]')
        .type(userName);
@@ -27,7 +32,7 @@ describe('Sign In page', () => {
        .click();
     
     cy.get('h2')
-      .should('contain.text', 'Secure Area');
+      .should('contain.text', text.area);
     
     cy.url()
       .should('include', '/secure');
@@ -42,7 +47,7 @@ describe('Sign In page', () => {
       .click();
 
     cy.get('h2')
-       .should('contain.text', 'Login Page');
+       .should('contain.text', text.loginPage);
 
     cy.get('[id="username"]')
        .type(userName);
@@ -86,7 +91,7 @@ describe('Sign In page', () => {
       .click();
 
     cy.get('h2')
-       .should('contain.text', 'Login Page');
+       .should('contain.text', text.loginPage);
 
     cy.get('[id="username"]')
        .type(userName);
@@ -98,7 +103,7 @@ describe('Sign In page', () => {
        .click();
     
     cy.get('h2')
-      .should('contain.text', 'Secure Area');
+      .should('contain.text', text.area);
     
     cy.url()
       .should('include', '/secure');
@@ -107,7 +112,7 @@ describe('Sign In page', () => {
        .click();
      
     cy.get('h2')
-       .should('contain.text', 'Login Page');
+       .should('contain.text', text.loginPage);
      
   });
 
