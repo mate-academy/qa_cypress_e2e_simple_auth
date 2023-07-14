@@ -13,7 +13,7 @@ describe('Sign In page', () => {
 
     cy.contains('button[type="submit"]', 'Login').click();
 
-    cy.contains('You logged into a secure area!').should('be.visible');
+    cy.get('#flash').should('contain.text', 'You logged into a secure area!');
   });
 
   it('should display validation errors with invalid credentials', () => {
@@ -24,7 +24,7 @@ describe('Sign In page', () => {
     cy.contains('button[type="submit"]', 'Login')
       .click();
 
-    cy.contains('Your username is invalid!').should('be.visible');
+    cy.get('#flash').should('contain.text', 'Your username is invalid!');
   });
 
   it('should display validation errors with invalid credentials', () => {
@@ -35,7 +35,7 @@ describe('Sign In page', () => {
     cy.contains('button[type="submit"]', 'Login')
       .click();
 
-    cy.contains('Your password is invalid!').should('be.visible');
+    cy.get('#flash').should('contain.text', 'Your password is invalid!');
   });
 
   it('should log out successfully', () => {
@@ -45,10 +45,11 @@ describe('Sign In page', () => {
     cy.contains('button[type="submit"]', 'Login')
       .click();
 
-    cy.contains('You logged into a secure area!').should('be.visible');
+    cy.get('#flash').should('contain.text', 'You logged into a secure area!');
 
     cy.contains('.button', 'Logout')
       .click();
-    cy.contains('You logged out of the secure area!').should('be.visible');
+    cy.get('#flash')
+      .should('contain.text', 'You logged out of the secure area!');
   });
 });
