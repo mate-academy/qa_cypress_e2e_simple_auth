@@ -23,3 +23,8 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('assertPageUrl', (url) => {
+  cy.url()
+    .should('equal', Cypress.config().baseUrl + '/secure');
+});
