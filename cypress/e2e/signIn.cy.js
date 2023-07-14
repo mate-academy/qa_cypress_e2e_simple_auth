@@ -34,6 +34,7 @@ describe('Sign In page', () => {
     cy.get('#flash').should('be.visible');
     cy.contains('Your password is invalid!').should('be.visible');
   });
+
   it('Logout from the app', () => {
     cy.get('#username').type(username);
     cy.get('#password').type(password);
