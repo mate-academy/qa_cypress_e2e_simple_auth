@@ -8,7 +8,7 @@ describe('Sign In page', () => {
     cy.visit('https://the-internet.herokuapp.com/login');
   });
 
-  it('User is able to Sign in with valid creds', () => {
+  it('Should allow the user to Sign in with valid creds', () => {
 
     cy.url().should('include', '/login');
 
@@ -20,7 +20,7 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain.text', 'You logged into a secure area!');
   });
 
-  it('User is not able to Sign in with invalid Username', () => {
+  it('Should not allow the user to Sign in with invalid Username', () => {
 
     cy.url().should('include', '/login');
 
@@ -32,7 +32,7 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain.text', 'Your username is invalid!');
   });
 
-  it('User is not able to Sign in with invalid Password', () => {
+  it('Should not allow the user to Sign in with invalid Password', () => {
 
     cy.url().should('include', '/login');
 
@@ -44,7 +44,7 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain.text', 'Your password is invalid!');
   });
 
-  it('User is able to successfully logged out from the site', () => {
+  it('Should allow the user to successfully logged out from the site', () => {
 
     cy.url().should('include', '/login');
 
