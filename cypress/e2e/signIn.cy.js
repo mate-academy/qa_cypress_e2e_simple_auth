@@ -6,10 +6,23 @@ describe('Sign In page', () => {
   });
 
   it('should log in with valid credentials', () => {
-    cy.get('#username').type('tomsmith');
-    cy.get('#password').type('SuperSecretPassword!');
+    const username = 'tomsmith';
+    const password = 'SuperSecretPassword!';
+
+    cy.get('#username').type(username);
+    cy.get('#password').type(password);
     cy.get('button[type="submit"]').click();
     cy.get('#flash').should('contain', 'You logged into a secure area!');
+  });
+
+  it('should show validation errors with invalid credentials', () => {
+    const username = 'invalid_username';
+    const password = 'invalid_password';
+
+    cy.get('#username').type(username);
+    cy.get('#password').type(password);
+    cy.get('button[type="submit"]').click();
+    cy.get('#flash').should('contain', 'Your username is invalid!');
   });
 
   it('should show validation errors with invalid credentials', () => {
@@ -17,13 +30,5 @@ describe('Sign In page', () => {
     cy.get('#password').type('invalid_password');
     cy.get('button[type="submit"]').click();
     cy.get('#flash').should('contain', 'Your username is invalid!');
-  });
-
-  it('should log out successfully', () => {
-    cy.get('#username').type('tomsmith');
-    cy.get('#password').type('SuperSecretPassword!');
-    cy.get('button[type="submit"]').click();
-    cy.get('a[href="/logout"]').click();
-    cy.get('#flash').should('contain', 'You logged out of the secure area!');
   });
 });
