@@ -1,5 +1,3 @@
-<reference types="cypress" />;
-
 describe('Sign In page', () => {
   beforeEach(() => {
     cy.visit('https://the-internet.herokuapp.com/login');
