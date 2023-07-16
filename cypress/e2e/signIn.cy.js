@@ -12,8 +12,6 @@ describe('Sign In page', () => {
     cy.get('[type="submit"]').click();
     cy.get('[class="flash success"]')
       .should('contain', 'You logged into a secure area!');
-    cy.get('[class="flash success"]')
-      .should('contain', 'You logged into a secure area!');
     cy.url().should('include', '/secure');
   });
   it('should not allow user to login with invalid creds', () => {
