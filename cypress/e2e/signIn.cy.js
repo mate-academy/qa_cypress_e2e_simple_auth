@@ -29,7 +29,7 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain.text', 'You logged into a secure area!');
   });
 
-  it('should login with invalid creds', () => {
+  it('should not login with invalid creds', () => {
     cy.get('#username')
       .click();
     cy.get('#username')
