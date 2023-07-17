@@ -12,7 +12,7 @@ describe('Sign In page', () => {
 
     cy.url()
       .should('include', '/secure');
-    cy.contains('[id=flash]', 'You logged into a secure area!')
+    cy.contains('[id="flash"]', 'You logged into a secure area!')
       .should('exist');
   });
 
@@ -23,7 +23,7 @@ describe('Sign In page', () => {
 
     cy.url()
       .should('include', '/login');
-    cy.contains('[id=flash]', 'Your username is invalid!')
+    cy.contains('[id="flash"]', 'Your username is invalid!')
       .should('exist');
   });
 
@@ -34,12 +34,12 @@ describe('Sign In page', () => {
 
     cy.url()
       .should('include', '/secure');
-    cy.contains('[id=flash]', 'You logged into a secure area!')
+    cy.contains('[id="flash"]', 'You logged into a secure area!')
       .should('exist');
 
     cy.get('.button').click();
 
-    cy.contains('[id=flash]', 'You logged out of the secure area!')
+    cy.contains('[id="flash"]', 'You logged out of the secure area!')
       .should('exist');
   });
 });
