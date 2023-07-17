@@ -9,35 +9,45 @@ describe('Sign In page', () => {
   });
 
   it('Login with valid creds', () => {
-    cy.get('[id="username"]')
+    cy.get('#username')
       .type(username);
-    cy.get('[id="password"]')
+    cy.get('#password')
       .type(password);
     cy.get('[type="submit"]')
       .click();
-    cy.get('[class="flash success"]')
+    cy.get('#flash')
       .should('contain.text', 'You logged into a secure area!');
   });
-  it('Login with invalid creds', () => {
-    cy.get('[id="username"]')
+  it('Login with invalid username', () => {
+    cy.get('#username')
+      .type(username + '1');
+    cy.get('#password')
+      .type(password);
+    cy.get('[type="submit"]')
+      .click();
+    cy.get('#flash')
+      .should('contain.text', 'Your username is invalid!');
+  });
+  it('Login with invalid password', () => {
+    cy.get('#username')
       .type(username);
-    cy.get('[id="password"]')
+    cy.get('#password')
       .type(password + '1');
     cy.get('[type="submit"]')
       .click();
-    cy.get('[class="flash error"]')
+    cy.get('#flash')
       .should('contain.text', 'Your password is invalid!');
   });
   it('Logout from the app', () => {
-    cy.get('[id="username"]')
+    cy.get('#username')
       .type(username);
-    cy.get('[id="password"]')
+    cy.get('#password')
       .type(password);
     cy.get('[type="submit"]')
       .click();
     cy.get('[href="/logout"]')
       .click();
-    cy.get('[class="flash success"]')
+    cy.get('#flash')
       .should('contain.text', 'You logged out of the secure area!');
   });
 });
