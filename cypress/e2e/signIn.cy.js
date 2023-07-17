@@ -7,7 +7,7 @@ describe('Sign In page', () => {
 
   });
 
-  it('Login with valid creds', () => {
+  it('Login with valid username and password', () => {
 
     cy.get('#username').type('tomsmith')
     cy.get('#password').type('SuperSecretPassword!')
