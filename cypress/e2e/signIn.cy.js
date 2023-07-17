@@ -5,7 +5,7 @@ describe('Sign In page', () => {
   const username = 'tomsmith';
 
   beforeEach(() => {
-    cy.visit('https://the-internet.herokuapp.com/login');
+    cy.visit('/login');
   });
 
   it('should login with valid creds', () => {
