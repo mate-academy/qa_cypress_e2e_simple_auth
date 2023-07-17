@@ -4,7 +4,7 @@ describe('Sign In page', () => {
   const username = 'tomsmith';
   const password = 'SuperSecretPassword!';
   beforeEach(() => {
-    cy.visit('https://the-internet.herokuapp.com/login');
+    cy.visit('/login');
 
     cy.url().should('include', '/login');
   });
