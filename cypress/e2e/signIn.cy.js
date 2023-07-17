@@ -5,7 +5,7 @@ describe('Sign In page', () => {
   const password = 'SuperSecretPassword!';
 
   beforeEach(() => {
-    cy.visit('https://the-internet.herokuapp.com/login');
+    cy.visit('/login');
   });
 
   it('should login with valid credentials', () => {
@@ -18,14 +18,24 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain.text', 'You logged into a secure area!');
   });
 
-  it('should show validation errors for invalid credentials', () => {
+  it('should show validation errors for invalid username', () => {
    
     cy.get('#username').type('invalid');
-    cy.get('#password').type('invalid');
+    cy.get('#password').type(password);
     
     cy.contains('.fa', 'Login').click();
     
     cy.get('#flash').should('contain.text', 'Your username is invalid!');
+  });
+
+  it('should show validation errors for invalid password', () => {
+   
+    cy.get('#username').type(username);
+    cy.get('#password').type('invalid');
+    
+    cy.contains('.fa', 'Login').click();
+    
+    cy.get('#flash').should('contain.text', 'Your password is invalid!');
   });
 
   it('should logout from the app', () => {
