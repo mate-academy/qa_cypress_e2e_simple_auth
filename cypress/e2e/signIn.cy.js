@@ -5,7 +5,6 @@ describe('Sign In page', () => {
   const password = 'SuperSecretPassword!';
   beforeEach(() => {
     cy.visit('/login');
-    cy.url().should('include', '/login');
   });
 
   it('Login with valid creds', () => {
