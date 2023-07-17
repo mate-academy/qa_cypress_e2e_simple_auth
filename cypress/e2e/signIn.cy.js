@@ -2,7 +2,7 @@
 
 describe('Sign In page', () => {
   beforeEach(() => {
-    cy.visit('https://the-internet.herokuapp.com/login');
+    cy.visit('/login');
     cy.url().should('include', '/login');
   });
 
