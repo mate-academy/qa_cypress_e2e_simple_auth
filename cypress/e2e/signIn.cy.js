@@ -29,11 +29,30 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain.text', 'You logged into a secure area!');
   });
 
-  it('should not login with invalid creds', () => {
+  it('should not login with invalid username', () => {
     cy.get('#username')
       .click();
     cy.get('#username')
       .type(invalidUsername);
+
+    cy.get('#password')
+      .click();
+    cy.get('#password')
+      .type(password);
+
+    cy.get('[class="fa fa-2x fa-sign-in"]')
+      .click();
+
+    cy.get('#flash')
+      .should('contain.text', ' Your username is invalid!');
+  });
+
+
+  it('should not login with invalid password', () => {
+    cy.get('#username')
+      .click();
+    cy.get('#username')
+      .type(username);
 
     cy.get('#password')
       .click();
@@ -44,7 +63,7 @@ describe('Sign In page', () => {
       .click();
 
     cy.get('#flash')
-      .should('contain.text', ' Your username is invalid!');
+      .should('contain.text', ' Your password is invalid!');
   });
 
   it('should logout from the app', () => {
