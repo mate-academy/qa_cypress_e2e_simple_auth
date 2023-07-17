@@ -2,17 +2,17 @@
 
 describe('Sign In page', () => {
   beforeEach(() => {
-    cy.visit('https://the-internet.herokuapp.com/login');
+    cy.visit('/login');
   });
 
   it('should provide an ability to log in with registered credentials', () => {
     const userName = 'tomsmith';
     const userPassword = 'SuperSecretPassword!';
 
-    cy.get('[id="username"]')
+    cy.get('#username')
       .type(userName);
 
-    cy.get('[id="password"]')
+    cy.get('#password')
       .type(userPassword);
 
     cy.contains('button', 'Login')
@@ -32,10 +32,10 @@ describe('Sign In page', () => {
     const userName = 'samsmith';
     const userPassword = 'SuperSecretPassword!';
 
-    cy.get('[id="username"]')
+    cy.get('#username')
       .type(userName);
 
-    cy.get('[id="password"]')
+    cy.get('#password')
       .type(userPassword);
 
     cy.contains('button', 'Login')
@@ -44,13 +44,13 @@ describe('Sign In page', () => {
     cy.get('#flash.error')
       .should('exist');
 
-    cy.get('[id="flash"]')
+    cy.get('#flash')
       .contains('Your username is invalid!');
 
-    cy.get('[id="username"]')
+    cy.get('#username')
       .should('exist');
 
-    cy.get('[id="password"]')
+    cy.get('#password')
       .should('exist');
 
     cy.contains('button', 'Login')
@@ -61,10 +61,10 @@ describe('Sign In page', () => {
     const userName = 'tomsmith';
     const userPassword = 'SuperWeakPassword!';
 
-    cy.get('[id="username"]')
+    cy.get('#username')
       .type(userName);
 
-    cy.get('[id="password"]')
+    cy.get('#password')
       .type(userPassword);
 
     cy.contains('button', 'Login')
@@ -73,13 +73,13 @@ describe('Sign In page', () => {
     cy.get('#flash.error')
       .should('exist');
 
-    cy.get('[id="flash"]')
+    cy.get('#flash')
       .contains('Your password is invalid!');
 
-    cy.get('[id="username"]')
+    cy.get('#username')
       .should('exist');
 
-    cy.get('[id="password"]')
+    cy.get('#password')
       .should('exist');
 
     cy.contains('button', 'Login')
@@ -90,10 +90,10 @@ describe('Sign In page', () => {
     const userName = 'tomsmith';
     const userPassword = 'SuperSecretPassword!';
 
-    cy.get('[id="username"]')
+    cy.get('#username')
       .type(userName);
 
-    cy.get('[id="password"]')
+    cy.get('#password')
       .type(userPassword);
 
     cy.contains('button', 'Login')
@@ -105,7 +105,7 @@ describe('Sign In page', () => {
     cy.get('#flash.success')
       .should('exist');
 
-    cy.get('[id="flash"]')
+    cy.get('#flash')
       .contains('You logged out of the secure area!');
   });
 });
