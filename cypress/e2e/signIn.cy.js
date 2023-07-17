@@ -3,7 +3,7 @@
 describe('Sign In page', () => {
   beforeEach(() => {
     
-    cy.visit('https://the-internet.herokuapp.com/login')
+    cy.visit('/')
 
   });
 
@@ -19,13 +19,21 @@ describe('Sign In page', () => {
 
   });
 
-  it('Login with invalid creds (invalid Username, invalid Password)', () => {
+  it('Login with invalid username)', () => {
     
     cy.get('#username').type('qwerty')
-    cy.get('#password').type('ytrewq!@#1')
+    cy.get('#password').type('SuperSecretPassword!')
     cy.get('.fa').click()
 
     cy.get('#flash').should('contain.text', 'Your username is invalid!')
+
+  it('Login with invalid password)', () => {
+    
+    cy.get('#username').type('tomsmith')
+    cy.get('#password').type('SuperSecretPassword!11')
+    cy.get('.fa').click()
+
+    cy.get('#flash').should('contain.text', 'Your password is invalid!!')
     
 
   });
