@@ -2,7 +2,8 @@
 
 describe('Sign In page', () => {
   beforeEach(() => {
-    cy.visit("https://the-internet.herokuapp.com/login");
+    cy.visit('/login');
+
   });
 
   const username = 'tomsmith';
@@ -42,5 +43,4 @@ describe('Sign In page', () => {
     cy.url().should('include', '/login');
     cy.get('#flash').should('contain.text', 'You logged out of the secure area!');
   });
-  
 });
