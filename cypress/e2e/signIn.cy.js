@@ -6,6 +6,9 @@ describe('Sign In page', () => {
     cy.visit('https://the-internet.herokuapp.com/login')
   });
   it('should provide an ability to log in', () => {
+    cy.url().should('include', '/login');
+    const validUserName = 'tomsmith';
+    const validPassword = 'SuperSecretPassword!';
     cy.get('#username')
     .type('tomsmith');
     cy.get('#password')
