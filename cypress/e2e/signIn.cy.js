@@ -57,7 +57,7 @@ describe('Sign In page', () => {
     cy.get('#flash')
       .should('contain.text', 'You logged into a secure area!');
 
-    cy.get('.radius').click();
+    cy.get('[href="/logout"]').click();
 
     cy.url().should('eq', 'https://the-internet.herokuapp.com/login');
 
