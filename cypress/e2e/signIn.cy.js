@@ -13,6 +13,13 @@ describe('Sign In page', () => {
     cy.get('input[id="password"]').type(password);
     cy.get('button[type="submit"]').click();
     cy.get('#flash.flash.success').should('exist');
+  });
+
+  it('should show logout validation message', () => {
+    cy.get('input[id="username"]').type(username);
+    cy.get('input[id="password"]').type(password);
+    cy.get('button[type="submit"]').click();
+    cy.get('#flash.flash.success').should('exist');
     cy.get('a.button.secondary.radius[href="/logout"]').click();
     cy.get('#flash.flash.success').should('exist');
   });
