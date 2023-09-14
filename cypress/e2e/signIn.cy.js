@@ -17,9 +17,9 @@ describe('Sign In page', () => {
     cy.get('#password')
       .type(validPassword);
 
-    cy.get('.fa.fa-2x').click();
+    cy.get('.radius').click();
 
-    cy.get('.flash.success')
+    cy.get('#flash')
       .should('contain.text', 'You logged into a secure area!');
   });
 
@@ -30,9 +30,9 @@ describe('Sign In page', () => {
     cy.get('#password')
       .type(validPassword);
 
-    cy.get('.fa.fa-2x').click();
+    cy.get('.radius').click();
 
-    cy.get('.flash.error').should('contain.text', 'Your username is invalid!');
+    cy.get('#flash').should('contain.text', 'Your username is invalid!');
   });
 
   it('should not provide an ability to log in with invalid password', () => {
@@ -42,9 +42,9 @@ describe('Sign In page', () => {
     cy.get('#password')
       .type(invalidPassword);
 
-    cy.get('.fa.fa-2x').click();
+    cy.get('.radius').click();
 
-    cy.get('.flash.error').should('contain.text', 'Your password is invalid!');
+    cy.get('#flash').should('contain.text', 'Your password is invalid!');
   });
 
   it('should provide an ability to log out from the app', () => {
@@ -52,16 +52,16 @@ describe('Sign In page', () => {
 
     cy.get('#password').type(validPassword);
 
-    cy.get('.fa.fa-2x').click();
+    cy.get('.radius').click();
 
-    cy.get('.flash.success')
+    cy.get('#flash')
       .should('contain.text', 'You logged into a secure area!');
 
-    cy.get('.button.secondary.radius').click();
+    cy.get('.radius').click();
 
     cy.url().should('eq', 'https://the-internet.herokuapp.com/login');
 
-    cy.get('.flash.success')
+    cy.get('#flash')
       .should('contain.text', ' You logged out of the secure area!');
   });
 });
