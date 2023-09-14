@@ -15,9 +15,13 @@ describe('Login page', () => {
 
   it('should display validation errors after entering invalid creds', () => {
     cy.get('[id="username"]').type('username');
-    cy.get('[id="password"]').type('qwe123');
+    cy.get('[id="password"]').type('SuperSecretPassword!');
     cy.get('[type="submit"]').click();
     cy.get('[id="flash"]').should('contains.text', 'Your username is invalid!');
+    cy.get('[id="username"]').type('tomsmith');
+    cy.get('[id="password"]').type('qwe123');
+    cy.get('[type="submit"]').click();
+    cy.get('[id="flash"]').should('contains.text', 'Your password is invalid!');
   });
 
   it('should provide an ability to log out after successful log in', () => {
