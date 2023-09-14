@@ -20,6 +20,11 @@ describe('Sign In page', () => {
   it('should not login with invalid credentials', () => {
     cy.visit('https://the-internet.herokuapp.com/login');
     cy.get('input[id="username"]').type(invUsername);
+    cy.get('input[id="password"]').type(password);
+    cy.get('button[type="submit"]').click();
+    cy.get('#flash.flash.error').should('exist');
+
+    cy.get('input[id="username"]').type(username);
     cy.get('input[id="password"]').type(invPassword);
     cy.get('button[type="submit"]').click();
     cy.get('#flash.flash.error').should('exist');
