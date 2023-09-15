@@ -23,6 +23,13 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain.text', 'Your username is invalid!')
   });
 
+  it('should Login with invalid creds', () => {
+    cy.get('#username').type(userNmae + '_sobaka');
+    cy.get('#password').type(password + '_sobaka');
+    cy.get('.fa').click()
+    cy.get('#flash').should('contain.text', 'Your username is invalid!')
+  });
+  
   it('Logout from the app',()=>{
     cy.get('#username').type(userNmae);
     cy.get('#password').type(password);
