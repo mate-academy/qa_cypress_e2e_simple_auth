@@ -60,7 +60,7 @@ describe('Sign In page', () => {
     cy.get('#flash')
       .should('contain.text', 'You logged into a secure area!');
 
-    cy.get('#content > div > a > i').click();
+    cy.get('[href="/logout"]').click();
 
     cy.url().should('include', '/login');
 
