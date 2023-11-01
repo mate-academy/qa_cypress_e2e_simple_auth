@@ -6,21 +6,28 @@ describe('Sign In page', () => {
   });
 
   it('Login with valid creds', () => {
-    cy.validUserData();
+    cy.loginWithValidCreds();
 
     cy.get('#flash')
       .should('contains.text', 'You logged into a secure area!');
   });
 
-  it('Login with invalid creds', () => {
-    cy.invalidUserData();
+  it('Login with invalid username', () => {
+    cy.loginWithInvalidUserName();
 
     cy.get('#flash')
       .should('contains.text', 'Your username is invalid!');
   });
 
+  it('Login with invalid password', () => {
+    cy.loginWithInvalidPassword();
+
+    cy.get('#flash')
+      .should('contains.text', 'Your password is invalid!');
+  });
+
   it('Logout is successfull', () => {
-    cy.validUserData();
+    cy.loginWithValidCreds();
 
     cy.get('[href="/logout"]')
       .click();
