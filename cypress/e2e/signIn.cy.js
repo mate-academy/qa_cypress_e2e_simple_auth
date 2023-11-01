@@ -3,6 +3,8 @@
 describe('Sign In page', () => {
   const password = 'SuperSecretPassword!';
   const username = 'tomsmith';
+  const usernameFalse = 'TestSuper';
+  const passwordFalse = 'Super';
 
   beforeEach(() => {
     cy.visit('https://the-internet.herokuapp.com/login');
@@ -17,10 +19,7 @@ describe('Sign In page', () => {
       .should('contain', 'You logged into a secure area!');
   });
 
-  it('Should not allow login with invalid credentials', () => {
-    const usernameFalse = 'TestSuper';
-    const passwordFalse = 'Super';
-
+  it('Should not allow login with invalid password', () => {
     cy.get('#username').type(username);
     cy.get('#password').type(passwordFalse);
 
@@ -28,7 +27,9 @@ describe('Sign In page', () => {
 
     cy.get('#flash')
       .should('contain', 'Your password is invalid!');
+  });
 
+  it('Should not allow login with invalid username', () => {
     cy.get('#username').type(usernameFalse);
     cy.get('#password').type(password);
 
@@ -37,6 +38,7 @@ describe('Sign In page', () => {
     cy.get('#flash')
       .should('contain', 'Your username is invalid!');
   });
+
   it('Should provide an ability to log out from the site', () => {
     cy.get('#username').type(username);
     cy.get('#password').type(password);
