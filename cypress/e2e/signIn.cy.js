@@ -24,13 +24,25 @@ describe('Sign In page', () => {
       .type('tomsmit');
 
     cy.get('#password')
-      .type('SuperSecretPasswor');
+      .type('SuperSecretPassword!');
 
     cy.get('.radius')
       .click();
 
     cy.get('#flash')
       .should('contain', ' Your username is invalid!');
+
+    cy.get('#username')
+      .type('tomsmith');
+
+    cy.get('#password')
+      .type('SuperSecretPasswo');
+
+    cy.get('.radius')
+      .click();
+
+    cy.get('#flash')
+      .should('contain', ' Your password is invalid!');
   });
 
   it('should provide an ability to log out from the app', () => {
