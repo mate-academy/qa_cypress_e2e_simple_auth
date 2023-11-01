@@ -17,11 +17,18 @@ describe('Sign In page', () => {
     cy.contains('You logged into a secure area!');
   });
 
-  it('should display validation errors with invalid creds', () => {
+  it('should display validation errors with invalid username', () => {
     cy.get('input[name="username"]').type(invalidUsername);
-    cy.get('input[name="password"]').type(invalidPassword);
+    cy.get('input[name="password"]').type(validPassword);
     cy.get('button.radius').click();
     cy.contains('Your username is invalid!');
+  });
+
+  it('should display validation errors with invalid password', () => {
+    cy.get('input[name="username"]').type(validUsername);
+    cy.get('input[name="password"]').type(invalidPassword);
+    cy.get('button.radius').click();
+    cy.contains('Your password is invalid!');
   });
 
   it('should logout from the app', () => {
