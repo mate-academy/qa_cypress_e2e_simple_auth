@@ -45,6 +45,8 @@ describe('Sign In page', () => {
       .type('SuperSecretPassword!');
     cy.get('.radius')
       .click();
+    cy.get('#flash')
+      .should('contain', 'You logged into a secure area!');
     cy.get('.radius')
       .click();
     cy.get('#flash')
