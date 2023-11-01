@@ -53,6 +53,9 @@ describe('Sign In page', () => {
       .type(validPassword);
     cy.get('.radius')
       .click();
+    cy.get('#flash')
+      .should('contain', 'You logged into a secure area!')
+      .should('be.visible');
     cy.get('.button.secondary')
       .click();
     cy.get('#flash')
