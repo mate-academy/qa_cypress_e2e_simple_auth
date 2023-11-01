@@ -19,7 +19,7 @@ describe('Sign In page', () => {
       .should('contain.text', 'You logged into a secure area!');
   });
 
-  it('should be logged in with invalid username', () => {
+  it('should recieve an error message if log in with invalid username', () => {
     cy.get('#username')
       .type('tomsmit');
 
@@ -33,7 +33,7 @@ describe('Sign In page', () => {
       .should('contain.text', 'Your username is invalid!');
   });
 
-  it('should be logged in with invalid password', () => {
+  it('should recieve an error message if log in with invalid password', () => {
     cy.get('#username')
       .type('tomsmith');
 
