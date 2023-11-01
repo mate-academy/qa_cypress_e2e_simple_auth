@@ -15,7 +15,7 @@ describe('Sign In page', () => {
       .type(userName);
     cy.get('#password')
       .type(password);
-    cy.get('i.fa.fa-2x.fa-sign-in')
+    cy.get('.fa')
       .click();
     cy.get('#flash.flash.success')
       .should('contain', 'You logged into a secure area!');
@@ -26,7 +26,7 @@ describe('Sign In page', () => {
       .type(fakeUserName);
     cy.get('#password')
       .type(password);
-    cy.get('i.fa.fa-2x.fa-sign-in')
+    cy.get('.fa')
       .click();
     cy.get('#flash.flash.error')
       .should('contain', 'Your username is invalid!');
@@ -37,22 +37,22 @@ describe('Sign In page', () => {
       .type(userName);
     cy.get('#password')
       .type(fakePassword);
-    cy.get('i.fa.fa-2x.fa-sign-in')
+    cy.get('.fa')
       .click();
     cy.get('#flash.flash.error')
       .should('contain', 'Your password is invalid!');
   });
 
-  it('should provide to logout from the app:', () => {
+  it('should provide the ability to logout from the app:', () => {
     cy.get('#username')
       .type(userName);
     cy.get('#password')
       .type(password);
-    cy.get('i.fa.fa-2x.fa-sign-in')
+    cy.get('.fa')
       .click();
     cy.get('#flash.flash.success')
       .should('contain', 'You logged into a secure area!');
-    cy.get('i.icon-2x.icon-signout')
+    cy.get('.button')
       .click();
     cy.get('#flash.flash.success')
       .should('contain', 'You logged out of the secure area!');
