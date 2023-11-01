@@ -5,7 +5,7 @@ describe('Sign In page', () => {
     cy.visit('/login');
   });
 
-  it('Login with valid creds', () => {
+  it('should provide the ability to login with valid creds', () => {
     cy.get('#username')
       .type('tomsmith');
     cy.get('#password')
@@ -16,7 +16,7 @@ describe('Sign In page', () => {
       .should('contain', 'You logged into a secure area!');
   });
 
-  it('Login with invalid Username', () => {
+  it('should provide an error message if login with invalid Username', () => {
     cy.get('#username')
       .type('qwerty');
     cy.get('#password')
@@ -27,7 +27,7 @@ describe('Sign In page', () => {
       .should('contain', 'Your username is invalid!');
   });
 
-  it('Login with invalid Password', () => {
+  it('should provide an error message if login with invalid Password', () => {
     cy.get('#username')
       .type('tomsmith');
     cy.get('#password')
@@ -38,7 +38,7 @@ describe('Sign In page', () => {
       .should('contain', 'Your password is invalid!');
   });
 
-  it('Logout from the app', () => {
+  it('should provide the ability to logout from the app', () => {
     cy.get('#username')
       .type('tomsmith');
     cy.get('#password')
