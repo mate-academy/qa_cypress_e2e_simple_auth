@@ -20,7 +20,8 @@ describe('Sign In page', () => {
       .should('be.visible');
   });
 
-  it('should provide validation msg after logging in with inv username', () => {
+  // eslint-disable-next-line max-len
+  it('should provide validation message after logging in with invalid username', () => {
     cy.get('#username')
       .type('validUsername');
     cy.get('#password')
@@ -32,7 +33,8 @@ describe('Sign In page', () => {
       .should('be.visible');
   });
 
-  it('should provide validation msg after logging in with inv pass', () => {
+  // eslint-disable-next-line max-len
+  it('should provide validation message after logging in with invalid password', () => {
     cy.get('#username')
       .type(validUsername);
     cy.get('#password')
