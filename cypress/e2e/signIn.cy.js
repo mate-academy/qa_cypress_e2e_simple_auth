@@ -33,7 +33,7 @@ describe('Sign In page', () => {
 
   it('Login with invalid password', () => {
     cy.get('#username')
-      .type('tomsmit');
+      .type('tomsmith');
 
     cy.get('#password')
       .type('SuperSecressword!');
@@ -41,7 +41,7 @@ describe('Sign In page', () => {
     cy.get('.radius').click();
 
     cy.get('#flash')
-      .should('contain', 'Your username is invalid!');
+      .should('contain', 'Your password is invalid!');
   });
 
   it('Logout from the app', () => {
