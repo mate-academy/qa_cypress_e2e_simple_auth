@@ -11,9 +11,9 @@ describe('Sign In page', () => {
 
   it('Should be able to Sign in with valid data', () => {
     cy.get('#username')
-    .type('tomsmith');
+    .type(login);
     cy.get('#password')
-    .type('SuperSecretPassword!');
+    .type(password);
     cy.get('.fa')
     .click();
     cy.get('.flash.success')
@@ -22,9 +22,9 @@ describe('Sign In page', () => {
 
   it('should logout from the app', () => {
     cy.get('#username')
-    .type('tomsmith');
+    .type(login);
     cy.get('#password')
-    .type('SuperSecretPassword!');
+    .type(password);
     cy.get('.fa')
     .click();
 
@@ -36,11 +36,11 @@ describe('Sign In page', () => {
     .should('contain', 'You logged out of the secure area!');
   });
 
-  it('Should be UNABLE to Sign in with invalid data', () => {
+  it('should login with invalid creds and assert the username error', () => {
     cy.get('#username')
-    .type('tomisnotsmith');
+    .type('notUsername');
     cy.get('#password')
-    .type('SuperSecretPassword!');
+    .type(password);
     cy.get('.fa')
     .click();
 
@@ -48,12 +48,12 @@ describe('Sign In page', () => {
     .should('contain', 'Your username is invalid!');
   });
 
-  it('', () => {
+  it('should login with invalid creds and assert the password error', () => {
     it('should login with invalid creds and assert the password error', () => {
       cy.get('#username')
-      .type('tomsmith');
+      .type(login);
       cy.get('#password')
-      .type('NotReallySuperSecretPassword!');
+      .type('orest123SuperSecretPassword!');
       cy.get('.fa')
       .click();
   
