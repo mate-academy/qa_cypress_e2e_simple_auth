@@ -12,35 +12,49 @@ describe('Sign In page', () => {
     cy.get('#password')
       .type('SuperSecretPassword!');
 
-    cy.get('.fa')
+    cy.contains('.fa', 'Login')
       .click();
 
     cy.get('#flash')
       .should('contain.text', 'You logged into a secure area!');
   });
 
-  it('should be login with invalid creds (invalid Username, Password)', () => {
+  it('should be logged in with invalid username', () => {
     cy.get('#username')
       .type('tomsmit');
 
     cy.get('#password')
-      .type('SuperSecretPassword');
+      .type('SuperSecretPassword!');
 
-    cy.get('.fa')
+    cy.contains('.fa', 'Login')
       .click();
 
     cy.get('#flash')
       .should('contain.text', 'Your username is invalid!');
   });
 
-  it('should be logout from the app', () => {
+  it('should be logged in with invalid password', () => {
+    cy.get('#username')
+      .type('tomsmith');
+
+    cy.get('#password')
+      .type('SuperSecretPassword');
+
+    cy.contains('.fa', 'Login')
+      .click();
+
+    cy.get('#flash')
+      .should('contain.text', 'Your password is invalid');
+  });
+
+  it('should be loged out from the app', () => {
     cy.get('#username')
       .type('tomsmith');
 
     cy.get('#password')
       .type('SuperSecretPassword!');
 
-    cy.get('.fa')
+    cy.contains('.fa', 'Login')
       .click();
 
     cy.get('.icon-2x')
