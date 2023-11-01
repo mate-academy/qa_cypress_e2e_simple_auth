@@ -18,15 +18,28 @@ describe('Sign In page', () => {
       .should('contain', 'Secure Area');
   });
 
-  it('should not allow to login with invalid creds', () => {
+  it('should not allow to login with invalid username', () => {
     cy.get('#username')
       .type(`tomsmith1`);
+    cy.get('#password')
+      .type(`SuperSecretPassword!`);
+    cy.get('[type="submit"]')
+      .click();
+    cy.get('.error')
+      .should('contain', 'Your username is invalid!');
+    cy.get('h2')
+      .should('contain', 'Login Page');
+  });
+
+  it('should not allow to login with invalid password', () => {
+    cy.get('#username')
+      .type(`tomsmith`);
     cy.get('#password')
       .type(`SuperSecretPassword!1`);
     cy.get('[type="submit"]')
       .click();
     cy.get('.error')
-      .should('contain', 'Your username is invalid!');
+      .should('contain', 'Your password is invalid!');
     cy.get('h2')
       .should('contain', 'Login Page');
   });
