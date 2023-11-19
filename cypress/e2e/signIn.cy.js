@@ -2,7 +2,7 @@
 
 describe('Sign In page', () => {
   beforeEach(() => {
-    cy.visit('https://the-internet.herokuapp.com/login'); // visit the login page before each test
+    cy.visit('https://the-internet.herokuapp.com/login');
   });
 
   it('should login with valid credentials', () => {
