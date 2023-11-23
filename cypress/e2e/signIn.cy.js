@@ -7,6 +7,8 @@ describe('Sign In page', () => {
 
   const userName = 'tomsmith';
   const password = 'SuperSecretPassword!';
+  const userNameFake = Math.random().toString().slice(2);
+  const passwordFake = Math.random().toString().slice(2);
   const text = {
     loginPage: 'Login Page',
     area: 'Secure Area'
@@ -22,8 +24,14 @@ describe('Sign In page', () => {
     cy.get('[id="username"]')
       .type(userName);
 
+    cy.get('[id="username"]')
+      .should('have.value', userName);
+
     cy.get('[id="password"]')
       .type(password);
+
+    cy.get('[id="password"]')
+      .should('have.value', password);
 
     cy.get('.fa')
       .click();
@@ -36,8 +44,6 @@ describe('Sign In page', () => {
   });
 
   it('should not log in with invalid user name', () => {
-    const userName = Math.random().toString().slice(2);
-
     cy.contains('Login Page')
       .click();
 
@@ -45,10 +51,16 @@ describe('Sign In page', () => {
       .should('contain.text', text.loginPage);
 
     cy.get('[id="username"]')
-      .type(userName);
+      .type(userNameFake);
+
+    cy.get('[id="username"]')
+      .should('have.value', userNameFake);
 
     cy.get('[id="password"]')
       .type(password);
+
+    cy.get('[id="password"]')
+      .should('have.value', password);
 
     cy.get('.fa')
       .click();
@@ -58,13 +70,17 @@ describe('Sign In page', () => {
   });
 
   it('should not log in with invalid password', () => {
-    const password = Math.random().toString().slice(2);
-
     cy.get('[id="username"]')
       .type(userName);
 
+    cy.get('[id="username"]')
+      .should('have.value', userName);
+
     cy.get('[id="password"]')
-      .type(password);
+      .type(passwordFake);
+
+    cy.get('[id="password"]')
+      .should('have.value', passwordFake);
 
     cy.get('.fa')
       .click();
@@ -86,8 +102,14 @@ describe('Sign In page', () => {
     cy.get('[id="username"]')
       .type(userName);
 
+    cy.get('[id="username"]')
+      .should('have.value', userName);
+
     cy.get('[id="password"]')
       .type(password);
+
+    cy.get('[id="password"]')
+      .should('have.value', password);
 
     cy.get('.fa')
       .click();
