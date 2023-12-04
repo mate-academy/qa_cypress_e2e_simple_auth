@@ -2,51 +2,38 @@
 
 describe('Sign In page', () => {
   beforeEach(() => {
-    cy.visit('https://react-redux.realworld.io');
+    cy.visit('https://the-internet.herokuapp.com/login');
   });
   it('should provide an ability to log in with valid credentials', () => {
-    cy.get('.navbar a')
-      .contains('Sign in')
-      .click();
-    cy.get('input[type="email"]')
-      .type('kredki@kredki.com');
-    cy.get('input[type ="password"]')
-      .type('kredki');
+    cy.get('input[name = "username"]')
+      .type('tomsmith');
+    cy.get('input[name = "password"]')
+      .type('SuperSecretPassword!');
     cy.get('button[type="submit"]')
       .click();
-    cy.get('.navbar')
-      .should('contain', 'kredki');
+    cy.get('#flash-messages')
+      .should('contain', 'You logged into a secure area!');
   });
   it(`shouldn't provide the ability to login with invalid credentials`, () => {
-    cy.get('.navbar a')
-      .contains('Sign in')
-      .click();
-    cy.get('input[type="email"]')
-      .type('kredkivillain@kredki.com');
-    cy.get('input[type ="password"]')
-      .type('kredkibadguy');
+    cy.get('input[name = "username"]')
+      .type('badguyhacker');
+    cy.get('input[name = "password"]')
+      .type('villainpassword');
     cy.get('button[type="submit"]')
       .click();
-    cy.get('ul')
-      .should('contain', 'email or password is invalid');
+    cy.get('#flash-messages')
+      .should('contain', 'Your username is invalid!');
   });
   it('should provide an ability to log out after succesfull login', () => {
-    cy.get('.navbar a')
-      .contains('Sign in')
-      .click();
-    cy.get('input[type="email"]')
-      .type('kredki@kredki.com');
-    cy.get('input[type ="password"]')
-      .type('kredki');
+    cy.get('input[name = "username"]')
+      .type('tomsmith');
+    cy.get('input[name = "password"]')
+      .type('SuperSecretPassword!');
     cy.get('button[type="submit"]')
       .click();
-    cy.get('.navbar a')
-      .contains('Settings')
+    cy.get('.button')
       .click();
-    cy.get('button')
-      .contains('Or click here to logout.')
-      .click();
-    cy.get('.navbar')
-      .should('not.contain', 'kredki');
+    cy.get('#flash-messages')
+      .should('contain', 'You logged out of the secure area!');
   });
 });
