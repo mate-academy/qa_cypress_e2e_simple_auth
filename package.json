@@ -15,7 +15,7 @@
     "@types/cypress": "latest",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
-    "cypress": "^12.13.0",
+    "cypress": "^12.17.4",
     "eslint": "^8.34.0",
     "eslint-config-standard-with-typescript": "^34.0.0",
     "eslint-plugin-import": "^2.27.5",
@@ -33,5 +33,12 @@
   },
   "lint-staged": {
     "*.js": "eslint --max-warnings=0"
-  }
+  },
+  "name": "qa_cypress_e2e_simple_auth",
+  "description": "## Workflow",
+  "version": "1.0.0",
+  "main": ".eslintrc.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
