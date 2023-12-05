@@ -12,6 +12,7 @@ describe('Sign In page', () => {
     cy.url().should('contain', '/secure');
     cy.get('body .row').get('#content .example').get('h2')
       .should('have.text', ' Secure Area');
+    cy.get('#flash').should('contain', 'You logged into a secure area!');
   });
 
   it('Logout from the app', () => {
@@ -21,6 +22,7 @@ describe('Sign In page', () => {
     cy.get('body .row:last-child').get('#content .example')
       .get('a[class="button secondary radius"]').contains('Logout').click();
     cy.url().should('include', '/login');
+    cy.get('body').should('contain.text', 'You logged out of the secure area!');
   });
 
   it('Login with invalid creds', () => {
