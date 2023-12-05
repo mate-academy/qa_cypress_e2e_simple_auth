@@ -12,16 +12,22 @@ describe('Sign In page', () => {
     cy.url().should('contain', '/secure');
     cy.get('body .row').get('#content .example').get('h2')
       .should('have.text', ' Secure Area');
-    // Logout from the app
+  });
+
+  it('Logout from the app', () => {
+    cy.get('input[id="username"]').type('tomsmith');
+    cy.get('input[id="password"]').type('SuperSecretPassword!');
+    cy.get('form button').get('.radius').contains('Login').click();
     cy.get('body .row:last-child').get('#content .example')
       .get('a[class="button secondary radius"]').contains('Logout').click();
+    cy.url().should('include', '/login');
   });
 
   it('Login with invalid creds', () => {
-    cy.get('input[id="username"]').type('tom123');
+    cy.get('input[id="username"]').type('tomsmith');
     cy.get('input[id="password"]').type('SuperSecret!');
     cy.get('form button').get('.radius').contains('Login').click();
     cy.get('body').get('.row:first-child #flash')
-      .should('contain', 'Your username is invalid!');
+      .should('contain', 'Your password is invalid!');
   });
 });
