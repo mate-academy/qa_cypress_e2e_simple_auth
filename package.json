@@ -4,7 +4,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "cypress-image-snapshot": "^4.0.1",
+    "cypress-image-snapshot": "^3.1.1",
     "eslint-plugin-cypress": "^2.12.1",
     "faker": "^5.5.3",
     "pg": "^8.9.0",
@@ -15,7 +15,7 @@
     "@types/cypress": "latest",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
-    "cypress": "^12.13.0",
+    "cypress": "^13.6.1",
     "eslint": "^8.34.0",
     "eslint-config-standard-with-typescript": "^34.0.0",
     "eslint-plugin-import": "^2.27.5",
