@@ -29,7 +29,7 @@ describe('Sign In page', () => {
     cy.get('#flash-messages').should('contain.text', 'Your username is invalid!');
   });
 
-  it.only('Logout from the app', () => {
+  it.('Logout from the app', () => {
     // Login
     cy.get('input[name = username]').type('tomsmith');
     cy.get('input[name = password]').type('SuperSecretPassword!');
