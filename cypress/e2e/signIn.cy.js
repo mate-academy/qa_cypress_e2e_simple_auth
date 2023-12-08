@@ -5,9 +5,12 @@ describe('Sign In page', () => {
     cy.visit('https://the-internet.herokuapp.com/login');
   });
 
+  const username = 'tomsmith';
+  const password = 'SuperSecretPassword!';
+  const invalidUsername = 'invalidtomsmith';
+  const invalidPassword = 'invalidSuperSecretPassword!';
+
   it('Login with valid creds', () => {
-    const username = 'tomsmith';
-    const password = 'SuperSecretPassword!';
     cy.get('input[name="username"]').type(username);
     cy.get('input[name="password"]').type(password);
     cy.contains('[type="submit"]', 'Login');
@@ -16,10 +19,8 @@ describe('Sign In page', () => {
   });
 
   it('Login with invalid creds', () => {
-    const username = 'falsetomsmith';
-    const password = 'falseSuperSecretPassword!';
-    cy.get('input[name="username"]').type(username);
-    cy.get('input[name="password"]').type(password);
+    cy.get('input[name="username"]').type(invalidUsername);
+    cy.get('input[name="password"]').type(invalidPassword);
     cy.contains('[type="submit"]', 'Login');
     cy.contains(' Login').click();
     cy.get('#flash-messages')
@@ -27,8 +28,6 @@ describe('Sign In page', () => {
   });
 
   it('Logout from the app', () => {
-    const username = 'tomsmith';
-    const password = 'SuperSecretPassword!';
     cy.get('input[name="username"]').type(username);
     cy.get('input[name="password"]').type(password);
     cy.contains('[type="submit"]', 'Login');
