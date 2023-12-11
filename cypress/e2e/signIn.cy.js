@@ -1,50 +1,70 @@
 /// <reference types="cypress" />
 
 describe('Sign In page', () => {
+  const username = 'tomsmith';
+  const password = 'SuperSecretPassword!';
+  const invalidUsername = 'tomssmmith';
+  const invalidPassword = 'SuperCecretPassword!';
+
   beforeEach(() => {
     cy.visit('https://the-internet.herokuapp.com/login');
   });
-  // user invalid creds username
-  it('user unsuccesfoully logged in - wrong username', () => {
-    const username = 'tomsmmith';
-    const password = 'SuperSecretPassword!';
 
+  it('user unsuccessfully logged in - wrong username', () => {
+    cy.url()
+      .should('include', '/login');
     cy.get('#username')
-      .type(username);
+      .type(invalidUsername);
     cy.get('#password')
       .type(password);
     cy.get('[type="submit"]')
+      .should('exist')
+      .click();
+    cy.get('#flash')
+      .should('be.visible');
+  });
+
+  it('user unsuccessfully logged in - wrong password', () => {
+    cy.get('h2')
+      .contains('Login Page');
+    cy.get('#username')
+      .type(username);
+    cy.get('#password')
+      .type(invalidPassword);
+    cy.get('[type="submit"]')
+      .should('be.visible')
       .click();
   });
-  // user invalid creds password
-  it('user unsuccesfoully logged in - wrong password', () => {
-    const username = 'tomsmith';
-    const password = 'SuperSecretPassword';
 
+  it('user "tomsmith" successfully logged in', () => {
     cy.get('#username')
       .type(username);
     cy.get('#password')
       .type(password);
     cy.get('[type="submit"]')
       .click();
-  });
-  // user is valid creds
-  it('user "tomsmith" succesfoully logged in', () => {
-    const username = 'tomsmith';
-    const password = 'SuperSecretPassword!';
-
-    cy.get('#username')
-      .type(username);
-    cy.get('#password')
-      .type(password);
-    cy.get('[type="submit"]')
-      .click();
+    cy.url()
+      .should('contains', '/secure');
+    cy.get('h2')
+      .contains('Secure Area');
   });
   // Logout from the app
-  it('user "tomsmith" succesfoully logout from app', () => {
-    cy.url('/secure', 'LOGIN')
-      .should('exist');
-    cy.get('.fa')
+  it('user "tomsmith" successfully logout from app', () => {
+    cy.get('#username')
+      .type(username);
+    cy.get('#password')
+      .type(password);
+    cy.get('[type="submit"]')
       .click();
+    cy.url()
+      .should('contains', '/secure');
+    cy.get('h2')
+      .contains('Secure Area');
+    cy.get('.icon-2x')
+      .click();
+    cy.url('/login')
+      .should('exist');
+    cy.get('#flash')
+      .should('exist');
   });
 });
