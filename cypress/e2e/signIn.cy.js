@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Sign In page', () => {
+describe('Task simple Authorization', () => {
   const username = 'tomsmith';
   const password = 'SuperSecretPassword!';
   const invalidUsername = 'tomssmmith';
@@ -20,8 +20,8 @@ describe('Sign In page', () => {
     cy.get('[type="submit"]')
       .should('exist')
       .click();
-    cy.get('#flash')
-      .should('be.visible');
+    cy.get('#flash-messages')
+      .should('contain.text', 'Your username is invalid!');
   });
 
   it('user unsuccessfully logged in - wrong password', () => {
@@ -34,6 +34,8 @@ describe('Sign In page', () => {
     cy.get('[type="submit"]')
       .should('be.visible')
       .click();
+    cy.get('#flash-messages')
+      .should('contain.text', 'Your password is invalid!');
   });
 
   it('user "tomsmith" successfully logged in', () => {
@@ -47,6 +49,8 @@ describe('Sign In page', () => {
       .should('contains', '/secure');
     cy.get('h2')
       .contains('Secure Area');
+    cy.get('#flash-messages')
+      .should('contain.text', 'You logged into a secure area!');
   });
   // Logout from the app
   it('user "tomsmith" successfully logout from app', () => {
@@ -66,5 +70,7 @@ describe('Sign In page', () => {
       .should('exist');
     cy.get('#flash')
       .should('exist');
+    cy.get('#flash-messages')
+      .should('contain.text', 'You logged out of the secure area!');
   });
 });
