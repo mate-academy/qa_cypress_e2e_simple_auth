@@ -9,7 +9,7 @@ describe('Sign In page', () => {
     cy.visit('/login');
   });
 
-  it('should provide the ability to login with valid credentials', () => {
+  it('is possible to log in with valid credentials', () => {
     // Go to Login Page and verify
     cy.get('h2').should('contain.text', 'Login Page');
     cy.get('body form').should('exist');
@@ -22,13 +22,20 @@ describe('Sign In page', () => {
     cy.url().should('equal', 'https://the-internet.herokuapp.com/secure');
     cy.get('div #flash-messages')
       .should('contain.text', 'You logged into a secure area!');
+  });
+
+  it('is possible to successfully log out', () => {
     // Verify successfull log out
+    cy.get('#username').type(userName);
+    cy.get('#password').type(password);
+    cy.get('[type="submit"]').click();
     cy.get('.button').contains('Logout').click();
     cy.get('div #flash-messages')
       .should('contain.text', 'You logged out of the secure area!');
+    cy.get('h2').should('contain.text', 'Login Page');
   });
 
-  it('should not provide the ability to login with invalid credentials', () => {
+  it('is impossible to log in with invalid credentials', () => {
     // Go to Login Page and verify
     cy.get('h2').should('contain.text', 'Login Page');
     cy.get('body form').should('exist');
