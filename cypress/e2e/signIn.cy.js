@@ -10,7 +10,6 @@ describe('Sign In page', () => {
     cy.get('#password').type('SuperSecretPassword!');
     cy.get('.fa').click();
     cy.get('#flash').should('contain', 'You logged into a secure area');
-    cy.get('.icon-2x').should('contain', 'Logout');
   });
 
   it('should does not allow to log in with invalid cred', () => {
@@ -20,7 +19,7 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain', 'Your username is invalid');
   });
 
-  it('should allow to log in with valid cred', () => {
+  it('should allow to log out', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!');
     cy.get('.fa').click();
