@@ -12,11 +12,18 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain', 'You logged into a secure area');
   });
 
-  it('should does not allow to log in with invalid cred', () => {
+  it('should does not allow to log in with invalid username', () => {
     cy.get('#username').type('anatolii');
-    cy.get('#password').type('Password#');
+    cy.get('#password').type('SuperSecretPassword!');
     cy.get('.fa').click();
     cy.get('#flash').should('contain', 'Your username is invalid');
+  });
+
+  it('should does not allow to log in with invalid password', () => {
+    cy.get('#username').type('tomsmith');
+    cy.get('#password').type('Password#');
+    cy.get('.fa').click();
+    cy.get('#flash').should('contain', 'Your password is invalid');
   });
 
   it('should allow to log out', () => {
