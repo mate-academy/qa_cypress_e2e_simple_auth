@@ -5,7 +5,7 @@ describe('Sign In page', () => {
     cy.visit('/login');
   });
 
-  it.skip('should provide an ability to log in with valid creds', () => {
+  it('should provide an ability to log in with valid creds', () => {
     cy.get('h2:contains("Login Page")').should('be.visible');
     cy.get('#username')
       .type('tomsmith');
@@ -15,7 +15,7 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain', 'logged into');
   });
 
-  it.skip('should not provide an ability to log in with invalid creds', () => {
+  it('should not provide an ability to log in with invalid creds', () => {
     cy.get('#username')
       .type('invalidCreds');
     cy.get('#password')
