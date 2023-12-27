@@ -15,7 +15,7 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain', 'logged into');
   });
 
-  it('should not provide an ability to log in with invalid creds', () => {
+  it('should not provide an ability to log in with invalid login', () => {
     cy.get('#username')
       .type('invalidCreds');
     cy.get('#password')
@@ -24,6 +24,17 @@ describe('Sign In page', () => {
       .click();
     cy.get('#flash')
       .should('include.text', 'Your username is invalid!');
+  });
+
+  it('should not provide an ability to log in with invalid password', () => {
+    cy.get('#username')
+      .type('tomsmith');
+    cy.get('#password')
+      .type('InvalidPassword!');
+    cy.get('button.radius')
+      .click();
+    cy.get('#flash')
+      .should('include.text', 'Your password is invalid!');
   });
 
   it('should provide an ability to log out', () => {
