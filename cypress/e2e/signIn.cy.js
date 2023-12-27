@@ -12,11 +12,17 @@ describe('Login In page', () => {
     cy.get('#flash').should('contain', 'You logged into a secure area!');
   });
 
-  it('Login with invalid creds', () => {
-    cy.get('#username').type('Username');
-    cy.get('#password').type('Password!');
+  it('Login with invalid username', () => {
+    cy.get('#username').type('username');
+    cy.get('#password').type('SuperSecretPassword');
     cy.get('.radius').click();
     cy.get('#flash').should('contain', 'Your username is invalid!');
+  });
+  it('Login with invalid password', () => {
+    cy.get('#username').type('tomsmith');
+    cy.get('#password').type('password');
+    cy.get('.radius').click();
+    cy.get('#flash').should('contain', ' Your password is invalid!');
   });
   it('Logout from the app', () => {
     cy.get('#username').type('tomsmith');
