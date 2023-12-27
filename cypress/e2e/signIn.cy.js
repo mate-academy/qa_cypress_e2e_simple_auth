@@ -17,15 +17,25 @@ describe('Sign In page', () => {
     cy.get('#flash')
       .should('contain', 'You logged into a secure area!');
   });
-  it('should not login with invalid credentials', () => {
+  it('should not login with invalid username', () => {
     cy.get('#username')
       .type('SerhiiSoloviov');
     cy.get('#password')
-      .type('123456789');
+      .type('SuperSecretPassword!');
     cy.get('.fa')
       .click();
     cy.get('#flash')
       .should('contain', 'Your username is invalid!');
+  });
+  it('should not login with invalid password', () => {
+    cy.get('#username')
+      .type('tomsmith');
+    cy.get('#password')
+      .type('1234567890');
+    cy.get('.fa')
+      .click();
+    cy.get('#flash')
+      .should('contain', 'Your password is invalid!');
   });
   it('should logout from the app', () => {
     cy.get('#username')
