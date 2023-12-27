@@ -26,7 +26,7 @@ describe('Sign In page', () => {
       .should('contain.text', 'You logged into a secure area!');
   });
 
-  it('user shoudnt login with invalid credits', () => {
+  it('user shoudnt login with incorrect login and correct password', () => {
     cy.get('h2')
       .should('contain.text', 'Login Page');
 
@@ -34,12 +34,28 @@ describe('Sign In page', () => {
       .type(invalidLogin);
 
     cy.get('#password')
-      .type(invalidPassword);
+      .type(password);
 
     cy.get('.fa').click();
 
     cy.get('#flash')
       .should('contain.text', 'Your username is invalid!');
+  });
+
+  it('user shoudnt login with correst login and incorrect password', () => {
+    cy.get('h2')
+      .should('contain.text', 'Login Page');
+
+    cy.get('#username')
+      .type(login);
+
+    cy.get('#password')
+      .type(invalidPassword);
+
+    cy.get('.fa').click();
+
+    cy.get('#flash')
+      .should('contain.text', 'Your password is invalid!');
   });
 
   it('user should be able to logout', () => {
