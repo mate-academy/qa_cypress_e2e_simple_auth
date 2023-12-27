@@ -5,7 +5,7 @@ describe('Sign In page', () => {
     cy.visit('/login')
   });
      
-      it('should contain an invalid username to log in', () => {
+      it('should not provide an ability to log in with invalid username', () => {
         cy.get('#username').type('tomsmith1');
         cy.get('#password').type('SuperSecretPassword!');
         cy.get('.fa').click();
@@ -13,7 +13,7 @@ describe('Sign In page', () => {
         
       });
 
-      it('should contain an invalid password to log in', () => {
+      it('should not provide an ability to log in with invalid password', () => {
         cy.get('#username').type('tomsmith');
         cy.get('#password').type('SuperSecretPassword');
         cy.get('.fa').click();
