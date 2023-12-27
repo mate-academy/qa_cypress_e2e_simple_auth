@@ -2,7 +2,7 @@
 
 describe('Sign In page', () => {
   beforeEach(() => {
-    cy.visit('https://the-internet.herokuapp.com/login');
+    cy.visit('/login');
   });
 
   it('should allow to login with valid creds', () => {
@@ -19,9 +19,26 @@ describe('Sign In page', () => {
       .should('not.include', '/login');
   });
 
-  it('should not allow to login with invalid creds', () => {
+  it('should not allow to login with invalid username', () => {
     cy.get('#username')
       .type('neon');
+
+    cy.get('#password')
+      .type('SuperSecretPassword!');
+
+    cy.get('.fa')
+      .click();
+
+    cy.url()
+      .should('include', '/login');
+
+    cy.get('#flash')
+      .should('contain', 'Your username is invalid!');
+  });
+
+  it('should not allow to login with invalid password', () => {
+    cy.get('#username')
+      .type('tomsmith');
 
     cy.get('#password')
       .type('neon');
@@ -33,7 +50,7 @@ describe('Sign In page', () => {
       .should('include', '/login');
 
     cy.get('#flash')
-      .should('contain', 'Your username is invalid!');
+      .should('contain', 'Your password is invalid!');
   });
 
   it('should allow to logout after being logged in', () => {
