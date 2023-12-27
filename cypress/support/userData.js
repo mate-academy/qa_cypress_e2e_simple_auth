@@ -4,10 +4,16 @@ function userData() {
   return { username, password };
 }
 
-function invalidUserData() {
+function invalidUserUsername() {
   const username = 'aaaaaa';
-  const password = '11111';
+  const password = 'SuperSecretPassword!';
   return { username, password };
 }
 
-module.exports = { userData, invalidUserData };
+function invalidUserPassword() {
+  const username = 'tomsmith';
+  const password = '11111!';
+  return { username, password };
+}
+
+module.exports = { userData, invalidUserUsername, invalidUserPassword };
