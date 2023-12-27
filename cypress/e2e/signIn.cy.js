@@ -12,9 +12,15 @@ describe('Sign In page', () => {
     cy.url().should('not.include', '/login');
   });
   
-  it('shouldnt login with invalid creds', () => {
-    cy.get('#username').type('1');
+  it('shouldnt login with invalid password', () => {
+    cy.get('#username').type('tomsmith');
     cy.get('#password'). type('1');
+    cy.get('.fa').click();
+    cy.get('.flash').should('contain', 'Your password is invalid');
+  })
+   it('shouldnt login with invalid username', () => {
+    cy.get('#username').type('1');
+    cy.get('#password'). type('SuperSecretPassword!');
     cy.get('.fa').click();
     cy.get('.flash').should('contain', 'Your username is invalid');
   })
