@@ -10,11 +10,20 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain.text', 'You logged into a secure area!')
   });
 
-  it('should not provide an ability to log in with invalid creds', () => {
+  it('should not provide an ability to log in with invalid Username', () => {
     cy.visit('https://the-internet.herokuapp.com/login')
     cy.get('#username').click()
     cy.get('#username').type('testing')
-    cy.get('#password').type('test12!')
+    cy.get('#password').type('SuperSecretPassword!')
+    cy.get('.radius').click()
+    cy.get('#flash').should('contain.text', 'Your username is invalid!')
+  });
+
+  it('should not provide an ability to log in with invalid Password', () => {
+    cy.visit('https://the-internet.herokuapp.com/login')
+    cy.get('#username').click()
+    cy.get('#username').type('tomsmith')
+    cy.get('#password').type('SuperSecretPasswo')
     cy.get('.radius').click()
     cy.get('#flash').should('contain.text', 'Your username is invalid!')
   });
