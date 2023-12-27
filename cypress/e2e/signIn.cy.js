@@ -2,10 +2,23 @@
 
 describe('Sign In page', () => {
   beforeEach(() => {
-
+    cy.visit('https://the-internet.herokuapp.com/login');
   });
 
-  it('', () => {
-
+  it('should provide an ability to log in', () => {
+    cy.get('#username').type('tomsmith');
+    cy.get('#password').type('SuperSecretPassword!');
+    cy.get('.radius').click();
+  });
+  it('shouldn`t provide an ability to log in with invalid data', () => {
+    cy.get('#username').type('Username');
+    cy.get('#password').type('Password');
+    cy.get('.radius').click();
+  });
+  it('should provide an ability to log in', () => {
+    cy.get('#username').type('tomsmith');
+    cy.get('#password').type('SuperSecretPassword!');
+    cy.get('.radius').click();
+    cy.get('.button.secondary.radius').click();
   });
 });
