@@ -39,5 +39,6 @@ describe('Sign In page', () => {
     cy.get('.flash').should('contain', 'You logged into a secure area!');
     // Logout
     cy.contains('Logout').click();
+    cy.get('.flash').should('contain', 'You logged out of the secure area!');
   });
 });
