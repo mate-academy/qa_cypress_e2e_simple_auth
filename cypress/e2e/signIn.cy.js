@@ -20,9 +20,19 @@ describe('Sign In page', () => {
   });
 
   it('should show validation errors with invalid credentials', () => {
-    // Login with invalid credentials
-    cy.get('#username').type('invalidUsername');
+    // Login with invalid password
+    cy.get('#username').type('tomsmith');
     cy.get('#password').type('invalidPassword');
+    cy.get('button[type="submit"]').click();
+
+    // Assert validation errors
+    cy.get('.flash').should('contain', 'Your password is invalid!');
+  });
+
+  it('should show validation errors with invalid credentials', () => {
+    // Login with invalid username
+    cy.get('#username').type('invalidUsername');
+    cy.get('#password').type('SuperSecretPassword!');
     cy.get('button[type="submit"]').click();
 
     // Assert validation errors
