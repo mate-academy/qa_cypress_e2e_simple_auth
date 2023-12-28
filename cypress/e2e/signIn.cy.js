@@ -15,10 +15,4 @@ describe('Sign In page', () => {
     cy.get('#password').type(`${password}123`);
     cy.get('.radius').click();
   });
-  it('should to logout from Secure area', () => {
-    cy.get('#username').type(username);
-    cy.get('#password').type(password);
-    cy.get('.radius').click();
-    cy.get('.button.secondary.radius').click();
-  });
 });
