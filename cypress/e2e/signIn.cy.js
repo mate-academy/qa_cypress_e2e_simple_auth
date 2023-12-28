@@ -10,9 +10,14 @@ describe('Sign In page', () => {
     cy.get('#password').type(password);
     cy.get('.radius').click();
   });
-  it('should not to login with invalid creds', () => {
-    cy.get('#username').type(`${username}123`);
+  it('should not to login with invalid password', () => {
+    cy.get('#username').type(username);
     cy.get('#password').type(`${password}123`);
+    cy.get('.radius').click();
+  });
+  it('should not to login with invalid username', () => {
+    cy.get('#username').type(`${username}123`);
+    cy.get('#password').type(password);
     cy.get('.radius').click();
   });
 });
