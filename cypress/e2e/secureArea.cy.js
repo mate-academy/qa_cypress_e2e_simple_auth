@@ -10,5 +10,6 @@ describe('Secure area page', () => {
     cy.get('#password').type(password);
     cy.get('.radius').click();
     cy.get('.button.secondary.radius').click();
+    cy.get('#flash').should('contain', 'You logged out of the secure area!');
   });
 });
