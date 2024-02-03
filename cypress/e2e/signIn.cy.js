@@ -8,7 +8,7 @@ describe('Sign In page', () => {
     cy.visit('https://the-internet.herokuapp.com/login');
   });
 
-  it('login with valid creds', () => {
+  it('should provide an ability to log in with valid credentials', () => {
     cy.get('h2')
       .should('contain.text', 'Login Page');
 
@@ -19,7 +19,7 @@ describe('Sign In page', () => {
       .should('exist');
   });
 
-  it('invalid username', () => {
+  it(`should display validation error when entering invalid 'username'`, () => {
     cy.get('h2')
       .should('contain.text', 'Login Page');
 
@@ -30,7 +30,7 @@ describe('Sign In page', () => {
       .should('exist');
   });
 
-  it('invalid password', () => {
+  it(`should display validation error when entering invalid 'password'`, () => {
     cy.get('h2')
       .should('contain.text', 'Login Page');
 
@@ -41,7 +41,8 @@ describe('Sign In page', () => {
       .should('exist');
   });
 
-  it('invalid username and password', () => {
+  it(`should display validation error when entering` +
+    `invalid 'username' and 'password'`, () => {
     cy.get('h2')
       .should('contain.text', 'Login Page');
 
