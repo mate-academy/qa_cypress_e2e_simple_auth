@@ -3,6 +3,8 @@
 describe('Sign In page', () => {
   const username = 'tomsmith';
   const password = 'SuperSecretPassword!';
+  const invalidUsername = `${username}@`;
+  const invalidPassword = `${password}@`;
 
   beforeEach(() => {
     cy.visit('https://the-internet.herokuapp.com/login');
@@ -23,7 +25,7 @@ describe('Sign In page', () => {
     cy.get('h2')
       .should('contain.text', 'Login Page');
 
-    cy.get('#username').type(username + '@');
+    cy.get('#username').type(invalidUsername);
     cy.get('#password').type(password);
     cy.get('.radius').click();
     cy.contains('#flash', 'Your username is invalid!')
@@ -35,21 +37,9 @@ describe('Sign In page', () => {
       .should('contain.text', 'Login Page');
 
     cy.get('#username').type(username);
-    cy.get('#password').type(password + '@');
+    cy.get('#password').type(invalidPassword);
     cy.get('.radius').click();
     cy.contains('#flash', 'Your password is invalid')
-      .should('exist');
-  });
-
-  it(`should display validation error when entering` +
-    `invalid 'username' and 'password'`, () => {
-    cy.get('h2')
-      .should('contain.text', 'Login Page');
-
-    cy.get('#username').type(username + '@');
-    cy.get('#password').type(password + '@');
-    cy.get('.radius').click();
-    cy.contains('#flash', 'Your username is invalid!')
       .should('exist');
   });
 
