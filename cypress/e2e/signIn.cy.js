@@ -8,7 +8,8 @@ describe('Sign In page', () => {
   it('Login with valid creds', () => {
     cy.loginUser('tomsmith', 'SuperSecretPassword!');
 
-    cy.get('[href="/logout"]').contains('Logout');
+    cy.get('.flash.success')
+      .should('contain.text', 'You logged into a secure area!');
   });
 
   it('Login with invalid password', () => {
