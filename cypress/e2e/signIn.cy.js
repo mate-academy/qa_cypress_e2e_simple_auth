@@ -2,14 +2,14 @@
 /// <reference types="cypress" />
 
 describe('Sign In page', () => {
+  const username = 'tomsmith';
+  const password = 'SuperSecretPassword!';
+
   beforeEach(() => {
     cy.visit('/login');
   });
 
   it('should provide the ability to login with registered data', () => {
-    const username = 'tomsmith';
-    const password = 'SuperSecretPassword!';
-
     cy.get('[name="username"]')
       .type(`${username}`);
 
@@ -25,7 +25,6 @@ describe('Sign In page', () => {
 
   it('should not provide the ability to login with non-registered username', () => {
     const wrongUsername = 'eltest';
-    const password = 'SuperSecretPassword!';
 
     cy.get('[name="username"]')
       .type(`${wrongUsername}`);
@@ -41,7 +40,6 @@ describe('Sign In page', () => {
   });
 
   it('should not provide the ability to login with non-registered password', () => {
-    const username = 'tomsmith';
     const wrongPassword = 'wrongSuperPassword';
 
     cy.get('[name="username"]')
@@ -58,9 +56,6 @@ describe('Sign In page', () => {
   });
 
   it('should provide the ability to logout', () => {
-    const username = 'tomsmith';
-    const password = 'SuperSecretPassword!';
-
     cy.get('[name="username"]')
       .type(`${username}`);
 
