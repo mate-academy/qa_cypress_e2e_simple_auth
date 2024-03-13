@@ -6,7 +6,10 @@ describe('Secure Area page', () => {
   });
 
   it('should provide the possibility to log out', () => {
-    cy.loginUser('tomsmith', 'SuperSecretPassword!');
+    const username = 'tomsmith';
+    const password = 'SuperSecretPassword!';
+
+    cy.loginUser(username, password);
 
     cy.checkAuthByHref('Logout')
       .click();
