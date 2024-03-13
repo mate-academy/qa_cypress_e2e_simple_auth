@@ -33,5 +33,5 @@ Cypress.Commands.add('login', (username, password) => {
 });
 
 Cypress.Commands.add('assertMessageShouldExist', (message) => {
-  return cy.get('#flash-messages').contains(message);
+  cy.get('#flash-messages').should('contain', message);
 });
