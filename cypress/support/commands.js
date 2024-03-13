@@ -23,3 +23,37 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('findById', (id) => {
+  cy.get(`[id="${id}"]`);
+});
+
+Cypress.Commands.add('findByType', (type) => {
+  cy.get(`[type="${type}"]`);
+});
+
+Cypress.Commands.add('findByHref', (href) => {
+  cy.get(`[href="${href}"]`);
+});
+
+Cypress.Commands.add('loginUser', (username, password) => {
+  cy.findById('username')
+    .type(username);
+
+  cy.findById('password')
+    .type(password);
+
+  cy.findByType('submit')
+    .contains('Login')
+    .click();
+});
+
+Cypress.Commands.add('checkAuthByMessage', (message) => {
+  cy.findById('flash')
+    .should('contain.text', message);
+});
+
+Cypress.Commands.add('checkAuthByHref', (text) => {
+  cy.findByHref('/logout')
+    .should('contain.text', text);
+});

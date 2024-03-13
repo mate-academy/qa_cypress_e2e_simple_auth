@@ -4,6 +4,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
     "cypress-image-snapshot": "^4.0.1",
     "eslint-plugin-cypress": "^2.12.1",
     "faker": "^5.5.3",
