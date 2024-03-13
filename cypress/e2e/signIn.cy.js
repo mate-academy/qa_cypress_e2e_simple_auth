@@ -2,11 +2,13 @@
 
 const { loginData } = require('../support/logindata');
 
-describe('Login and Logout Functionality', () => {
+describe('Login page', () => {
+  beforeEach(() => {
+    cy.visit(`/login`);
+  });
   const { password, username } = loginData();
 
-  it('Login with valid creds (tomsmith/SuperSecretPassword!)', () => {
-    cy.visit('/login');
+  it('should have an ability to log in with valid creds', () => {
     cy.get('input[id="username"]').type(username);
     cy.get('input[id="password"]').type(password);
     cy.get('button[type="submit"]').click();
@@ -15,8 +17,7 @@ describe('Login and Logout Functionality', () => {
       .should('be.visible');
   });
 
-  it('Login with invalid creds (invalid Username)', () => {
-    cy.visit('/login');
+  it('should not provide the ability to login with invalid username', () => {
     cy.get('input[id="username"]').type('tomsmit');
     cy.get('input[id="password"]').type(password);
     cy.get('button[type="submit"]').click();
@@ -25,8 +26,7 @@ describe('Login and Logout Functionality', () => {
       .should('be.visible');
   });
 
-  it('Login with invalid creds (invalid Password)', () => {
-    cy.visit('/login');
+  it('should not provide the ability to login with invalid password', () => {
     cy.get('input[id="username"]').type(username);
     cy.get('input[id="password"]').type('SuperSecret');
     cy.get('button[type="submit"]').click();
@@ -34,8 +34,7 @@ describe('Login and Logout Functionality', () => {
     cy.contains('Your password is invalid!').should('be.visible');
   });
 
-  it('Logout from the app', () => {
-    cy.visit('/login');
+  it('should provide the ability to logout from the app', () => {
     cy.get('input[id="username"]').type(username);
     cy.get('input[id="password"]').type(password);
     cy.get('button[type="submit"]').click();
