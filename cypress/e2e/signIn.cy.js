@@ -8,7 +8,7 @@ describe('Sign In page', () => {
   const username = 'tomsmith';
   const password = 'SuperSecretPassword!';
 
-  it('should have an ability to login a user with valid creds', () => {
+  it('should have an ability to login a user with valid credentials', () => {
     cy.loginUser(username, password);
 
     cy.get('.flash.success')
