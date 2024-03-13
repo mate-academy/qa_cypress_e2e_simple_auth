@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', (username, password) => {
+  cy.get('[name="username"]')
+    .type(username);
+
+  cy.get('[name="password"]')
+    .type(password);
+});
+
+Cypress.Commands.add('assertMessageShouldExist', (message) => {
+  cy.get('#flash-messages').should('contain', message);
+});
