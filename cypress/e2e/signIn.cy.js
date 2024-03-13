@@ -7,24 +7,26 @@ describe('Sign In page', () => {
 
   const username = 'tomsmith';
   const password = 'SuperSecretPassword!';
+  const invalidUsername = `${username}1`;
+  const invalidPassword = `${password}1`;
 
   it('should login user with valid credentials', () => {
     cy.loginUser(username, password);
 
     cy.contains('h2', 'Secure Area');
 
-    cy.checkAuthByHref('Logout');
+    cy.assertButtonIsExist('Logout');
   });
 
   it('assert validation error for login with invalid username', () => {
-    cy.loginUser(`${username}1`, password);
+    cy.loginUser(invalidUsername, password);
 
-    cy.checkAuthByMessage('Your username is invalid!');
+    cy.assertSuccessMessageHasAppeared('Your username is invalid!');
   });
 
   it('assert validation error for login with invalid password', () => {
-    cy.loginUser(username, `${password}1`);
+    cy.loginUser(username, invalidPassword);
 
-    cy.checkAuthByMessage('Your password is invalid!');
+    cy.assertSuccessMessageHasAppeared('Your password is invalid!');
   });
 });

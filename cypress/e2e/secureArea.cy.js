@@ -11,10 +11,10 @@ describe('Secure Area page', () => {
 
     cy.loginUser(username, password);
 
-    cy.checkAuthByHref('Logout')
+    cy.assertButtonIsExist('Logout')
       .click();
 
-    cy.checkAuthByMessage('You logged out of the secure area!');
+    cy.assertSuccessMessageHasAppeared('You logged out of the secure area!');
 
     cy.contains('Login Page');
   });

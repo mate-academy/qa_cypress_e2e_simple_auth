@@ -48,12 +48,12 @@ Cypress.Commands.add('loginUser', (username, password) => {
     .click();
 });
 
-Cypress.Commands.add('checkAuthByMessage', (message) => {
+Cypress.Commands.add('assertSuccessMessageHasAppeared', (message) => {
   cy.findById('flash')
     .should('contain.text', message);
 });
 
-Cypress.Commands.add('checkAuthByHref', (text) => {
+Cypress.Commands.add('assertButtonIsExist', (text) => {
   cy.findByHref('/logout')
     .should('contain.text', text);
 });
