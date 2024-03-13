@@ -1,13 +1,15 @@
 /// <reference types="cypress" />
 
 describe('Sign In page', () => {
+  const username = 'tomsmith';
+  const password = 'SuperSecretPassword!';
+  const invalidUsername = 'tomsmit';
+  const invalidPassword = 'SecretPassword!';
   beforeEach(() => {
     cy.visit('https://the-internet.herokuapp.com/login');
   });
 
   it('should provide an ability to successfully sign in', () => {
-    const username = 'tomsmith';
-    const password = 'SuperSecretPassword!';
 
     cy.get('[id="username"]').type(username);
     cy.get('[id="password"]').type(password);
@@ -17,8 +19,6 @@ describe('Sign In page', () => {
   });
 
   it('should provide validation errors login with invalid username', () => {
-    const invalidUsername = 'tomsmit';
-    const password = 'SuperSecretPassword!';
 
     cy.get('[id="username"]').type(invalidUsername);
     cy.get('[id="password"]').type(password);
@@ -28,8 +28,6 @@ describe('Sign In page', () => {
   });
 
   it('should provide validation errors login with invalid password', () => {
-    const username = 'tomsmith';
-    const invalidPassword = 'SecretPassword!'; 
 
     cy.get('[id="username"]').type(username);
     cy.get('[id="password"]').type(invalidPassword);
@@ -39,8 +37,6 @@ describe('Sign In page', () => {
   });
 
   it('should provide an ability to successfully logged out', () => {
-    const username = 'tomsmith';
-    const password = 'SuperSecretPassword!';
 
     cy.get('[id="username"]').type(username);
     cy.get('[id="password"]').type(password);
