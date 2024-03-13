@@ -18,9 +18,12 @@ describe('Sign In page', () => {
 
     cy.get('.radius').contains('Login')
       .click();
+
+    cy.get('#flash-messages')
+      .should('contain.text', 'You logged into a secure area!');
   });
 
-  it('should not provide the ability to login with non-registered login', () => {
+  it('should not provide the ability to login with non-registered username', () => {
     const wrongUsername = 'eltest';
     const password = 'SuperSecretPassword!';
 
@@ -37,7 +40,7 @@ describe('Sign In page', () => {
       .should('contain.text', 'Your username is invalid!');
   });
 
-  it('should not provide the ability to login with non-registered login', () => {
+  it('should not provide the ability to login with non-registered password', () => {
     const username = 'tomsmith';
     const wrongPassword = 'wrongSuperPassword';
 
@@ -69,5 +72,8 @@ describe('Sign In page', () => {
 
     cy.get('.button').contains('Logout')
       .click();
+
+    cy.get('#flash-messages')
+      .should('contain.text', 'You logged out of the secure area!');
   });
 });
