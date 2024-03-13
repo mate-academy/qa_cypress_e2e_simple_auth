@@ -5,29 +5,33 @@ describe('Sign In page', () => {
     cy.visit('/login');
   });
 
-  it('Login with valid creds', () => {
-    cy.loginUser('tomsmith', 'SuperSecretPassword!');
+  const username = 'tomsmith';
+  const password = 'SuperSecretPassword!';
+
+  it('should have an ability to login a user with valid creds', () => {
+    cy.loginUser(username, password);
 
     cy.get('.flash.success')
       .should('contain.text', 'You logged into a secure area!');
   });
 
-  it('Login with invalid password', () => {
-    cy.loginUser('tomsmith', 'invalidPassword');
+  it('should display the valid message for invalid password', () => {
+    cy.loginUser(username, 'invalidPassword');
 
     cy.get('.flash.error')
       .should('contain.text', 'Your password is invalid!');
   });
 
-  it('Login with invalid username', () => {
-    cy.loginUser('invalidUsername', 'SuperSecretPassword!');
+  it('should display a valid message for invalid username', () => {
+    cy.loginUser('invalidUsername', password);
 
     cy.get('.flash.error')
       .should('contain.text', 'Your username is invalid!');
   });
 
-  it('Logout from the app', () => {
-    cy.loginUser('tomsmith', 'SuperSecretPassword!');
+  it(`should display the confirmation 
+  message after clicking on the [Logout]`, () => {
+    cy.loginUser(username, password);
 
     cy.get('[href="/logout"]')
       .click();
