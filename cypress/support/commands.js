@@ -23,3 +23,35 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('validLoginCreds', () => {
+  const username = 'tomsmith';
+  const password = 'SuperSecretPassword!';
+
+  cy.get('[name="username"]')
+    .type(username);
+
+  cy.get('[name="password"]')
+    .type(password);
+});
+
+Cypress.Commands.add('invalidLoginCreds', () => {
+  const username = 'tomsmith';
+  const password = 'SuperSecretPassword!';
+
+  cy.get('[name="username"]')
+    .type(username + 'new');
+
+  cy.get('[name="password"]')
+    .type(password);
+});
+
+Cypress.Commands.add('findByFlashMessage', (value) => {
+  let message;
+  if (value === 'success') {
+    message = 'You logged into a secure area!';
+  } else if (value === 'failure') {
+    message = 'Your username is invalid!';
+  }
+
+  return cy.get('#flash-messages').contains(message);
+});
