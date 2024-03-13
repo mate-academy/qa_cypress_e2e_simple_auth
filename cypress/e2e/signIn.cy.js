@@ -6,32 +6,44 @@ describe('Sign In page', () => {
   });
 
   it('should provide an ability to successfully sign in', () => {
-    cy.get('[id="username"]').type('tomsmith');
-    cy.get('[id="password"]').type('SuperSecretPassword!');
+    const username = 'tomsmith';
+    const password = 'SuperSecretPassword!';
+
+    cy.get('[id="username"]').type(username);
+    cy.get('[id="password"]').type(password);
     cy.get('.fa-sign-in').contains('Login').click();
     cy.get('.flash.success').contains('You logged into a secure area!')
       .should('be.visible');
   });
 
   it('should provide validation errors login with invalid username', () => {
-    cy.get('[id="username"]').type('tomsmit');
-    cy.get('[id="password"]').type('SuperSecretPassword!');
+    const invalidUsername = 'tomsmit';
+    const password = 'SuperSecretPassword!';
+
+    cy.get('[id="username"]').type(invalidUsername);
+    cy.get('[id="password"]').type(password);
     cy.get('.fa-sign-in').contains('Login').click();
     cy.get('.flash.error').contains('Your username is invalid!')
       .should('be.visible');
   });
 
   it('should provide validation errors login with invalid password', () => {
-    cy.get('[id="username"]').type('tomsmith');
-    cy.get('[id="password"]').type('SecretPassword!');
+    const username = 'tomsmith';
+    const invalidPassword = 'SecretPassword!'; 
+
+    cy.get('[id="username"]').type(username);
+    cy.get('[id="password"]').type(invalidPassword);
     cy.get('.fa-sign-in').contains('Login').click();
     cy.get('.flash.error').contains('Your password is invalid!')
       .should('be.visible');
   });
 
   it('should provide an ability to successfully logged out', () => {
-    cy.get('[id="username"]').type('tomsmith');
-    cy.get('[id="password"]').type('SuperSecretPassword!');
+    const username = 'tomsmith';
+    const password = 'SuperSecretPassword!';
+
+    cy.get('[id="username"]').type(username);
+    cy.get('[id="password"]').type(password);
     cy.get('.fa-sign-in').contains('Login').click();
     cy.get('.icon-signout').contains('Logout').click();
     cy.get('.flash.success').contains('You logged out of the secure area!')
