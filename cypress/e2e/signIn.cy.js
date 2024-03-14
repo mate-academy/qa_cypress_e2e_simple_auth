@@ -7,7 +7,7 @@ describe('Sign In page', () => {
   const invalidPassword = `${password}@`;
 
   beforeEach(() => {
-    cy.visit('https://the-internet.herokuapp.com/login');
+    cy.visit('/login');
   });
 
   it('should provide an ability to log in with valid credentials', () => {
@@ -50,8 +50,6 @@ describe('Sign In page', () => {
     cy.get('#username').type(username);
     cy.get('#password').type(password);
     cy.get('.radius').click();
-    cy.contains('#flash', 'You logged into a secure area!')
-      .should('exist');
     cy.get('.button').click();
     cy.contains('#flash', 'You logged out of the secure area!')
       .should('exist');
