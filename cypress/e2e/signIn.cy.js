@@ -6,6 +6,7 @@ const invalidUsername = 'tmsmth';
 const invalidPassword = 'SSp!';
 const usernameValidationMesage = 'Your username is invalid!';
 const passwordValidationMessage = 'Your password is invalid!';
+const loginValidationMessage = 'You logged into a secure area!';
 const logoutValidationMessage = 'You logged out of the secure area!';
 
 describe('Sign In page', () => {
@@ -16,6 +17,7 @@ describe('Sign In page', () => {
   it('check if user is able to log in with valid input', () => {
     cy.logIn(username, password);
     cy.get('.button').should('exist');
+    cy.get('#flash').should('contain.text', loginValidationMessage);
   });
 
   it('check for validation message in case of invalid username input', () => {
