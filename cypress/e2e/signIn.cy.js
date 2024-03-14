@@ -6,6 +6,7 @@ const invalidPassword = 'Invalid password';
 const messageForInvalidUsername = 'Your username is invalid!';
 const messageForInvalidPassword = 'Your password is invalid!';
 const messageForLogout = 'You logged out of the secure area!';
+const messageForLogIn = 'You logged into a secure area!';
 
 describe('Sign In page', () => {
   beforeEach(() => {
@@ -20,6 +21,8 @@ describe('Sign In page', () => {
     cy.get('[class="fa fa-2x fa-sign-in"]').contains('Login')
       .click();
     cy.url().should('include', '/secure');
+    cy.get('[id="flash"]').contains(messageForLogIn)
+      .should('be.visible');
   });
 
   it('Should not provide an ability to log in with invalid username', () => {
@@ -33,7 +36,7 @@ describe('Sign In page', () => {
       .should('be.visible');
   });
 
-  it('Should not provide an ability to log in with invalid username', () => {
+  it('Should not provide an ability to log in with invalid password', () => {
     cy.get('[name="username"]')
       .type(username);
     cy.get('[name="password"]')
