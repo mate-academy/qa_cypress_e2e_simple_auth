@@ -2,28 +2,28 @@
 
 describe('Login page', () => {
   beforeEach(() => {
-    cy.visit('https://the-internet.herokuapp.com/login')
+    cy.visit('/login')
   });
 
   it('Should login with valid creds', () => {
-    cy.get('#username')
+    cy.findById('username')
       .type('tomsmith');
     
-    cy.get('#password')
+      cy.findById('password')
       .type('SuperSecretPassword!');
     
     cy.get('[type="submit"]')
       .click();
     
-    cy.get('#flash')
+    cy.findById('flash')
       .should('contain', 'You logged into a secure area!');
   });
 
   it('Should logout from the app', () => {
-    cy.get('#username')
+    cy.findById('username')
       .type('tomsmith');
     
-    cy.get('#password')
+    cy.findById('password')
       .type('SuperSecretPassword!');
     
     cy.get('[type="submit"]')
@@ -32,35 +32,35 @@ describe('Login page', () => {
     cy.get('.icon-signout')
       .click();
     
-    cy.get('#flash')
+    cy.findById('flash')
       .should('contain', 'You logged out of the secure area!');
   });
 
   it('Should fail login with invalid Username', () => {
-    cy.get('#username')
+    cy.findById('username')
       .type('mamkintester');
     
-    cy.get('#password')
+    cy.findById('password')
       .type('SuperSecretPassword!');
     
     cy.get('[type="submit"]')
       .click();
     
-    cy.get('#flash')
+    cy.findById('flash')
       .should('contain', 'Your username is invalid!');
   });
 
   it('Should fail login with invalid Password', () => {
-    cy.get('#username')
+    cy.findById('username')
       .type('tomsmith');
     
-    cy.get('#password')
+    cy.findById('password')
       .type('1q2w3e4R!');
     
     cy.get('[type="submit"]')
       .click();
     
-    cy.get('#flash')
+    cy.findById('flash')
       .should('contain', 'Your password is invalid!');
   });
 });
