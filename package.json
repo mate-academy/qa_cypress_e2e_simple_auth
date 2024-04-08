@@ -6,7 +6,6 @@
   "dependencies": {
     "cypress-image-snapshot": "^4.0.1",
     "eslint-plugin-cypress": "^2.12.1",
-    "faker": "^5.5.3",
     "pg": "^8.9.0",
     "sequelize": "^6.21.2",
     "sequelize-cli": "^6.4.1"
