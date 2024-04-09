@@ -8,20 +8,20 @@ describe('Sign In page', () => {
   it('should login with valid creds', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!' + `{Enter}`);
-    cy.url().should('equal', '/secure');
+    cy.url().should('equal', Cypress.config().baseUrl + '/secure');
     cy.get('#flash')
       .should('contain.text', 'You logged into a secure area!')
       .should('be.visible');
   });
 
-  it.only(`should successfully logout from the app`, () => {
+  it(`should successfully logout from the app`, () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!' + `{Enter}`);
     cy.contains('a', 'Logout').should('have.attr', 'href', '/logout').click();
     cy.get('#flash')
       .should('contain.text', 'You logged out of the secure area!')
       .should('be.visible');
-    cy.url().should('equal', '/login');
+    cy.url().should('equal', Cypress.config().baseUrl + '/login');
   });
 
   it(`should get validation errors when` +
@@ -31,7 +31,7 @@ describe('Sign In page', () => {
     cy.get('#flash')
       .should('contain.text', ' Your username is invalid!')
       .should('be.visible');
-    cy.url().should('equal', '/login');
+    cy.url().should('equal', Cypress.config().baseUrl + '/login');
   });
 
   it(`should get validation errors when` +
@@ -41,6 +41,6 @@ describe('Sign In page', () => {
     cy.get('#flash')
       .should('contain.text', 'Your password is invalid!')
       .should('be.visible');
-    cy.url().should('equal', '/login');
+    cy.url().should('equal', Cypress.config().baseUrl + '/login');
   });
 });
