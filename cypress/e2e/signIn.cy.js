@@ -26,7 +26,7 @@ describe('Sign In page', () => {
   });
 });
 
-describe('Sign In page', () => {
+describe('Home page', () => {
   it('should provide an ability to log out', () => {
     const username = 'tomsmith';
     const userPassword = 'SuperSecretPassword!';
