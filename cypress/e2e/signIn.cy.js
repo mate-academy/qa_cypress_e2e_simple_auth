@@ -1,4 +1,6 @@
 /// <reference types="cypress" />
+const { username, passwd, invalidUsername, invalidPassword } =
+require('../support/variables');
 
 describe('Sign In page', () => {
   beforeEach(() => {
@@ -6,9 +8,6 @@ describe('Sign In page', () => {
   });
 
   it('should allow to login with valid credentials', () => {
-    const username = 'tomsmith';
-    const passwd = 'SuperSecretPassword!';
-
     cy.url().should(`include`, 'login');
     cy.get('[id = "username"').type(username);
     cy.get('[id = "password"').type(passwd);
@@ -17,9 +16,6 @@ describe('Sign In page', () => {
   });
 
   it('should allow to log out from the app', () => {
-    const username = 'tomsmith';
-    const passwd = 'SuperSecretPassword!';
-
     cy.url().should(`include`, 'login');
     cy.get('[id = "username"').type(username);
     cy.get('[id = "password"').type(passwd);
@@ -30,25 +26,19 @@ describe('Sign In page', () => {
   });
 
   it('should not allow to login with invalid username', () => {
-    const username = 'dtworek';
-    const passwd = 'SuperSecretPassword!';
-
     cy.url().should(`include`, 'login');
     cy.url().should(`include`, 'login');
-    cy.get('[id = "username"').type(username);
+    cy.get('[id = "username"').type(invalidUsername);
     cy.get('[id = "password"').type(passwd);
     cy.get('button').click();
     cy.get('#flash').should('contain.text', 'Your username is invalid!');
   });
 
   it('should not allow to login with invalid password', () => {
-    const username = 'tomsmith';
-    const passwd = 'Dominik!234';
-
     cy.url().should(`include`, 'login');
     cy.url().should(`include`, 'login');
     cy.get('[id = "username"').type(username);
-    cy.get('[id = "password"').type(passwd);
+    cy.get('[id = "password"').type(invalidPassword);
     cy.get('button').click();
     cy.get('#flash').should('contain.text', 'Your password is invalid!');
   });
