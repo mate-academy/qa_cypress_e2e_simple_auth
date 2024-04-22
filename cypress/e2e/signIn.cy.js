@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 const { username, password, invalidUsername, invalidPassword } =
-require('../support/variables');
+  require('../support/variables');
 
 describe('Sign In page', () => {
   beforeEach(() => {
@@ -9,6 +9,10 @@ describe('Sign In page', () => {
   });
 
   it('should provide an ability to log in with valid creds', () => {
+    cy.get('h2')
+      .contains('Login Page')
+      .should('be.visible');
+
     cy.get('#username')
       .type(username);
 
@@ -23,7 +27,11 @@ describe('Sign In page', () => {
       .should('be.visible');
   });
 
-  it('should show validation errors for invalid credentials', () => {
+  it('should show validation errors for invalid username', () => {
+    cy.get('h2')
+      .contains('Login Page')
+      .should('be.visible');
+
     cy.get('#username')
       .type(invalidUsername);
 
@@ -38,7 +46,30 @@ describe('Sign In page', () => {
       .should('be.visible');
   });
 
+  it('should show validation errors for invalid password', () => {
+    cy.get('h2')
+      .contains('Login Page')
+      .should('be.visible');
+
+    cy.get('#username')
+      .type(username);
+
+    cy.get('#password')
+      .type(invalidPassword);
+
+    cy.get('.fa')
+      .click();
+
+    cy.get('#flash')
+      .contains('Your password is invalid!')
+      .should('be.visible');
+  });
+
   it('should allow a logged-in user to log out', () => {
+    cy.get('h2')
+      .contains('Login Page')
+      .should('be.visible');
+
     cy.get('#username')
       .type(username);
 
@@ -60,6 +91,6 @@ describe('Sign In page', () => {
       .should('be.visible');
   });
 
-//   afterEach(() => {
-//     });
+  //   afterEach(() => {
+  //     });
 });
