@@ -27,7 +27,6 @@ describe('Sign In page', () => {
 
   it('should not allow to login with invalid username', () => {
     cy.url().should(`include`, 'login');
-    cy.url().should(`include`, 'login');
     cy.get('[id = "username"').type(invalidUsername);
     cy.get('[id = "password"').type(passwd);
     cy.get('button').click();
@@ -35,7 +34,6 @@ describe('Sign In page', () => {
   });
 
   it('should not allow to login with invalid password', () => {
-    cy.url().should(`include`, 'login');
     cy.url().should(`include`, 'login');
     cy.get('[id = "username"').type(username);
     cy.get('[id = "password"').type(invalidPassword);
