@@ -21,7 +21,7 @@ describe('Sign In page', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('lalala');
     cy.get('.fa').click();
-    cy.get('#flash').should('contain.text', 'Your username is invalid!');
+    cy.get('#flash').should('contain.text', 'Your password is invalid!');
   });
   it('should provide an ability to log out', () => {
     cy.get('#username').type('tomsmith');
