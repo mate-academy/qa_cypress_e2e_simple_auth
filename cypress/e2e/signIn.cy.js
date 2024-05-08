@@ -12,14 +12,21 @@ describe('Sign In page', () => {
    cy.get ('#flash').should('contain.text',' You logged into a secure area!');
   });
 
-  it('should not provide an ability to log in', () => {
+  it('should not provide an ability to log in with invalid username', () => {
     cy.get ('#username').type('tomossmith');
-    cy.get ('#password').type('SuperittoSecretPassword!');
+    cy.get ('#password').type('SuperSecretPassword!');
     cy.get ('.fa'). click();
     cy.get ('#flash').should('contain.text','Your username is invalid');
    });
 
-   it('click logout button', () => {
+   it('should not provide an ability to log in with invalid password', () => {
+    cy.get ('#username').type('tomsmith');
+    cy.get ('#password').type('SupwwerSecretPassword!');
+    cy.get ('.fa'). click();
+    cy.get ('#flash').should('contain.text','Your password is invalid');
+   });
+
+   it('should provide an ability to log out', () => {
     cy.get ('#username').type('tomsmith');
     cy.get ('#password').type('SuperSecretPassword!');
     cy.get ('.fa'). click();
