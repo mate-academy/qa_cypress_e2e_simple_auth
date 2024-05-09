@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /// <reference types="cypress" />
 
 describe('Sign In page', () => {
@@ -12,9 +13,16 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain', 'You logged into a secure area!');
   });
 
-  it('should not provide the ability to login with invalid creds', () => {
-    cy.get('#username').type('tomsmithhhh');
+  it('should not provide the ability to login with valid username and invalid password', () => {
+    cy.get('#username').type('tomsmith');
     cy.get('#password').type('SSSSuperSecretPassword!');
+    cy.get('.fa').click();
+    cy.get('#flash').should('contain', 'Your password is invalid!');
+  });
+
+  it('should not provide the ability to login with valid password and invalid username', () => {
+    cy.get('#username').type('tomsmithhhh');
+    cy.get('#password').type('SuperSecretPassword!');
     cy.get('.fa').click();
     cy.get('#flash').should('contain', 'Your username is invalid!');
   });
