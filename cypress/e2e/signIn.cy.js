@@ -17,13 +17,15 @@ describe('Sign In page', () => {
     cy.get('.fa').click();
     cy.get('#flash').should('contain', 'Your username is invalid');
 });
-it('should not login with invalid password', () => {
+  
+  it('should not login with invalid password', () => {
   cy.get('#username').type('tomsmith');
   cy.get('#password').type('2SuperSecretPassword!');
   cy.get('.fa').click();
   cy.get('#flash').should('contain', 'Your password is invalid');
 });
-it('should log out from the app', () => {
+  
+  it('should log out from the app', () => {
   cy.get('#username').type('tomsmith');
   cy.get('#password').type('SuperSecretPassword!');
   cy.get('.fa').click();
