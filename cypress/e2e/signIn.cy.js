@@ -28,13 +28,13 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain', message.loggedIn);
   });
 
-  it('should login with invalid username', () => {
+  it('should not login with invalid username', () => {
     cy.userLogin(invalidUser.username, validUser.password);
     cy.get('.fa').click();
     cy.get('#flash').should('contain', message.invalidUsername);
   });
 
-  it('should login with invalid password', () => {
+  it('should not login with invalid password', () => {
     cy.userLogin(validUser.username, invalidUser.password);
     cy.get('.fa').click();
     cy.get('#flash').should('contain', message.invalidPassword);
