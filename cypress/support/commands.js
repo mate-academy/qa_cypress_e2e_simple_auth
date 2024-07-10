@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -23,3 +25,18 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+/* Cypress.Commands.add('loginUser', (name, password) => {
+  cy.request('POST', 'https://the-internet.herokuapp.com/authenticate', {
+    username: name,
+    password
+  }).then((resp) => {
+    return resp.headers['set-cookie'][0].split(/[=;]/);
+  });
+}); */
+
+Cypress.Commands.add('simpleLoginUser', (name, password) => {
+  cy.get('#username').type(name);
+  cy.get('#password').type(password);
+  cy.get('button[type="submit"]').click();
+});
