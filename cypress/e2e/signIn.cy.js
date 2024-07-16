@@ -19,6 +19,9 @@ describe('Sign In page', () => {
         'Welcome to the Secure Area. When you are done click logout below.');
 
     cy.get('.icon-2x').click();
+
+    cy.get('h2')
+      .should('contain.text', 'Login Page');
   });
 
   it('should not login with invalid creds', () => {
@@ -32,10 +35,5 @@ describe('Sign In page', () => {
 
     cy.get('#flash')
       .should('contain.text', 'Your username is invalid!');
-  });
-
-  it('should be logout from the app', () => {
-    cy.get('h2')
-      .should('contain.text', 'Login Page');
   });
 });
