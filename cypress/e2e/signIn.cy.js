@@ -19,7 +19,7 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain', 'Your username is invalid!');
   });
 
-  it('Login with valid creds', () => {
+  it('Logout from the app', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!');
     cy.get('.fa').click();
