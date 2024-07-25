@@ -5,21 +5,21 @@ describe('Sign In page', () => {
     cy.visit('https://the-internet.herokuapp.com/login');
   });
 
-  it('Log in with valid data test 1', () => {
+  it('Should login with valid creds', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!');
     cy.get('.fa').click();
     cy.get('#flash').should('contain', 'You logged into a secure area!');
   });
 
-  it('Log in with invalid data test 2',() => {
+  it('Should fail login with invalid creds',() => {
     cy.get('#username').type('Qwerty123');
     cy.get('#password').type('Qwert123@7');
     cy.get('.fa').click();
     cy.get('#flash').should('contain', 'Your username is invalid!');
   });
 
-  it('Logout test 3', () => {
+  it('Should logout from the app', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!');
     cy.get('.fa').click();
