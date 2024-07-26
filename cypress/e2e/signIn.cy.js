@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Sign In page', () => {
+describe('Login Page', () => {
   beforeEach(() => {
     // Runs before each test in the `describe` block
     cy.visit('https://the-internet.herokuapp.com/login');
@@ -38,9 +38,10 @@ describe('Sign In page', () => {
     cy.get('button[type="submit"]').click();
 
     // Click on Logout link or button
-    cy.contains('Logout').click();
+    cy.get('a[href="/logout"]').click();
 
     // Assert successful logout
-    cy.contains('You logged out of the secure area!').should('be.visible');
+    // eslint-disable-next-line max-len
+    cy.get('#flash').should('contain.text', 'You logged out of the secure area!');
   });
 });
