@@ -20,7 +20,11 @@ describe("Sign In page", () => {
   });
 
   it("Logout from the app", () => {
+    cy.get("#username").type("tomsmith");
+    cy.get("#password").type("SuperSecretPassword!");
     cy.get(".fa").click();
-    cy.get("h2").should("contain", "Login Page");
+    cy.get("h2").should("contain", "Secure Area");
+    cy.get(".button").click();
+    cy.get("#flash").should("contain", "You logged out of the secure area!");
   });
 });
