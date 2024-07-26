@@ -19,16 +19,20 @@ describe('Login Page', () => {
     cy.contains('#flash-messages', 'You logged into a secure area!').should('be.visible');
   });
 
-  it('should show validation errors with invalid credentials', () => {
-    // Fill in username and password fields with invalid credentials
-    cy.get('#username').type('invalidUsername');
-    cy.get('#password').type('invalidPassword');
+  describe('Invalid Login', () => {
+    it('should show validation errors with an invalid username', () => {
+      cy.get('#username').type('invalidUsername');
+      cy.get('#password').type('SuperSecretPassword!');
+      cy.get('button[type="submit"]').click();
+      cy.get('#flash').should('contain.text', 'Your username is invalid!');
+    });
 
-    // Click on Login button
-    cy.get('button[type="submit"]').click();
-
-    // Assert validation errors
-    cy.contains('Your username is invalid!').should('be.visible');
+    it('should show validation errors with an invalid password', () => {
+      cy.get('#username').type('tomsmith');
+      cy.get('#password').type('invalidPassword');
+      cy.get('button[type="submit"]').click();
+      cy.get('#flash').should('contain.text', 'Your password is invalid!');
+    });
   });
 
   it('should logout successfully', () => {
