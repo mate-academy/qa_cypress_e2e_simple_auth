@@ -6,50 +6,50 @@ describe('Sign In page', () => {
     cy.visit('/login');
   });
 
-  it('should Login with valid creds', () => {
+  it('should Log in with valid credentials', () => {
     cy.get('#username')
       .type('tomsmith');
 
     cy.get('#password')
       .type('SuperSecretPassword!');
 
-    cy.get('.fa').click();
+    cy.get('.fa')
+      .click();
 
     cy.wait(2000);
 
-    cy.contains(
-      'Welcome to the Secure Area. When you ' +
-      'are done click logout below.'
-    ).should('be.visible');
+    cy.get('.subheader')
+      .should('contain.text', 'Welcome to the Secure Area.');
   });
 
-  it('should Login with invalid creds', () => {
+  it('should not Log in with invalid credentials', () => {
     cy.get('#username')
       .type('Username');
 
     cy.get('#password')
       .type('Password');
 
-    cy.get('.fa').click();
+    cy.get('.fa')
+      .click();
 
-    cy.wait(2000);
-
-    cy.contains('Your username is invalid!').should('be.visible');
+    cy.get('#flash')
+      .should('contain.text', 'Your username is invalid!');
   });
 
-  it('should Logout from the app', () => {
+  it('should Log out from the app', () => {
     cy.get('#username')
       .type('tomsmith');
 
     cy.get('#password')
       .type('SuperSecretPassword!');
 
-    cy.get('.fa').click();
+    cy.get('.fa')
+      .click();
 
-    cy.wait(2000);
+    cy.get('.icon-2x')
+      .click();
 
-    cy.get('.icon-2x').click();
-
-    cy.contains('You logged out of the secure area!').should('be.visible');
+    cy.get('#flash')
+      .should('contain.text', 'You logged out of the secure area!');
   });
 });
