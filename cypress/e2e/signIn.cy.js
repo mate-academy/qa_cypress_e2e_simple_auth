@@ -28,5 +28,7 @@ describe('Sign In page', () => {
     cy.get('[class="flash success"]')
       .should('contain', 'You logged into a secure area!');
     cy.get('[class="button secondary radius"]').click();
+    cy.get('[class="flash success"]')
+      .should('contain', 'You logged out of the secure area!');
   });
 });
