@@ -1,42 +1,37 @@
-/* eslint-disable max-len */
-/// <reference types="cypress" />
-
 import SignInPage from '../support/SignInPage';
 
+const VALID_USERNAME = 'tomsmith';
+const VALID_PASSWORD = 'SuperSecretPassword!';
+const INVALID_USERNAME = 'invalidUser';
+const INVALID_PASSWORD = 'invalidPassword';
+
 describe('Sign In page', () => {
-  const signInPage = new SignInPage();
+  let signInPage;
 
   beforeEach(() => {
     cy.visit('https://the-internet.herokuapp.com/login');
+    signInPage = new SignInPage();
   });
 
   it('should successfully log in with valid credentials', () => {
-    signInPage.typeUsername('tomsmith');
-    signInPage.typePassword('SuperSecretPassword!');
+    signInPage.typeUsername(VALID_USERNAME);
+    signInPage.typePassword(VALID_PASSWORD);
     signInPage.clickSubmit();
-
     signInPage.assertLoginSuccess();
   });
 
   it('should display error message with invalid credentials', () => {
-    signInPage.typeUsername('invalidUser');
-    signInPage.typePassword('invalidPassword');
+    signInPage.typeUsername(INVALID_USERNAME);
+    signInPage.typePassword(INVALID_PASSWORD);
     signInPage.clickSubmit();
-
     signInPage.assertLoginFailure();
   });
 
   it('should successfully log out', () => {
-    // First, log in with valid credentials
-    signInPage.typeUsername('tomsmith');
-    signInPage.typePassword('SuperSecretPassword!');
+    signInPage.typeUsername(VALID_USERNAME);
+    signInPage.typePassword(VALID_PASSWORD);
     signInPage.clickSubmit();
-
-    // Then, log out
-    cy.get('.icon-2x.icon-signout').click();
-
-    // Assert user is logged out by checking the URL or presence of login button
-    cy.url().should('include', '/login');
-    cy.get('.flash.success').should('contain.text', 'You logged out of the secure area!');
+    signInPage.clickLogout();
+    signInPage.assertLogoutSuccess();
   });
 });
