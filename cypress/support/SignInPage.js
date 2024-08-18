@@ -37,8 +37,8 @@ export default class SignInPage {
     cy.get('.flash.success').should('contain.text', 'You logged into a secure area!');
   }
 
-  assertLoginFailure() {
-    cy.get('.flash.error').should('contain.text', 'Your username is invalid!');
+  assertLoginFailure(errorMessage) {
+    cy.get('.flash.error').should('contain.text', errorMessage);
   }
 
   assertLogoutSuccess() {

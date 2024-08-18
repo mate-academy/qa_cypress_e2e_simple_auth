@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import SignInPage from '../support/SignInPage';
 
 const VALID_USERNAME = 'tomsmith';
@@ -20,11 +21,25 @@ describe('Sign In page', () => {
     signInPage.assertLoginSuccess();
   });
 
+  it('should display error message with invalid username and valid password', () => {
+    signInPage.typeUsername(INVALID_USERNAME);
+    signInPage.typePassword(VALID_PASSWORD);
+    signInPage.clickSubmit();
+    signInPage.assertLoginFailure('Your username is invalid!');
+  });
+
+  it('should display error message with valid username and invalid password', () => {
+    signInPage.typeUsername(VALID_USERNAME);
+    signInPage.typePassword(INVALID_PASSWORD);
+    signInPage.clickSubmit();
+    signInPage.assertLoginFailure('Your password is invalid!');
+  });
+
   it('should display error message with invalid credentials', () => {
     signInPage.typeUsername(INVALID_USERNAME);
     signInPage.typePassword(INVALID_PASSWORD);
     signInPage.clickSubmit();
-    signInPage.assertLoginFailure();
+    signInPage.assertLoginFailure('Your username is invalid!');
   });
 
   it('should successfully log out', () => {
