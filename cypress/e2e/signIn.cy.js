@@ -12,14 +12,14 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain.text', 'You logged into a secure area!')
   });
 
-  it('Log in with an invalid account', () => {
+  it('Log in with an invalid account.', () => {
     cy.get('#username').type('magnetic');
     cy.get('#password').type('qweqwe');
     cy.get('.fa').click();
     cy.get('#flash').should('contain.text', 'Your username is invalid!')
   });
   
-  it('Log out of the app', () => {
+  it('Log out of the app.', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!');
     cy.get('.fa').click();
