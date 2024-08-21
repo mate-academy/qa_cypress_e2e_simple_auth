@@ -5,7 +5,7 @@ describe('Sign In page', () => {
     cy.visit('https://the-internet.herokuapp.com/login')
   });
 
-  it('Log in with a valid account', () => {
+  it('Log in with a valid account.', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!');
     cy.get('.fa').click();
