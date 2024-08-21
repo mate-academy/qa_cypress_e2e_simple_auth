@@ -5,7 +5,7 @@ describe('Sign In page', () => {
     cy.visit('https://the-internet.herokuapp.com/login')
   });
 
-  it('Login with a valid account.', () => {
+  it('Login with a valid credentials', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!');
     cy.get('.fa').click();
@@ -19,7 +19,7 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain.text', 'Your username is invalid!')
   });
 
-  it('Login with invalid username', () => {
+  it('Login with invalid password', () => {
     cy.get('#username').type('tomsmit');
     cy.get('#password').type('qweqwe');
     cy.get('.fa').click();
