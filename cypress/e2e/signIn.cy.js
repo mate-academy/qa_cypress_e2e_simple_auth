@@ -28,12 +28,20 @@ describe("Sign In page", () => {
 
     cy.get('button[type="submit"]').click();
 
-    // Wylogowanie
     cy.get('a[href="/logout"]').click();
 
     cy.get("#flash").should(
       "contain.text",
       "You logged out of the secure area!"
     );
+  });
+
+  it("Must not provide access to user that enters invalid password", () => {
+    cy.get("#username").type("tomsmith");
+    cy.get("#password").type("WrongPassword!");
+
+    cy.get('button[type="submit"]').click();
+
+    cy.get("#flash").should("contain.text", "Your password is invalid!");
   });
 });
