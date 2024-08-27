@@ -1,15 +1,13 @@
-/// <reference types="cypress" />
-
 describe('Sign In page', () => {
   beforeEach(() => {
     cy.visit('https://the-internet.herokuapp.com/login');
   });
 
-  it('should provide an ability to log in', () => {
-    cy.get('#username').type('tomsmith');
+  it('should provide an error for log in with invalid credits', () => {
+    cy.get('#username').type('tomsmith23');
     cy.get('#password').type('SuperSecretPassword!');
     cy.get('.fa').click();
 
-    cy.get('#flash').should('contain', 'You logged into a secure area!');
+    cy.get('#flash').should('contain', 'Your username is invalid!');
   });
 });
