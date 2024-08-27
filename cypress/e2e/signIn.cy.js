@@ -14,7 +14,7 @@ describe("Sign In page", () => {
     cy.get("#flash").should("contain.text", "You logged into a secure area!");
   });
 
-  it("Must not provide access to user that enters invalid credentials", () => {
+  it("Must not provide access to user that enters invalid username", () => {
     cy.get("#username").type("janbron");
     cy.get("#password").type("superpswormd");
 
