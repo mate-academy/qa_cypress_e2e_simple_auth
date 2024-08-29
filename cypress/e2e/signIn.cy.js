@@ -20,14 +20,26 @@ describe('Sign In page', () => {
     cy.url().should('include', '/secure');
   });
 
-  it('should show error message after login with invalid credentials', () => {
+  it('should show error message after login with invalid username', () => {
     cy.get('input[type="text"]').type(invalidUsername);
+
+    cy.get('input[type="password"]').type(password);
+
+    cy.get('button[type="submit"]').contains('Login').click();
+
+    cy.get('div[class="flash error"]')
+      .contains('Your username is invalid!').should('exist');
+  });
+
+  it('should show error message after login with invalid password', () => {
+    cy.get('input[type="text"]').type(username);
 
     cy.get('input[type="password"]').type(invalidPassword);
 
     cy.get('button[type="submit"]').contains('Login').click();
 
-    cy.get('div[class="flash error"]').should('exist');
+    cy.get('div[class="flash error"]')
+      .contains('Your password is invalid!').should('exist');
   });
 
   it('should successfully log out', () => {
