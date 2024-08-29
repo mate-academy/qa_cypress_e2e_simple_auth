@@ -16,15 +16,26 @@ describe('Sign In page', () => {
       .should('contain', 'You logged into a secure area!');
   });
 
-  it('Login with invalid credentials', () => {
+  it('Login with invalid username', () => {
     cy.get('input#username')
       .type(`badusername`);
     cy.get('input#password')
-      .type(`wrongpassword`);
+      .type(`SuperSecretPassword!`);
     cy.get('i.fa-sign-in')
       .click();
     cy.get('div#flash.flash.error')
-      .should('exist');
+      .should('contain', 'Your username is invalid!');
+  });
+
+  it('Login with invalid password', () => {
+    cy.get('input#username')
+      .type(`tomsmith`);
+    cy.get('input#password')
+      .type(`thisisinvalidpassword`);
+    cy.get('i.fa-sign-in')
+      .click();
+    cy.get('div#flash.flash.error')
+      .should('contain', 'Your password is invalid!');
   });
 
   it('Logout from the app', () => {
