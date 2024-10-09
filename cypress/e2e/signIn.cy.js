@@ -12,7 +12,7 @@ describe('Sign In page', () => {
     cy.get('#password').type(password);
     cy.get('.radius').click();
 
-    cy.get('#flash').contains('You logged into a secure area!');
+    cy.get('#flash').should('include.text', 'You logged into a secure area!');
   });
 
   it('should assert validation message with invalid data', () => {
@@ -20,7 +20,7 @@ describe('Sign In page', () => {
     cy.get('#password').type(password);
     cy.get('.radius').click();
 
-    cy.get('#flash').contains('Your username is invalid! ');
+    cy.get('#flash').should('include.text', 'Your username is invalid!');
   });
 
   it('should successfuly log out', () => {
@@ -28,10 +28,11 @@ describe('Sign In page', () => {
     cy.get('#password').type(password);
     cy.get('.radius').click();
 
-    cy.get('#flash').contains('You logged into a secure area!');
+    cy.get('#flash').should('include.text', 'You logged into a secure area!');
 
-    cy.get('a').contains('Logout').click();
+    cy.get('.button').contains('Logout').click();
 
-    cy.get('#flash').contains('You logged out of the secure area!');
+    cy.get('#flash')
+      .should('include.text', 'You logged out of the secure area!');
   });
 });
