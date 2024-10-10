@@ -10,16 +10,15 @@ describe('Login Tests', () => {
     cy.get('button[type="submit"]').click();
     cy.url().should('include', '/secure');
   });
-});
+  it('Login with invalid credentials', () => {
+    cy.visit('https://the-internet.herokuapp.com/login');
 
-it('Login with invalid credentials', () => {
-  cy.visit('https://the-internet.herokuapp.com/login');
+    cy.get('input[name="username"]').type('test123');
+    cy.get('input[name="password"]').type('TestTest123+');
+    cy.get('button[type="submit"]').click();
 
-  cy.get('input[name="username"]').type('test123');
-  cy.get('input[name="password"]').type('TestTest123+');
-  cy.get('button[type="submit"]').click();
-
-  cy.get('.flash.error').should('contain', 'Your username is invalid!');
+    cy.get('.flash.error').should('contain', 'Your username is invalid!');
+  });
 });
 
 it('Logout from the app', () => {
