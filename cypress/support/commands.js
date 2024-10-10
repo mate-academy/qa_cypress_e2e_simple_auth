@@ -25,23 +25,9 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-const username = 'tomsmith';
-const password = 'SuperSecretPassword!';
 
-Cypress.Commands.add('getCredForLogin', () => {
-  cy.get('#username').type(`${username}`);
-  cy.get('#password').type(`${password}`);
-  cy.get('button[type="submit"]').click();
-});
-
-Cypress.Commands.add('getInvalidUsername', () => {
-  cy.get('#username').type(`${username}1`);
-  cy.get('#password').type(`${password}`);
-  cy.get('button[type="submit"]').click();
-});
-
-Cypress.Commands.add('getInvalidPassword', () => {
-  cy.get('#username').type(`${username}`);
-  cy.get('#password').type(`${password}2`);
+Cypress.Commands.add('fillAndSubmitLoginForm', (username, password) => {
+  cy.get('#username').type(username);
+  cy.get('#password').type(password);
   cy.get('button[type="submit"]').click();
 });

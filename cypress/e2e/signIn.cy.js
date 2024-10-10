@@ -5,8 +5,11 @@ describe('Sign In page', () => {
     cy.visit('/login');
   });
 
+  const username = 'tomsmith';
+  const password = 'SuperSecretPassword!';
+
   it('should log in with valid credentials', () => {
-    cy.getCredForLogin();
+    cy.fillAndSubmitLoginForm(username, password);
 
     cy.get('#flash-messages').should('be.visible');
 
@@ -17,7 +20,7 @@ describe('Sign In page', () => {
   });
 
   it('should not login with invalid username', () => {
-    cy.getInvalidUsername();
+    cy.fillAndSubmitLoginForm(username + '1', password);
 
     cy.get('#flash-messages').should('be.visible');
 
@@ -26,7 +29,7 @@ describe('Sign In page', () => {
   });
 
   it('should not login with invalid password', () => {
-    cy.getInvalidPassword();
+    cy.fillAndSubmitLoginForm(username, password + '2');
 
     cy.get('#flash-messages').should('be.visible');
 
@@ -35,7 +38,7 @@ describe('Sign In page', () => {
   });
 
   it('should successfully log out', () => {
-    cy.getCredForLogin();
+    cy.fillAndSubmitLoginForm(username, password);
 
     cy.get('a[href="/logout"]').click();
 
