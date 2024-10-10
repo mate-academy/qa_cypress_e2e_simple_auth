@@ -8,7 +8,7 @@ describe('Sign In page', () => {
   it('Login with valid creds', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!');
-    cy.get('.fa.fa-2x.fa-sign-in').click();
+    cy.get('.radius').click();
     cy.get('#flash')
       .should('contain', 'You logged into a secure area!');
   });
@@ -16,7 +16,7 @@ describe('Sign In page', () => {
   it('Login with invalid creds', () => {
     cy.get('#username').type('jhope');
     cy.get('#password').type('qwertyty');
-    cy.get('.fa.fa-2x.fa-sign-in').click();
+    cy.get('.radius').click();
     cy.get('#flash')
       .should('contain', 'Your username is invalid!');
   });
@@ -24,9 +24,10 @@ describe('Sign In page', () => {
   it('Logout from the app', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!');
-    cy.get('.fa.fa-2x.fa-sign-in').click();
+    cy.get('.radius').click();
     cy.get('.icon-2x.icon-signout').click();
     cy.get('#flash')
       .should('contain', 'You logged out of the secure area!');
+    cy.url().should('contain', '');
   });
 });
