@@ -7,19 +7,22 @@ describe('Sign In page', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!');
     cy.get('[type="submit"]').click();
-    cy.contains('#flash', 'You logged into a secure area!');
+    cy.contains('#flash', 'You logged into a secure area!')
+      .should('be.visible');
   });
   it('Should not login with invalid username', () => {
     cy.get('#username').type('anton');
     cy.get('#password').type('SuperSecretPassword!');
     cy.get('[type="submit"]').click();
-    cy.contains('#flash', 'Your username is invalid!');
+    cy.contains('#flash', 'Your username is invalid!')
+      .should('be.visible');
   });
   it('Should not login with invalid password', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPasswordf!');
     cy.get('[type="submit"]').click();
-    cy.contains('#flash', 'Your password is invalid!');
+    cy.contains('#flash', 'Your password is invalid!')
+      .should('be.visible');
   });
   it('Should logout from the app', () => {
     cy.get('#username').type('tomsmith');
@@ -27,6 +30,7 @@ describe('Sign In page', () => {
     cy.get('[type="submit"]').click();
     cy.contains('#flash', 'You logged into a secure area!');
     cy.get('[class="button secondary radius"]').click();
-    cy.contains('#flash', 'You logged out of the secure area!');
+    cy.contains('#flash', 'You logged out of the secure area!')
+      .should('be.visible');
   });
 });
