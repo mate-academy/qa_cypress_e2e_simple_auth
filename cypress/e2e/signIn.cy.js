@@ -21,6 +21,14 @@ describe('Sign In page', () => {
       .should('contain', 'Your username is invalid!');
   });
 
+  it('An error message when trying to log in with invalid password', () => {
+    cy.get('#username').type('tomsmith');
+    cy.get('#password').type('qwertyty');
+    cy.get('.radius').click();
+    cy.get('#flash')
+      .should('contain', 'Your password is invalid!');
+  });
+
   it('Should log out successfully and show a confirmation message', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!');
