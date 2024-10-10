@@ -1,8 +1,7 @@
 describe('Login Tests', () => {
-  const validUsername = Cypress.env('validUsername');
-  const validPassword = Cypress.env('validPassword');
-
   it('Login with valid credentials', () => {
+    const validUsername = Cypress.env('validUsername');
+    const validPassword = Cypress.env('validPassword');
     cy.visit('https://the-internet.herokuapp.com/login');
 
     cy.get('input[name="username"]').type(validUsername);
