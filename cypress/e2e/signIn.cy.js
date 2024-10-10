@@ -2,10 +2,10 @@
 
 describe('Sign In page', () => {
   beforeEach(() => {
-    cy.visit('https://the-internet.herokuapp.com/login');
+    cy.visit('/login');
   });
 
-  it('Login with valid creds', () => {
+  it('Should log in successfully with valid credentials', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!');
     cy.get('.radius').click();
@@ -13,7 +13,7 @@ describe('Sign In page', () => {
       .should('contain', 'You logged into a secure area!');
   });
 
-  it('Login with invalid creds', () => {
+  it('An error message when trying to log in with invalid credentials', () => {
     cy.get('#username').type('jhope');
     cy.get('#password').type('qwertyty');
     cy.get('.radius').click();
@@ -21,13 +21,13 @@ describe('Sign In page', () => {
       .should('contain', 'Your username is invalid!');
   });
 
-  it('Logout from the app', () => {
+  it('Should log out successfully and show a confirmation message', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!');
     cy.get('.radius').click();
     cy.get('.icon-2x.icon-signout').click();
     cy.get('#flash')
       .should('contain', 'You logged out of the secure area!');
-    cy.url().should('contain', '');
+    cy.url().should('contain', '/login');
   });
 });
