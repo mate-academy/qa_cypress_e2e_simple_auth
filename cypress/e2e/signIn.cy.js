@@ -3,61 +3,54 @@
 describe('Sign In page', () => {
   const username = 'tomsmith';
   const password = 'SuperSecretPassword!';
-  const invalidUsername = 't0msmith';
-  const invalidPassword = 'SuperSecretPassword';
-
-  const successLoginMessage = 'You logged into a secure area!';
-  const invUsernameMessage = 'Your username is invalid!';
-  const invPassMessage = 'Your password is invalid!';
-  const successLogoutMessage = 'You logged out of the secure area!';
 
   beforeEach(() => {
     cy.visit('/login');
   });
 
   it('Should login with valid creds', () => {
-    cy.get('#username')
+    cy.findById('username')
       .type(username);
-    cy.get('#password')
+    cy.findById('password')
       .type(password);
 
     cy.get('.radius')
       .click();
 
-    cy.get('#flash')
-      .should('contain', successLoginMessage);
+    cy.findById('flash')
+      .should('contain', 'You logged into a secure area!');
   });
 
   it('Shouldn\'t login with invalid username', () => {
-    cy.get('#username')
-      .type(invalidUsername);
-    cy.get('#password')
+    cy.findById('username')
+      .type('invalidUsername');
+    cy.findById('password')
       .type(password);
 
     cy.get('.radius')
       .click();
 
-    cy.get('#flash')
-      .should('contain', invUsernameMessage);
+    cy.findById('flash')
+      .should('contain', 'Your username is invalid!');
   });
 
   it('Shouldn\'t login with invalid password', () => {
-    cy.get('#username')
+    cy.findById('username')
       .type(username);
-    cy.get('#password')
-      .type(invalidPassword);
+    cy.findById('password')
+      .type('invalidPassword');
 
     cy.get('.radius')
       .click();
 
-    cy.get('#flash')
-      .should('contain', invPassMessage);
+    cy.findById('flash')
+      .should('contain', 'Your password is invalid!');
   });
 
   it('Should logout from the app', () => {
-    cy.get('#username')
+    cy.findById('username')
       .type(username);
-    cy.get('#password')
+    cy.findById('password')
       .type(password);
 
     cy.get('.radius')
@@ -66,7 +59,7 @@ describe('Sign In page', () => {
     cy.get('a[href="/logout"]')
       .click();
 
-    cy.get('#flash')
-      .should('contain', successLogoutMessage);
+    cy.findById('flash')
+      .should('contain', 'You logged out of the secure area!');
   });
 });
