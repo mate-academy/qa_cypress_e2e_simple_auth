@@ -11,11 +11,17 @@ describe('Sign In page', () => {
     cy.get('.fa').click();
     cy.get('#flash').contains('logged into');
   });
-  it('should display error message where entered invalid creds', () => {
+  it('should display error message where entered invalid username', () => {
     cy.get('#username').type('tomsmith1');
     cy.get('#password').type('SuperSecretPassword!');
     cy.get('.fa').click();
-    cy.get('#flash').contains('invalid');
+    cy.get('#flash').contains('username is invalid');
+  });
+  it('should display error message where entered invalid password', () => {
+    cy.get('#username').type('tomsmith');
+    cy.get('#password').type('SuperSecretPassword!1');
+    cy.get('.fa').click();
+    cy.get('#flash').contains('password is invalid');
   });
   it('should log out user after click on [Log out] button', () => {
     cy.get('#username').type('tomsmith');
