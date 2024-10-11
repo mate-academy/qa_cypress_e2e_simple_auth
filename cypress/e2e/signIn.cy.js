@@ -41,5 +41,6 @@ describe('Authentication Tests', () => {
     cy.get('a[href="/logout"]').click();
 
     cy.contains('You logged out of the secure area!').should('be.visible');
+    // test comment
   });
 });
