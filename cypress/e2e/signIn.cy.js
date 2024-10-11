@@ -15,10 +15,19 @@ describe('Sign In page', () => {
     cy.get('[class="fa fa-2x fa-sign-in"]').click();
 
     cy.url().should('include', '/secure');
+    cy.get('[id="flash-messages"]')
+      .should('contain', 'You logged into a secure area!');
   });
 
   it('should show validation errors with invalid credentials', () => {
     cy.get('[id="username"]').type(invalidUsername);
+    cy.get('[class="fa fa-2x fa-sign-in"]').click();
+
+    cy.get('[id="flash-messages"]')
+      .should('contain', 'Your username is invalid!');
+  });
+
+  it('should show validation errors with invalid credentials', () => {
     cy.get('[id="password"]').type(invalidPassword);
     cy.get('[class="fa fa-2x fa-sign-in"]').click();
 
