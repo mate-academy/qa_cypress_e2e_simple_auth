@@ -16,14 +16,16 @@ describe('Sign In page', () => {
     cy.contains('.button', 'Logout').click();
   });
 
-  it('should not login with invalid creds', () => {
+  it('should not login with invalid username', () => {
     cy.get('#username').type('tom');
     cy.get('#password').type('SuperSecretPassword!');
 
     cy.contains('button', 'Login').click();
 
     cy.get('#flash').should('contain', 'Your username is invalid!');
+  });
 
+  it('should not login with invalid password', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('Password');
 
@@ -32,7 +34,7 @@ describe('Sign In page', () => {
     cy.get('#flash').should('contain', 'Your password is invalid!');
   });
 
-  it('should login with valid creds ', () => {
+  it('should successfully logged out', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword!');
 
