@@ -19,7 +19,7 @@ describe('Sign In page', () => {
       .should('contain', 'You logged into a secure area!');
   });
 
-  it('should show validation errors with invalid credentials', () => {
+  it('should show validation errors with username credentials', () => {
     cy.get('[id="username"]').type(invalidUsername);
     cy.get('[class="fa fa-2x fa-sign-in"]').click();
 
@@ -27,12 +27,12 @@ describe('Sign In page', () => {
       .should('contain', 'Your username is invalid!');
   });
 
-  it('should show validation errors with invalid credentials', () => {
+  it('should show validation errors with invalid password', () => {
     cy.get('[id="password"]').type(invalidPassword);
     cy.get('[class="fa fa-2x fa-sign-in"]').click();
 
     cy.get('[id="flash-messages"]')
-      .should('contain', 'Your username is invalid!');
+      .should('contain', 'Your password is invalid!');
   });
 
   it('should logout from the app', () => {
