@@ -1,52 +1,36 @@
-describe('Login Flow', () => {
-  const validUsername = 'tomsmith';
-  const validPassword = 'SuperSecretPassword!';
-  const invalidUsername = 'invalidUsername';
-  const invalidPassword = 'invalidPassword';
+/// <reference types="cypress" />
 
-  it('should log in with valid credentials', () => {
+describe('Sign In page', () => {
+  beforeEach(() => {
+  beforeEach(() => cy.visit('https://the-internet.herokuapp.com/login'));
 
-    cy.visit('https://the-internet.herokuapp.com/login');
-
-
-    cy.get('input[name="username"]').type(validUsername);
-    cy.get('input[name="password"]').type(validPassword);
-
-
-    cy.get('button[type="submit"]').click();
-
-
-    cy.url().should('include', '/secure');
-    cy.get('div[class="flash success"]').should('contain', 'You logged into a secure area!');
+  it('Should login with valid creds', () => {
+    cy.get('#username').type('tomsmith');
+    cy.get('#password').type('SuperSecretPassword!');
+    cy.get('[type="submit"]').click();
+    cy.contains('#flash', 'You logged into a secure area!');
   });
 
-  it('should show validation errors with invalid credentials', () => {
+  it('', () => {
 
-    cy.visit('https://the-internet.herokuapp.com/login');
-
-
-    cy.get('input[name="username"]').type(invalidUsername);
-    cy.get('input[name="password"]').type(invalidPassword);
-
-
-    cy.get('button[type="submit"]').click();
-
-
-    cy.get('div[class="flash error"]').should('contain', 'Your username is invalid!');
+  it('Should not login with invalid username', () => {
+    cy.get('#username').type('anton');
+    cy.get('#password').type('SuperSecretPassword!');
+    cy.get('[type="submit"]').click();
+    cy.contains('#flash', 'Your username is invalid!');
   });
-
-  it('should log out successfully', () => {
-
-    cy.visit('https://the-internet.herokuapp.com/login');
-    cy.get('input[name="username"]').type(validUsername);
-    cy.get('input[name="password"]').type(validPassword);
-    cy.get('button[type="submit"]').click();
-
-
-    cy.get('a[href="/logout"]').click();
-
-
-    cy.url().should('include', '/login');
-    cy.get('div[class="flash success"]').should('contain', 'You logged out of the secure area!');
+  it('Should not login with invalid password', () => {
+    cy.get('#username').type('tomsmith');
+    cy.get('#password').type('SuperSecretPasswordf!');
+    cy.get('[type="submit"]').click();
+    cy.contains('#flash', 'Your password is invalid!');
+  });
+  it('Should logout from the app', () => {
+    cy.get('#username').type('tomsmith');
+    cy.get('#password').type('SuperSecretPassword!');
+    cy.get('[type="submit"]').click();
+    cy.contains('#flash', 'You logged into a secure area!');
+    cy.get('[class="button secondary radius"]').click();
+    cy.contains('#flash', 'You logged out of the secure area!');
   });
 });
