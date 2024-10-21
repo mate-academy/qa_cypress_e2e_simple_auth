@@ -21,6 +21,7 @@ describe('Sign In page', () => {
 
   it('should show validation errors with username credentials', () => {
     cy.get('[id="username"]').type(invalidUsername);
+    cy.get('[id="password"]').type(validPassword);
     cy.get('[class="fa fa-2x fa-sign-in"]').click();
 
     cy.get('[id="flash-messages"]')
@@ -28,6 +29,7 @@ describe('Sign In page', () => {
   });
 
   it('should show validation errors with invalid password', () => {
+    cy.get('[id="username"]').type(validUsername);
     cy.get('[id="password"]').type(invalidPassword);
     cy.get('[class="fa fa-2x fa-sign-in"]').click();
 
