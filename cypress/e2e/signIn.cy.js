@@ -24,6 +24,7 @@ describe('Sign In page', () => {
     cy.contains('#flash', 'Your username is invalid!');
   });
 
+
   it('Shouldn\'t login with invalid password', () => {
     const username = 'tomsmith';
 
