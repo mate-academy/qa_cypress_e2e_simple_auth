@@ -42,6 +42,9 @@ describe('Sign In page', () => {
 
     // Assert validation error for invalid username
     cy.get('.flash.error').contains(' Your username is invalid!');
+
+    // Verify the URL
+    cy.url().should('include', '/login');
   });
 
   it('should not allow to login with invalid password', () => {
@@ -57,6 +60,9 @@ describe('Sign In page', () => {
 
     // Assert validation error for invalid password
     cy.get('.flash.error').should('contain.text', 'Your password is invalid!');
+
+    // Verify the URL
+    cy.url().should('include', '/login');
   });
 
   it('should assert successfull logged out', () => {
