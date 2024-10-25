@@ -23,3 +23,14 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('getUserData', () => {
+  return {
+    username: 'tomsmith',
+    password: 'SuperSecretPassword!'
+  };
+});
+
+Cypress.Commands.add('assertPageURL', (url) => {
+  cy.url().should('equal', Cypress.config().baseUrl + url);
+});
