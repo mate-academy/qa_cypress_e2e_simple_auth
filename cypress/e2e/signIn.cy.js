@@ -7,8 +7,8 @@ describe('Sign In page', () => {
   })
 
   it.skip('should allow to login with valid creds', () => {
-    cy.findByName('username').type('richard')
-    cy.findByName('password').type('123123123' + `{Enter}`)
+    cy.findByName('username').type('tomsmith')
+    cy.findByName('password').type('SuperSecretPassword!' + `{Enter}`)
     cy.get('div.flash.success').should(
       'contain.text',
       'You logged into a secure area!'
@@ -25,8 +25,8 @@ describe('Sign In page', () => {
   })
 
   it('should allow to Logout from the app', () => {
-    cy.findByName('username').type('richard')
-    cy.findByName('password').type('123123123' + `{Enter}`)
+    cy.findByName('username').type('tomsmith')
+    cy.findByName('password').type('SuperSecretPassword!' + `{Enter}`)
     cy.get('a.button').should('have.attr', 'href', '/logout').click()
     cy.get('div.flash.success').should(
       'contain.text',
