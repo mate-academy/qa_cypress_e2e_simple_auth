@@ -2,8 +2,9 @@
   "scripts": {
     "prepare": "husky install",
     "lint": "eslint .",
-    "test": "cypress run --browser chrome"
-  },
+    "test": "cypress run --browser chrome",
+		"test-mac": "cypress open --browser chrome"
+	},
   "dependencies": {
     "cypress-image-snapshot": "^4.0.1",
     "eslint-plugin-cypress": "^2.12.1",
