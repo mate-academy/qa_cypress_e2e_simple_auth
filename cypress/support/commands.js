@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', (username, password) => {
+  cy.get('#username').type(username);
+  cy.get('#password').type(password);
+
+  cy.get('.radius').click();
+});
+Cypress.Commands.add('showMessage', (value, message) => {
+  cy.get(value)
+    .should('be.visible')
+    .should('contain.text', message);
+});
