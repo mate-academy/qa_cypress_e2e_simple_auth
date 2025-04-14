@@ -23,3 +23,16 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add("findById", (id) => {
+  cy.get(`#${id}`);
+});
+
+Cypress.Commands.add("login", (username, password) => {
+  cy.findById("username").type(username);
+  cy.findById("password").type(password);
+  cy.contains("button", "Login").click();
+});
+
+Cypress.Commands.add("assertMessage", (message) => {
+  cy.get("#flash-messages").should("contain", `${message}`);
+});
