@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Sign In page', () => {
+describe('Very good commit, approve me', () => {
   beforeEach(() => {
 
   });
