@@ -2,10 +2,27 @@
 
 describe('Sign In page', () => {
   beforeEach(() => {
-
+    cy.visit('https://the-internet.herokuapp.com/login');
   });
 
-  it('', () => {
-
+  it('Should login succesfuly', () => {
+    //login with proprer credentials
+    cy.get('#username').type('tomsmith');
+    cy.get('#password').type('SuperSecretPassword!');
+    cy.contains('i', ' Login').click();
+    cy.contains('#flash', 'You logged into a secure area!').should('be.visible');
+    //logout
+    cy.get('a[href="/logout"]').click();
+    //login with incorrect username
+    cy.get('#username').type('tom-smith');
+    cy.get('#password').type('SuperSecretPassword!');
+    cy.contains('i', ' Login').click();
+    cy.contains('#flash', 'Your username is invalid!').should('be.visible');
+     //login with incorrect password
+     cy.get('#username').type('tomsmith');
+     cy.get('#password').type('SuperSecretPasswort!');
+     cy.contains('i', ' Login').click();
+     cy.contains('#flash', 'Your password is invalid!').should('be.visible');
   });
+  
 });
