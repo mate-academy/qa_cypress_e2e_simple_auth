@@ -23,3 +23,19 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', ({ userName, password } = {}) => {
+  const defaultUserName = 'tomsmith';
+  const defaultPassword = 'SuperSecretPassword!';
+
+  cy.get('#username').type(userName || defaultUserName);
+
+  cy.get('#password').type(password || defaultPassword);
+
+  cy.contains('button', 'Login').click();
+});
+
+Cypress.Commands.add('checkAlert', (text) => {
+  cy.get('#flash')
+    .should('contain.text', text);
+});
