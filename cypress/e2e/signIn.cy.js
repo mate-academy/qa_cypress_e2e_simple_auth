@@ -19,12 +19,10 @@ describe('Sign In page', () => {
   });
 
   it('should show an error if the login details are incorrect', () => {
-    cy.loginUser(username + '123', password + 'asdgit ');
+    cy.loginUser(username + '123', password + 'asd');
 
-    cy.contains('div', 'Your username is invalid!').should(
-      'have.attr',
-      'id',
-      'flash'
-    );
+    cy.contains('div', 'Your username is invalid!')
+      .should('have.attr', 'id', 'flash')
+      .should('be.visible');
   });
 });

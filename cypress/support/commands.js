@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('findByName', (name) => {
-  cy.get(`[name="${name}"]`);
+  return cy.get(`[name="${name}"]`);
 });
 
 Cypress.Commands.add('loginUser', (username, pass) => {
