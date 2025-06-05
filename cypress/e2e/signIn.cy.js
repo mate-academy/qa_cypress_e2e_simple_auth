@@ -28,10 +28,20 @@ describe('Sign In page', () => {
     cy.contains('#flash', 'Your username is invalid!');
   });
 
-  it.only('should not sign in with wrong password', () => {
+  it('should not sign in with wrong password', () => {
     cy.get('#username').type('tomsmith');
     cy.get('#password').type('SuperSecretPassword1' + `{Enter}`);
 
     cy.contains('#flash', 'Your password is invalid!');
+  });
+
+  it('should signOut from the account', () => {
+    cy.login();
+
+    cy.contains('.button', 'Logout').click();
+
+    cy.url().should('contain', '/login');
+
+    cy.contains('#flash', 'You logged out of the secure area!');
   });
 });
