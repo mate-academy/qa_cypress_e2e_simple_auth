@@ -23,3 +23,21 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('userloginAPI', (username, password) => {
+  cy.request({
+    method: 'POST',
+    url: '/authenticate',
+    form: true,
+    body: {
+      username,
+      password
+    }
+  }).then((response) => {
+    const cookies = response.headers['set-cookie'];
+    const rackSessionCookie = cookies.find(
+      (c) => c.startsWith('rack.session=')
+    );
+    const sessionValue = rackSessionCookie.split(';')[0].split('=')[1];
+    cy.setCookie('rack.session', sessionValue);
+  });
+});
