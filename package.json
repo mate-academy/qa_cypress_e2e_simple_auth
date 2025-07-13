@@ -5,13 +5,13 @@
     "test": "cypress run --browser chrome"
   },
   "dependencies": {
-    "cypress-image-snapshot": "^4.0.1",
     "eslint-plugin-cypress": "^2.12.1",
     "pg": "^8.9.0",
     "sequelize": "^6.21.2",
     "sequelize-cli": "^6.4.1"
   },
   "devDependencies": {
+    "@simonsmith/cypress-image-snapshot": "^9.1.0",
     "@types/cypress": "latest",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
