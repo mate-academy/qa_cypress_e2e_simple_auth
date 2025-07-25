@@ -5,6 +5,7 @@
     "test": "cypress run --browser chrome"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.9.0",
     "cypress-image-snapshot": "^4.0.1",
     "eslint-plugin-cypress": "^2.12.1",
     "pg": "^8.9.0",
