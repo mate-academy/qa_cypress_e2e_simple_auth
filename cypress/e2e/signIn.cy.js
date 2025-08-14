@@ -11,7 +11,7 @@ describe('Sign In page', () => {
     cy.visit(`${baseUrl}/login`);
   });
 
-  it('logs in with valid creds', () => {
+  it('', () => {
     cy.get('#username').type(validUser.username);
     cy.get('#password').type(validUser.password);
     cy.get('button[type="submit"]').click();
