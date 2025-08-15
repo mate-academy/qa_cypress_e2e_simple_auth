@@ -11,7 +11,11 @@ describe('Sign In page', () => {
     cy.visit(`${baseUrl}/login`);
   });
 
+<<<<<<< HEAD
   it('', () => {
+=======
+  it('logs in with valid credentials', () => {
+>>>>>>> 6898e08 (Solution)
     cy.get('#username').type(validUser.username);
     cy.get('#password').type(validUser.password);
     cy.get('button[type="submit"]').click();
