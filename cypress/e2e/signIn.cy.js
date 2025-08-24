@@ -7,19 +7,23 @@ describe('Sign In page', () => {
 
   it('should log in with correct credentials', () => {
     cy.login('tomsmith', 'SuperSecretPassword!');
-    cy.url().should('eq', `${Cypress.config().baseUrl}/secure`);
+    cy.url().should('include', '/secure');
+    cy.get('#flash').should('contain', 'You logged into a secure area!');
+    cy.get('a.button').contains('Logout').should('be.visible');
   });
 
   it('should not log in with invalid username', () => {
     cy.login('invalid', 'SuperSecretPassword!');
-    cy.contains('Your username is invalid!').should('be.visible');
-    cy.url().should('eq', `${Cypress.config().baseUrl}/login`);
+    cy.url().should('include', '/login');
+    cy.get('form#login').should('be.visible');
+    cy.get('#flash').should('contain', 'Your username is invalid!');
   });
 
   it('should not log in with invalid password', () => {
     cy.login('tomsmith', 'invalid');
-    cy.contains('Your password is invalid!').should('be.visible');
-    cy.url().should('eq', `${Cypress.config().baseUrl}/login`);
+    cy.url().should('include', '/login');
+    cy.get('form#login').should('be.visible');
+    cy.get('#flash').should('contain', 'Your password is invalid!');
   });
 
   it('should log out on click on logout button', () => {
@@ -27,5 +31,7 @@ describe('Sign In page', () => {
     cy.url().should('eq', `${Cypress.config().baseUrl}/secure`);
     cy.get('a.button[href="/logout"]').click();
     cy.url().should('eq', `${Cypress.config().baseUrl}/login`);
+    cy.get('#flash').should('contain', 'You logged out of the secure area!');
+    cy.get('form#login').should('be.visible');
   });
 });
