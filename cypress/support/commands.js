@@ -35,7 +35,7 @@ Cypress.Commands.add('login', (username, password) => {
 });
 
 Cypress.Commands.add('logout', () => {
-  cy.get('.icon-2x.icon-signout').click();
+  cy.get('a[href="/logout"]').click();
 });
 
 Cypress.Commands.add('assertLoginSuccess', () => {
