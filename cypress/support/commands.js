@@ -23,3 +23,19 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', (email, password) => {
+  cy.get('#username').clear();
+  cy.get('#username').type(email);
+
+  cy.get('#password').clear();
+  cy.get('#password').type(password);
+
+  cy.get('.radius').should('contain', 'Login').click();
+});
+
+Cypress.Commands.add('checkVerifyMessage', (expectedText) => {
+  const messageSelector = '#flash';
+
+  cy.get(messageSelector).should('be.visible').and('contain', expectedText);
+});
