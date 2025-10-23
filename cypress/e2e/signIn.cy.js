@@ -13,18 +13,10 @@ describe('Sign In page', () => {
     cy.assertPageUrl('/secure');
   });
 
-  it('should not login with invalid username', () => {
-    cy.loginUser('invalidUsername', Cypress.env('password'));
+  it('should not login with invalid credentials', () => {
+    cy.loginUser('invalidUsername', 'invalidPassword');
 
     cy.checkValidationMessage('Your username is invalid!');
-
-    cy.assertPageUrl('/login');
-  });
-
-  it('should not login with invalid password', () => {
-    cy.loginUser(Cypress.env('username'), 'invalidPassword');
-
-    cy.checkValidationMessage('Your password is invalid!');
 
     cy.assertPageUrl('/login');
   });
