@@ -1,11 +1,45 @@
-/// <reference types="cypress" />
+describe('Login flow tests', () => {
+  const baseUrl = 'https://the-internet.herokuapp.com/login';
 
-describe('Sign In page', () => {
   beforeEach(() => {
-
+    cy.visit(baseUrl);
   });
 
-  it('', () => {
+  it('should log in successfully with valid credentials', () => {
+    cy.get('#username').type('tomsmith');
+    cy.get('#password').type('SuperSecretPassword!');
+    cy.get('button[type="submit"]').click();
 
+    // Assercja potwierdzająca zalogowanie
+    cy.url().should('include', '/secure');
+    cy.get('#flash')
+      .should('contain', 'You logged into a secure area!');
+    cy.get('a[href="/logout"]').should('be.visible');
+  });
+
+  it('should show an error for invalid credentials', () => {
+    cy.get('#username').type('invalidUser');
+    cy.get('#password').type('invalidPassword');
+    cy.get('button[type="submit"]').click();
+
+    // Assercja błędu
+    cy.get('#flash')
+      .should('contain', 'Your username is invalid!');
+    cy.url().should('include', '/login');
+  });
+
+  it('should log out successfully', () => {
+    // najpierw logujemy się poprawnie
+    cy.get('#username').type('tomsmith');
+    cy.get('#password').type('SuperSecretPassword!');
+    cy.get('button[type="submit"]').click();
+
+    // klikamy "Logout"
+    cy.get('a[href="/logout"]').click();
+
+    // Assercja po wylogowaniu
+    cy.url().should('include', '/login');
+    cy.get('#flash')
+      .should('contain', 'You logged out of the secure area!');
   });
 });
