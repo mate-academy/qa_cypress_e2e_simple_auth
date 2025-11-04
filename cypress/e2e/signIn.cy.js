@@ -17,18 +17,32 @@ describe('Login flow on the-internet.herokuapp.com', () => {
       .and('contain', 'You logged into a secure area!');
   });
 
-  it('should show error message with invalid credentials', () => {
+  it('should show error message with invalid username', () => {
     cy.visit(baseUrl);
 
     cy.get('#username').type('invalidUser');
-    cy.get('#password').type('invalidPass');
+    cy.get('#password').type('SuperSecretPassword!');
     cy.get('button[type="submit"]').click();
 
-    // Assert validation errors
+    // Assert validation errors for invalid username
     cy.url().should('include', '/login');
     cy.get('.flash.error')
       .should('be.visible')
       .and('contain', 'Your username is invalid!');
+  });
+
+  it('should show error message with invalid password', () => {
+    cy.visit(baseUrl);
+
+    cy.get('#username').type('tomsmith');
+    cy.get('#password').type('wrongPassword!');
+    cy.get('button[type="submit"]').click();
+
+    // Assert validation errors for invalid password
+    cy.url().should('include', '/login');
+    cy.get('.flash.error')
+      .should('be.visible')
+      .and('contain', 'Your password is invalid!');
   });
 
   it('should log out successfully', () => {
