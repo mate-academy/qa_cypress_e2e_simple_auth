@@ -23,8 +23,11 @@ describe('Sign In page', () => {
     cy.get('#password').type(validPassword);
 
     cy.get('button[type="submit"]').click();
-    cy.location('href')
-      .should('equal', `${url}/secure`);
+
+
+    cy.get('#flash')
+      .should('be.visible')
+      .and('contain', 'You logged into a secure area!');
   });
 
   invalidСredentialsСases.forEach(({ username, password }) => {
@@ -51,7 +54,8 @@ describe('Sign In page', () => {
 
     cy.get('a[href="/logout"]').click();
 
-    cy.location('href')
-      .should('equal', `${url}/login`);
+    cy.get('#flash')
+      .should('be.visible')
+      .and('contain', 'You logged out of the secure area!');
   });
 });
