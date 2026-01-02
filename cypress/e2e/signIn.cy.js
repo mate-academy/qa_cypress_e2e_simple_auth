@@ -37,8 +37,9 @@ describe('Sign In page', () => {
 
       cy.get('button[type="submit"]').click();
 
-      cy.location('href')
-        .should('equal', `${url}/login`);
+      cy.get('#flash')
+        .should('be.visible')
+        .and('contain', 'Your username is invalid!');
     });
   });
 
