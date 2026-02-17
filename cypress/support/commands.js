@@ -23,3 +23,20 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+/// <reference types="cypress" />
+
+Cypress.Commands.add('asertPageUrl', (url) => {
+  cy.url().should('equal', Cypress.config().baseUrl + url);
+});
+
+Cypress.Commands.add('loginUser', () => {
+  const username = 'tomsmith';
+  const password = 'SuperSecretPassword!';
+
+  cy.contains('h2', 'Login Page');
+
+  cy.get('#username').type(username);
+  cy.get('#username').should('have.value', username);
+
+  cy.get('#password').type(password + `{Enter}`);
+});
