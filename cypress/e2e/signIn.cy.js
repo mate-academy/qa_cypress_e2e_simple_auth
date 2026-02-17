@@ -7,15 +7,10 @@ describe('Sign In page', () => {
 
   it('should provide an ability to log in', () => {
     cy.loginUser();
-    cy.asertPageUrl('/secure');
+    cy.assertPageUrl('/secure');
   });
 
   it('should not log in if username or password are invalid', () => {
-    cy.loginUser();
-    cy.asertPageUrl('/secure');
-    cy.contains('a', 'Logout');
-    cy.visit('/login');
-
     const newName = 'Tom';
     const newPassword = '1234';
     cy.get('#username').type(newName);
@@ -27,7 +22,7 @@ describe('Sign In page', () => {
 
   it('should logout user', () => {
     cy.loginUser();
-    cy.asertPageUrl('/secure');
+    cy.assertPageUrl('/secure');
     cy.contains('a', 'Logout');
     cy.visit('/login');
   });

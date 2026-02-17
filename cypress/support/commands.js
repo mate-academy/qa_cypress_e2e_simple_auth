@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 /// <reference types="cypress" />
 
-Cypress.Commands.add('asertPageUrl', (url) => {
+Cypress.Commands.add('assertPageUrl', (url) => {
   cy.url().should('equal', Cypress.config().baseUrl + url);
 });
 
