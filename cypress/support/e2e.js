@@ -24,7 +24,15 @@ if (!app.document.head.querySelector('[data-hide-command-log-request]')) {
   style.setAttribute('data-hide-command-log-request', '');
 
   app.document.head.appendChild(style);
-};
+}
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+export const getRandomUserData = () => {
+  const username = `user${Math.random().toString().split('').slice(2, 7).join('')}`;
+  const email = `${username}@gmail.com`;
+  const password = '1234';
+
+  return { username, email, password };
+};
