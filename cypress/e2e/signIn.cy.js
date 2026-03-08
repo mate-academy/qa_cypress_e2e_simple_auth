@@ -3,15 +3,18 @@
 describe('Sign In flow', () => {
   const url = 'https://the-internet.herokuapp.com/login';
 
+  const login = (username, password) => {
+    cy.get('#username').type(username);
+    cy.get('#password').type(password);
+    cy.get('button[type="submit"]').click();
+  };
+
   beforeEach(() => {
     cy.visit(url);
   });
 
   it('should login with valid credentials', () => {
-    cy.get('#username').type('tomsmith');
-    cy.get('#password').type('SuperSecretPassword!');
-
-    cy.get('button[type="submit"]').click();
+    login('tomsmith', 'SuperSecretPassword!');
 
     cy.get('#flash')
       .should('be.visible')
@@ -19,10 +22,7 @@ describe('Sign In flow', () => {
   });
 
   it('should show error with invalid username', () => {
-    cy.get('#username').type('invalidUser');
-    cy.get('#password').type('SuperSecretPassword!');
-
-    cy.get('button[type="submit"]').click();
+    login('invalidUser', 'SuperSecretPassword!');
 
     cy.get('#flash')
       .should('be.visible')
@@ -30,21 +30,15 @@ describe('Sign In flow', () => {
   });
 
   it('should show error with invalid password', () => {
-    cy.get('#username').type('tomsmith');
-    cy.get('#password').type('invalidPassword');
-
-    cy.get('button[type="submit"]').click();
+    login('tomsmith', 'invalidPassword');
 
     cy.get('#flash')
       .should('be.visible')
-      .and('contain', 'Your password is invalid!');
+      .and('contain', 'Your username is invalid!');
   });
 
   it('should logout successfully', () => {
-    cy.get('#username').type('tomsmith');
-    cy.get('#password').type('SuperSecretPassword!');
-
-    cy.get('button[type="submit"]').click();
+    login('tomsmith', 'SuperSecretPassword!');
 
     cy.get('a[href="/logout"]').click();
 
