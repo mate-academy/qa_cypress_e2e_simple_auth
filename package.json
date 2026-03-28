@@ -31,7 +31,12 @@
       "pre-commit": "lint-staged"
     }
   },
+  "overrides": {
+    "cypress-image-snapshot": {
+      "cypress": "$cypress"
+    }
+  },
   "lint-staged": {
     "*.js": "eslint --max-warnings=0"
-  }
+  }  
 }
