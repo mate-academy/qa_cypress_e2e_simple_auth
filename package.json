@@ -2,7 +2,9 @@
   "scripts": {
     "prepare": "husky install",
     "lint": "eslint .",
-    "test": "cypress run --browser chrome"
+    "test": "cypress run --browser chrome",
+    "cypress:open": "cypress open --e2e",
+    "cypress:run": "cypress run --browser chrome"
   },
   "dependencies": {
     "eslint-plugin-cypress": "^2.12.1",
@@ -11,6 +13,7 @@
     "sequelize-cli": "^6.4.1"
   },
   "devDependencies": {
+    "@types/cypress": "latest",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
     "cypress": "^12.13.0",

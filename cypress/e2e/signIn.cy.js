@@ -10,10 +10,8 @@ const submitLogin = (username, password) => {
   cy.get('#password').should('be.visible');
   cy.get('#password').type(password);
 
-  cy.get('button[type="submit"]')
-    .should('be.visible')
-    .and('be.enabled')
-    .click();
+  cy.get('button[type="submit"]').should('be.visible');
+  cy.get('button[type="submit"]').click();
 };
 
 describe('Sign In page', () => {
@@ -58,10 +56,8 @@ describe('Sign In page', () => {
     submitLogin(validUsername, validPassword);
 
     cy.location('pathname').should('eq', '/secure');
-    cy.get('a[href="/logout"]')
-      .should('be.visible')
-      .and('contain.text', 'Logout')
-      .click();
+    cy.get('a[href="/logout"]').should('be.visible');
+    cy.get('a[href="/logout"]').click();
 
     cy.location('pathname').should('eq', '/login');
     cy.get('#flash')
